@@ -1,0 +1,8 @@
+#!/bin/sh
+
+case "$QUTE_URL" in
+    *youtube.com/watch*|*youtu.be/*)
+        mpv --really-quiet "$QUTE_URL" &
+        echo "tab-close" > "$QUTE_FIFO"
+        ;;
+esac

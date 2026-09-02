@@ -1,0 +1,8 @@
+;; windows/taskwarrior.yuck
+(defwindow taskwarrior
+  :monitor 0
+  :geometry (geometry :x "30px" :y "-30px" :width "280px" :height "500px" :anchor "bottom left")
+  :stacking "fg"
+  :exclusive false
+  :focusable false
+  (taskwarrior))  

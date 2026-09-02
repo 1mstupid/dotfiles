@@ -1,0 +1,13 @@
+#!/bin/sh
+
+#Autostart
+sxhkd &
+kmonad ~/.config/kmonad/config.kbd & 
+autorandr --change &
+~/.fehbg &
+picom -b &
+greenclip daemon &
+# nm-applet &
+# volctl &
+# blueman-applet &
+# xscreensaver 

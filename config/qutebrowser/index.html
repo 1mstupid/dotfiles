@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        /* Gruvbox Dark Palette */
+        :root {
+            --bg0: #000000;
+            --bg1: #3c3836;
+            --fg: #ffffff;
+            --gray: #a89984;
+            --yellow: #ffffff;
+            --blue: #83a598;
+            --aqua: #8ec07c;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg0);
+            color: var(--fg);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        main {
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        /* Clock / Greeting Section */
+        #time {
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--yellow);
+            margin-bottom: 0.5rem;
+        }
+
+        #greeting {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 3.5rem;
+        }
+
+        /* Bookmark Links Grid */
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+        }
+
+        .link-card {
+            background-color: var(--bg1);
+            padding: 18px;
+            border-radius: 6px;
+            text-decoration: none;
+            color: var(--blue);
+            font-weight: 500;
+            transition: transform 0.15s ease, color 0.15s ease;
+        }
+
+        .link-card:hover {
+            transform: translateY(-2px);
+            color: var(--aqua);
+        }
+    </style>
+</head>
+<body>
+
+    <main>
+        <div id="time">00:00</div>
+        <div id="greeting">Hello there.</div>
+          </main>
+
+    <script>
+        // Simple Real-Time Clock
+        function updateTime() {
+            const now = new Date();
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            
+            hours = hours < 10 ? '0' + hours : hours;
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            
+            document.getElementById('time').textContent = `${hours}:${minutes}`;
+        }
+
+        updateTime();
+        setInterval(updateTime, 1000);
+    </script>
+
+</body>
+</html>

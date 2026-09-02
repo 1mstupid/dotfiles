@@ -1,0 +1,7 @@
+(defwindow music-player
+  :monitor   0
+  :geometry  (geometry :x "0%" :y "50px" :width "620px" :height "90px" :anchor "top center")
+  :stacking  "fg"
+  :exclusive false
+  :focusable false
+  (music-player))

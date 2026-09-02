@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Dependencies check
+for cmd in slop maim tesseract-ocr xsel; do
+    if ! command -v "$cmd" &> /dev/null; then
+        echo "Error: $cmd is not installed." >&2
+        exit 1
+    fi
+done
+
+tmpfile="$(mktemp --suffix=.png)"
+trap 'rm -f "$tmpfile"' EXIT
+
+# 1. Select region
+# Using -f "%g" gives maim exactly what it needs (WxH+X+Y)
+if ! geometry=$(slop -f "%g"); then
+    echo "Selection cancelled." >&2
+    exit 1
+fi
+
+# 2. Take screenshot
+if ! maim -g "$geometry" "$tmpfile"; then
+    echo "Screenshot failed." >&2
+    exit 1
+fi
+
+# 3. OCR with Tesseract
+# -l por for Portuguese; sed cleans up trailing whitespace/form feeds
+if text=$(tesseract-ocr "$tmpfile" stdout -l por 2>/dev/null | sed '/^[[:space:]]*$/d') && [[ -n "$text" ]]; then
+    
+    # 4. Copy to clipboard using xsel
+    # -i: read from stdin
+    # -b: use 'clipboard' selection (Ctrl+V)
+    # -p: use 'primary' selection (Middle-click)
+    echo -n "$text" | xsel -ib
+    echo -n "$text" | xsel -ip
+    
+    echo "Successfully copied $(wc -w <<< "$text") words."
+else
+    # notify-send is optional, will fail silently if no daemon is running
+    notify-send "OCR failed" "No text detected in selection." 2>/dev/null || true
+    echo "No text detected." >&2
+    exit 1
+fi

@@ -1,0 +1,62 @@
+;; Workspace-empty detection (from your dwm setup)
+(defvar pomo-manual-hidden "false")
+
+;; Pomodoro state
+(defvar pomo-time "25:00")
+(defvar pomo-phase "focus")
+(defvar pomo-elapsed "00:00")
+(defvar pomo-progress 0.0)
+(defvar pomo-running "false")
+(defvar pomo-completed "0")
+
+(defwidget pomodoro []
+  (box :class "pomodoro-container"
+       :orientation "v"
+       :space-evenly false
+       :halign "center"
+       :valign "center"
+       ;; Expression goes here, not in defvar
+       :visible {workspace-empty == "true" && pomo-manual-hidden == "false"}
+    (box :class "pomo-full"
+         :orientation "v"
+         :space-evenly false
+      ;; Header with dismiss button
+      (box :class "pomo-header"
+           :orientation "h"
+           :space-evenly false
+           :halign "fill"
+        (label :class "pomo-title" :text "pomodoro")
+        (label :class "pomo-phase-label" :text "${pomo-phase}")
+     )
+
+      (box :class "pomo-timer"
+           :orientation "h"
+           :halign "center"
+        (label :class "pomo-time-display" :text "${pomo-time}"))
+
+      (box :class "pomo-bar-bg"
+           :orientation "h"
+           :halign "fill"
+           :vexpand false
+        (box :class "pomo-bar-fill"
+             :width "${pomo-progress * 100}"
+             :hexpand false))
+
+      (box :class "pomo-controls"
+           :orientation "h"
+           :space-evenly false
+           :halign "center"
+        (button :class "pomo-btn"
+                :onclick "/home/waltz/.config/eww/scripts/pomodoro.sh toggle"
+          (label :text {pomo-running == "running" ? "" : ""}))
+        (button :class "pomo-btn"
+                :onclick "/home/waltz/.config/eww/scripts/pomodoro.sh stop"
+          (label :text ""))
+        (button :class "pomo-btn"
+                :onclick "/home/waltz/.config/eww/scripts/pomodoro.sh reset"
+          (label :text "")))
+
+      (box :class "pomo-stats"
+           :orientation "h"
+           :halign "center"
+        (label :class "pomo-stats-text" :text "completed: ${pomo-completed} time-elapse: ${pomo-elapsed}")))))

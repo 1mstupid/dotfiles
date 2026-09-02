@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+RPC="http://127.0.0.1:30001/jsonrpc"
+SECRET="token:3M9fuHZAKCDoIj31"
+
+send_rpc() {
+    curl -s \
+        -H "Content-Type: application/json" \
+        -d "{
+          \"jsonrpc\":\"2.0\",
+          \"id\":\"qute\",
+          \"method\":\"aria2.addUri\",
+          \"params\":[
+            \"$SECRET\",
+            [\"$QUTE_URL\"]
+          ]
+        }" \
+        "$RPC"
+}
+
+response=$(send_rpc)
+
+if ! echo "$response" | grep -q '"result"'; then
+    # No running instance? Start Motrix silently.
+    if ! pgrep -x motrix-next >/dev/null && ! pgrep -x Motrix >/dev/null; then
+        nohup motrix-next >/dev/null 2>&1 &
+        sleep 2
+    fi
+
+    response=$(send_rpc)
+fi
+
+if echo "$response" | grep -q '"result"'; then
+    printf 'message-info "Sent torrent to Motrix"\n' >> "$QUTE_FIFO"
+else
+    printf 'message-error "Motrix error: %s"\n' "$response" >> "$QUTE_FIFO"
+fi

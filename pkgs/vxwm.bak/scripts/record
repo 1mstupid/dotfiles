@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+OUTDIR="$HOME/Videos/Recordings"
+mkdir -p "$OUTDIR"
+
+if pgrep -x "ffmpeg" > /dev/null; then
+    pkill -INT -x "ffmpeg"
+    notify-send "Recording Saved" -t 2000
+else
+    TIMESTAMP=$(date +'%Y%m%d-%H%M%S')
+    FILE="$OUTDIR/rec-$TIMESTAMP.mp4"
+
+    RES=$(xdpyinfo | grep dimensions | awk '{print $2}')
+
+    notify-send "Recording Started" -t 2000
+
+    ffmpeg \
+      -f x11grab -framerate 30 -video_size "$RES" \
+      -i :0.0 \
+      -f pulse -i bluez_output.40_35_E6_33_C7_57.1.monitor \
+      -c:v libx264 \
+      -preset veryfast \
+      -crf 23 \
+      -pix_fmt yuv420p \
+      -movflags +faststart \
+      -c:a aac \
+      -b:a 128k \
+      "$FILE" > /dev/null 2>&1 &
+fi
