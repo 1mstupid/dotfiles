@@ -3,9 +3,27 @@ let
 	st = pkgs.callPackage ./pkgs/st-flexi/default.nix { };
 in
 {
-	home.username = "waltz";
-	home.homeDirectory = "/home/waltz";
-	home.stateVersion = "26.05";
+	home = {
+		username = "waltz";
+		homeDirectory = "/home/waltz";
+		stateVersion = "26.05";
+		sessionVariables = {
+		  EDITOR = "hx";
+		  QML2_IMPORT_PATH = "${pkgs.qt6.qtmultimedia}/lib/qt-6/qml";
+		  VISUAL = "hx";
+		  BROWSER = "librewolf";
+		};
+		pointerCursor = {
+      name = "capitaine-cursors";
+      package = pkgs.capitaine-cursors;
+      size = 24;
+		};
+	};
+	home.sessionPath = [
+	  "${config.home.homeDirectory}/.cargo/bin"
+	  "${config.home.homeDirectory}/.local/bin"
+	];
+	
 	programs.home-manager.enable = true;
 	programs.bash = {
 		enable = true;
@@ -13,61 +31,59 @@ in
 
 	programs.git = {
 		enable = true;
+		settings.user = {
+			name = "Ítalo Barros";
+			email = "italolv20@gmail.com";
+		};
 	};	
 
-	home.sessionVariables = {
-	  EDITOR = "hx";
-	  QML2_IMPORT_PATH = "${pkgs.qt6.qtmultimedia}/lib/qt-6/qml";
-	  VISUAL = "hx";
-	  BROWSER = "librewolf";
-	};
 
 	xdg.mimeApps = {
 	  enable = true;
+		defaultApplications = {
+		   
+		  # Web
+		  "text/html" = "helium-browser.desktop";
+		  "x-scheme-handler/http" = "helium-browser.desktop";
+		  "x-scheme-handler/https" = "helium-browser.desktop";
 
-	defaultApplications = {
-	  # Web
-	  "text/html" = "helium-browser.desktop";
-	  "x-scheme-handler/http" = "helium-browser.desktop";
-	  "x-scheme-handler/https" = "helium-browser.desktop";
+		  # Torrents
+		  "application/x-bittorrent" = "org.qbittorrent.qBittorrent.desktop";
+		  "x-scheme-handler/magnet" = "org.qbittorrent.qBittorrent.desktop";
 
-	  # Torrents
-	  "application/x-bittorrent" = "org.qbittorrent.qBittorrent.desktop";
-	  "x-scheme-handler/magnet" = "org.qbittorrent.qBittorrent.desktop";
+		  # Text / code
+		  "text/plain" = "Helix.desktop";
+		  "text/markdown" = "Helix.desktop";
+		  "text/x-c" = "Helix.desktop";
+		  "text/x-c++" = "Helix.desktop";
+		  "text/x-python" = "Helix.desktop";
+		  "text/x-rust" = "Helix.desktop";
+		  "text/x-shellscript" = "Helix.desktop";
 
-	  # Text / code
-	  "text/plain" = "Helix.desktop";
-	  "text/markdown" = "Helix.desktop";
-	  "text/x-c" = "Helix.desktop";
-	  "text/x-c++" = "Helix.desktop";
-	  "text/x-python" = "Helix.desktop";
-	  "text/x-rust" = "Helix.desktop";
-	  "text/x-shellscript" = "Helix.desktop";
+		  # Documents
+		  "application/pdf" = "sioyek.desktop";
 
-	  # Documents
-	  "application/pdf" = "sioyek.desktop";
+		  # Images
+		  "image/jpeg" = "imv.desktop";
+		  "image/png" = "imv.desktop";
+		  "image/gif" = "imv.desktop";
+		  "image/webp" = "imv.desktop";
+		  "image/svg+xml" = "helium-browser.desktop";
 
-	  # Images
-	  "image/jpeg" = "imv.desktop";
-	  "image/png" = "imv.desktop";
-	  "image/gif" = "imv.desktop";
-	  "image/webp" = "imv.desktop";
-	  "image/svg+xml" = "helium-browser.desktop";
+		  # Video
+		  "video/mp4" = "mpv.desktop";
+		  "video/webm" = "mpv.desktop";
+		  "video/x-matroska" = "mpv.desktop";
+		  "video/quicktime" = "mpv.desktop";
 
-	  # Video
-	  "video/mp4" = "mpv.desktop";
-	  "video/webm" = "mpv.desktop";
-	  "video/x-matroska" = "mpv.desktop";
-	  "video/quicktime" = "mpv.desktop";
-
-	  # Audio
-	  "audio/mpeg" = "mpv.desktop";
-	  "audio/ogg" = "mpv.desktop";
-	  "audio/flac" = "mpv.desktop";
-	  "audio/wav" = "mpv.desktop";
+		  # Audio
+		  "audio/mpeg" = "mpv.desktop";
+		  "audio/ogg" = "mpv.desktop";
+		  "audio/flac" = "mpv.desktop";
+		  "audio/wav" = "mpv.desktop";
+		};
 	};
 
-	};
 	programs.zsh = {
 	  enable = true;
 	  autocd = true;
@@ -76,7 +92,7 @@ in
 		  ns = "nix search nixpkgs";
 	  	hm = "hx ~/dotfiles/home.nix";
 	  	flake = "hx ~/dotfiles/flake.nix";
-	    update = "sudo nixos-rebuild switch --flake ~/dotfiles#nixos-btw";
+	    update = "git -C ~/dotfiles add . && git -C ~/dotfiles commit -m 'minor' && sudo nixos-rebuild switch --flake ~/dotfiles#nixos-btw";
 	  };
 	  oh-my-zsh = {
 	    enable = true;
@@ -181,19 +197,19 @@ in
 		neovim
 		helix
 		mpv
-		busybox
+		# busybox
 		feh
+		tmux
 		ripgrep
-		nil
-		nixpkgs-fmt
+		# nil
+		# nixpkgs-fmt
 		nodejs
 		yazi
 		gcc
-	  bibata-cursors
+	  # bibata-cursors
 		anki-bin
 		app2unit
 		st
-		google-cursor
 		grim
 		desktop-file-utils		
 		qt6Packages.sddm
