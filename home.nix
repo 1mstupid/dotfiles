@@ -3,6 +3,13 @@ let
 	st = pkgs.callPackage ./pkgs/st-flexi/default.nix { };
 in
 {
+	imports = [inputs.chillpill-shell.homeManagerModules.default];
+	programs.chillpill-shell = {
+		enable = true;
+		settings = {
+			clockFormat = "HH:mm";
+		};
+	};
 	home = {
 		username = "waltz";
 		homeDirectory = "/home/waltz";

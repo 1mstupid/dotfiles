@@ -2,14 +2,18 @@
   description = "Dummmy, you're making a massive mistake - Yourself 21/08";
 
   inputs = {
+
     nixpkgs.url = "nixpkgs/nixos-26.05";
 
+    chillpill-shell = {
+          url = "github:LUCKYS1NGHH/chillpill-shell";
+          inputs.nixpkgs.follows = "nixpkgs";
+        };
 
     helium = {
       url = "github:AlvaroParker/helium-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
 
     home-manager = {
       url = "github:nix-community/home-manager/release-26.05";
