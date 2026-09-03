@@ -145,13 +145,13 @@ in
 		# recursive = true;
 		# };
 		"nvim/init.lua" = {
-			source = config.lib.file.mkOutOfStoreSymlink "/home/waltz/dotfiles/config/nvim/init.lua;
+			source = config.lib.file.mkOutOfStoreSymlink "/home/waltz/dotfiles/config/nvim/init.lua";
 		};
 		"hypr" = {
 			source = config.lib.file.mkOutOfStoreSymlink "/home/waltz/dotfiles/config/hypr";
 			recursive = true;
-			};
 		};
+	};
 
   dconf.settings = {
     "org/gnome/desktop/interface" = {
@@ -224,9 +224,9 @@ in
 		st
 		grim
 		desktop-file-utils		
+		xdg-user-dirs
 		qt6Packages.sddm
 	  inputs.helium.packages.${pkgs.system}.default
-		xdg-user-dirs
 		# mpvpaper 
 		# alacritty
 		# xinit
