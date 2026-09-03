@@ -144,9 +144,8 @@ in
 		# source = config.lib.file.mkOutOfStoreSymlink "/home/waltz/dotfiles/config/mango";
 		# recursive = true;
 		# };
-		"nvim" = {
-			source = config.lib.file.mkOutOfStoreSymlink "/home/waltz/dotfiles/config/nvim";
-			recursive = true;
+		"nvim/init.lua" = {
+			source = config.lib.file.mkOutOfStoreSymlink "/home/waltz/dotfiles/config/nvim/init.lua;
 		};
 		"hypr" = {
 			source = config.lib.file.mkOutOfStoreSymlink "/home/waltz/dotfiles/config/hypr";
