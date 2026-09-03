@@ -204,7 +204,6 @@ in
 		python3
 		dbus
 		readest
-		neovim
 		helix
 		mpv
 		# busybox
