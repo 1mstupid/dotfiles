@@ -146,8 +146,6 @@ local vars = {
     xwayland_use_nearest_neighbor = true,
 
     -- Environment Variables
-    -- Set cursor theme
-    cursor_theme = "GoogleDot-Black",
     -- Set X cursor size
     env_xcursor_size = 24,
     -- Set Hypr cursor size

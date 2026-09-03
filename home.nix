@@ -83,6 +83,16 @@ in
 		  "audio/wav" = "mpv.desktop";
 		};
 	};
+	programs.neovim = {
+	  enable = true;
+
+	  plugins = with pkgs.vimPlugins; [
+	    vim-sensible
+	    nerdtree
+	    fzf-vim
+	    gruvbox
+	  ];
+	};
 
 	programs.zsh = {
 	  enable = true;
