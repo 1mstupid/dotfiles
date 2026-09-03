@@ -11,7 +11,7 @@ in
 		  EDITOR = "hx";
 		  QML2_IMPORT_PATH = "${pkgs.qt6.qtmultimedia}/lib/qt-6/qml";
 		  VISUAL = "hx";
-		  BROWSER = "librewolf";
+		  BROWSER = "helium-browser";
 		};
 		pointerCursor = {
       name = "capitaine-cursors";
