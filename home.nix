@@ -201,6 +201,7 @@ in
 		# nixpkgs-fmt
 		nodejs
 		yazi
+		super-productivity
 		gcc
 	  # bibata-cursors
 		anki-bin

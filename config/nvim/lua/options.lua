@@ -1,3 +1,4 @@
+vim.cmd.colorscheme("gruvbox")
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.expandtab = true

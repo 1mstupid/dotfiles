@@ -61,6 +61,3 @@ hl.monitor({
     bitdepth = 10,
     cm       = "auto",
 })
-
--- k4: tema gestionado desde la barra (debe ir el último)
-require("config.k4-theme")
