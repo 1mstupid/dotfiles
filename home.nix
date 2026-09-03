@@ -132,6 +132,9 @@ in
 	  "hypr".source =
 	    config.lib.file.mkOutOfStoreSymlink
 	      "/home/waltz/dotfiles/config/hypr";
+	  "nvim/lua".source =
+	    config.lib.file.mkOutOfStoreSymlink
+	      "/home/waltz/dotfiles/config/nvim/lua";
 	};
 
   dconf.settings = {
