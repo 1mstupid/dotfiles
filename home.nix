@@ -92,8 +92,9 @@ in
 	    fzf-vim
 	    gruvbox
 	  ];
-	};
 
+	  extraLuaConfig = builtins.readFile ./config/nvim/init.lua;
+	};
 	programs.zsh = {
 	  enable = true;
 	  autocd = true;
@@ -123,34 +124,14 @@ in
 	  ];
 	};
 
-	home.file = {
-		# ".config/eww".source = ./config/eww;
-		# ".config/rofi".source = ./config/rofi;
-		# ".config/dunst".source = ./config/dunst;
-		# ".config/bspwm".source = ./config/bspwm;
-		# ".config/mango".source = ./config/mango;
-		# ".config/polybar".source = ./config/polybar;
-		# ".config/sxhkd".source = ./config/sxhkd;
-		".config/kmonad".source = ./config/kmonad;
-		".config/zsh".source = ./config/zsh;
-		".config/helix".source = ./config/helix;
-	  ".config/mpv".source = ./config/mpv;
-	  # ".config/hypr".source = ./config/hypr;
-	  # ".config/nvim".source = ./config/nvim;	
-		# ".config/picom".source = ./config/picom;
-	};
 	xdg.configFile = {
-		# "mango" = {
-		# source = config.lib.file.mkOutOfStoreSymlink "/home/waltz/dotfiles/config/mango";
-		# recursive = true;
-		# };
-		"nvim" = {
-			source = config.lib.file.mkOutOfStoreSymlink "/home/waltz/dotfiles/config/nvim";
-		};
-		"hypr" = {
-			source = config.lib.file.mkOutOfStoreSymlink "/home/waltz/dotfiles/config/hypr";
-			recursive = true;
-		};
+	  "kmonad".source = ./config/kmonad;
+	  "zsh".source = ./config/zsh;
+	  "helix".source = ./config/helix;
+	  "mpv".source = ./config/mpv;
+	  "hypr".source =
+	    config.lib.file.mkOutOfStoreSymlink
+	      "/home/waltz/dotfiles/config/hypr";
 	};
 
   dconf.settings = {
