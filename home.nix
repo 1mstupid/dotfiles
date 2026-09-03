@@ -146,7 +146,6 @@ in
 		# };
 		"nvim" = {
 			source = config.lib.file.mkOutOfStoreSymlink "/home/waltz/dotfiles/config/nvim";
-			recursive = true;
 		};
 		"hypr" = {
 			source = config.lib.file.mkOutOfStoreSymlink "/home/waltz/dotfiles/config/hypr";
