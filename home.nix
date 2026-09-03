@@ -1,15 +1,10 @@
 { config, pkgs, inputs, ... }:
 let
 	st = pkgs.callPackage ./pkgs/st-flexi/default.nix { };
+	dwm = pkgs.callPackage ./pkgs/dwm/default.nix { };
 in
 {
-	imports = [inputs.chillpill-shell.homeManagerModules.default];
-	programs.chillpill-shell = {
-		enable = true;
-		settings = {
-			clockFormat = "HH:mm";
-		};
-	};
+	imports = [];
 	home = {
 		username = "waltz";
 		homeDirectory = "/home/waltz";
@@ -213,6 +208,7 @@ in
 	  # bibata-cursors
 		anki-bin
 		app2unit
+		dwm
 		st
 		grim
 		desktop-file-utils		
