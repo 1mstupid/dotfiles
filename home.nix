@@ -94,8 +94,6 @@ in
 	    fzf-vim
 	    gruvbox
 	  ];
-
-	  extraLuaConfig = builtins.readFile ./config/nvim/init.lua;
 	};
 	programs.zsh = {
 	  enable = true;
@@ -208,7 +206,7 @@ in
 	  # bibata-cursors
 		anki-bin
 		app2unit
-		dwm
+		# dwm
 		st
 		grim
 		desktop-file-utils		
