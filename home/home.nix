@@ -1,7 +1,4 @@
 { config, pkgs, inputs, ... }:
-let
-	dwm = pkgs.callPackage ./pkgs/dwm/default.nix { };
-in
 {
 	imports = [ ./packages.nix ];
 	home = {
