@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "CaskaydiaMono Nerd Font Mono:weight=900:pixelsize=18:antialias=true:autohint=true";
+static char *font = "CaskaydiaMono Nerd Font Mono:weight=900:pixelsize=16:antialias=true:autohint=true";
 
 #if FONT2_PATCH
 /* Spare fonts */
@@ -197,7 +197,6 @@ static const char *colorname[] = {
 	"#458588",
 	"#b4bbc8",
 	"#82b3a8",
-	"#ebdbb2",
 
 	/* 8 bright colors */
 	"#7c6f64",
@@ -208,15 +207,14 @@ static const char *colorname[] = {
 	"#458588",
 	"#b4bbc8",
 	"#82b3a8",
-	"#ebdbb2",
 
 	[255] = 0,
 
 	/* more colors can be added after 255 to use with DefaultXX */
-	"#000000", // cursor
-	"#000000",
-	"#000000", /* default foreground colour */
-	"#000000", /* default background colour */
+	"#7bef12", // cursor
+	"#424242",
+	"#eeeeee", /* default foreground colour */
+	"#1c1c1c", /* default background colour */
 };
 
 
