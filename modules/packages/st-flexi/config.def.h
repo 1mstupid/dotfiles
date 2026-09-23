@@ -188,33 +188,33 @@ char *xdndescchar = " !\"#$&'()*;<>?[\\]^`{|}~";
 
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
-	/* 8 normal colors */
-	"#7c6f64",
-	"#292929",
-	"#fb4934",
-	"#b8bb26",
-	"#d79921",
-	"#458588",
-	"#b4bbc8",
-	"#82b3a8",
+    /* 8 normal colors */
+    "#1d2021", /* black   (bg0_h) */
+    "#cc241d", /* red     */
+    "#98971a", /* green   */
+    "#d79921", /* yellow  */
+    "#458588", /* blue    */
+    "#b16286", /* purple  */
+    "#689d6a", /* aqua    */
+    "#a89984", /* white   (fg4)   */
 
-	/* 8 bright colors */
-	"#7c6f64",
-	"#292929",
-	"#fb4934",
-	"#b8bb26",
-	"#d79921",
-	"#458588",
-	"#b4bbc8",
-	"#82b3a8",
+    /* 8 bright colors */
+    "#928374", /* gray    */
+    "#fb4934", /* red     */
+    "#b8bb26", /* green   */
+    "#fabd2f", /* yellow  */
+    "#83a598", /* blue    */
+    "#d3869b", /* purple  */
+    "#8ec07c", /* aqua    */
+    "#ebdbb2", /* white   (fg1)   */
 
-	[255] = 0,
+    [255] = 0,
 
-	/* more colors can be added after 255 to use with DefaultXX */
-	"#7bef12", /* cursor */
-	"#424242",
-	"#eeeeee", /* default foreground */
-	"#1c1c1c", /* default background */
+    /* extra colors for st/terminal */
+    "#ebdbb2", /* cursor */
+    "#3c3836", /* reverse cursor / selection bg */
+    "#ebdbb2", /* default foreground (fg1) */
+    "#1d2021", /* default background (bg0_h - hard dark) */
 };
 
 /*
