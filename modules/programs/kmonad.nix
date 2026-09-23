@@ -1,4 +1,4 @@
-{ config, lib, pkgs }:
+{ pkgs, ... }:
 {
     systemd.services.kmonad = {
     description = "KMonad keyboard remapping";
@@ -13,5 +13,4 @@
       User = "root";
     };
   };
-
 }
