@@ -1,0 +1,8 @@
+;; windows/taskwarrior.yuck
+(defwindow life-progress
+  :monitor 0
+  :geometry (geometry :x "-30px" :y "-30px" :width "350px" :height "200px" :anchor "bottom right")
+  :stacking "fg"
+  :exclusive false
+  :focusable false
+  (life-progress))  

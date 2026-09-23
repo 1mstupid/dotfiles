@@ -1,10 +1,9 @@
 { config, pkgs, inputs, ... }:
 let
-	st = pkgs.callPackage ./pkgs/st-flexi/default.nix { };
 	dwm = pkgs.callPackage ./pkgs/dwm/default.nix { };
 in
 {
-	imports = [];
+	imports = [ ./packages.nix ];
 	home = {
 		username = "waltz";
 		homeDirectory = "/home/waltz";
@@ -103,7 +102,7 @@ in
 		  ns = "nix search nixpkgs";
 	  	hm = "hx ~/dotfiles/home.nix";
 	  	flake = "hx ~/dotfiles/flake.nix";
-	    rebuild = "git -C ~/dotfiles add . && git -C ~/dotfiles commit -m 'minor' && sudo nixos-rebuild switch --flake ~/dotfiles#nixos-btw";
+	    update = "git -C ~/dotfiles add . && git -C ~/dotfiles commit -m 'minor' && sudo nixos-rebuild switch --flake ~/dotfiles#nixos-btw";
 	  };
 	  oh-my-zsh = {
 	    enable = true;
@@ -129,9 +128,6 @@ in
 	  "zsh".source = ./config/zsh;
 	  "helix".source = ./config/helix;
 	  "mpv".source = ./config/mpv;
-		"mango".source =
-			    config.lib.file.mkOutOfStoreSymlink
-			      "/home/waltz/dotfiles/config/mango";
 	  "hypr".source =
 	    config.lib.file.mkOutOfStoreSymlink
 	      "/home/waltz/dotfiles/config/hypr";
@@ -146,93 +142,4 @@ in
       gtk-theme = "Adwaita-dark";
     };
   };
-
-	home.packages = with pkgs; [
-		(symlinkJoin {
-	    name = "sioyek";
-	    paths = [ sioyek ];
-
-	    nativeBuildInputs = [ makeWrapper ];
-
-	    postBuild = ''
-	      wrapProgram $out/bin/sioyek \
-	        --prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath [ pipewire ]}
-	    '';
-	  })
-		quickshell
-		qt6.qtbase
-		qt6.qtdeclarative
-  	kdePackages.qtmultimedia
-		qbittorrent-enhanced
-		jq
-		imagemagick
-		ffmpeg
-		adwaita-fonts 
-		satty
-		swaybg
-		brightnessctl
-		cava
-		cliphist
-		wl-clipboard
-		libpulseaudio
-		xdg-utils
-		slurp
-		xdg-launch
-		gpu-screen-recorder
-		wf-recorder
-		fd
-		libpulseaudio
-		bluez
-		xdg-user-dirs
-		matugen
-		ddcutil
-		zenity
-		hypridle
-		kmonad
-	  pamixer
-		libnotify
-		python3
-		dbus
-		readest
-		helix
-		mpv
-		# busybox
-		feh
-		tmux
-		ripgrep
-		# nil
-		# nixpkgs-fmt
-		nodejs
-		yazi
-		super-productivity
-		gcc
-	  # bibata-cursors
-		anki-bin
-		app2unit
-		# dwm
-		st
-		grim
-		desktop-file-utils		
-		xdg-user-dirs
-		qt6Packages.sddm
-	  inputs.helium.packages.${pkgs.system}.default
-		# mpvpaper 
-		# alacritty
-		# xinit
-		rofi
-		# bspwm
-		#	dunst
-		# vxwm
-		# eww
-		# picom
-    # xclip
-		# haskellPackages.greenclip
-		# sxhkd
-		# qutebrowser
-		# polybar
-		mangowc
-		# hyprland
-		# hyprsunset
-		librewolf-bin
-	];
 }

@@ -1,0 +1,136 @@
+(defvar task-manual-hidden "false")
+
+(defwidget task []
+    (box
+      :orientation "v"
+      :class "widget-card task-full"
+      :space-evenly false
+      :spacing 12
+      :visible {workspace-empty == "true" && task-manual-hidden == "false"}
+
+      (box
+        :orientation "h"
+        :space-evenly false
+        :spacing 8
+        (label :class "title" :text "Tasks")
+        (label
+          :class "subtitle"
+          :text "${tasks_data.active} active - ${tasks_data.high} high - ${tasks_data.done_today} done today")
+        (box :hexpand true)
+        (label :class "badge" :text "${tasks_data.context}"))
+
+      (box
+        :orientation "h"
+        :class "stats-row"
+        :spacing 8
+        :space-evenly true
+        (box
+          :class "stat-card"
+          :orientation "v"
+          :space-evenly false
+          (label :class "stat-value" :text "${tasks_data.stats.total}")
+          (label :class "stat-label" :text "Total"))
+        (box
+          :class "stat-card"
+          :orientation "v"
+          :space-evenly false
+          (label :class "stat-value" :text "${tasks_data.stats.due_today}")
+          (label :class "stat-label" :text "Today"))
+        (box
+          :class "stat-card"
+          :orientation "v"
+          :space-evenly false
+          (label :class "stat-value ${tasks_data.stats.overdue > 0 ? 'overdue' : ''}" :text "${tasks_data.stats.overdue}")
+          (label :class "stat-label" :text "Overdue")))
+
+      (box
+        :orientation "h"
+        :spacing 8
+        :space-evenly false
+        (button
+          :class "filter-btn"
+          :onclick "echo 'all' > /tmp/eww-task-filter"
+          (label :text "All"))
+        (button
+          :class "filter-btn"
+          :onclick "echo 'today' > /tmp/eww-task-filter"
+          (label :text "Today"))
+        (button
+          :class "filter-btn"
+          :onclick "echo 'overdue' > /tmp/eww-task-filter"
+          (label :text "Overdue"))
+        (button
+          :class "filter-btn"
+          :onclick "echo 'high' > /tmp/eww-task-filter"
+          (label :text "High"))
+        (box :hexpand true)
+        (input
+          :class "search"
+          :value ""
+          :onchange "echo '{}' > /tmp/eww-task-search"
+          :placeholder "Search"))
+
+      (box
+        :orientation "v"
+        :class "task-list"
+        :space-evenly false
+        :spacing 2
+        (for task in tasks_list
+          (box
+            :orientation "h"
+            :class "task-item"
+            :space-evenly false
+            :spacing 8
+            (box
+              :class "priority-bar ${task.priority == 'H' ? 'high' : task.priority == 'M' ? 'med' : task.priority == 'L' ? 'low' : 'none'}")
+            (box
+              :orientation "h"
+              :space-evenly false
+              :spacing 10
+              :hexpand true
+              (label
+                :class "task-desc ${task.active == 'true' ? 'active' : ''}"
+                :text "${task.id}. ${task.description}"
+                :limit-width 40)
+              (box
+                :orientation "h"
+                :spacing 8
+                :space-evenly false
+                (label
+                  :class "task-meta project"
+                  :spacing 8
+                  :text "${task.project}"
+                  :visible {task.project != ""})
+                (label
+                  :class "task-meta due ${task.due_class}"
+                  :text "${task.due_text}"
+                  :visible {task.due_text != ""})
+                (label
+                  :class "task-meta active-label"
+                  :text "active"
+                  :visible {task.active == "true"})
+                (label
+                  :class "task-meta tag"
+                  :text "${task.tags}"
+                  :visible {task.tags != ""})))
+            (box
+              :orientation "h"
+              :spacing 4
+              :space-evenly false
+              (button
+                :class "action-btn"
+                :onclick "/home/waltz/.config/eww/scripts/task.sh done ${task.id}"
+                (label :text ""))
+              (button
+                :class "action-btn"
+                :onclick "/home/waltz/.config/eww/scripts/task.sh ${task.active == 'true' ? 'stop' : 'start'} ${task.id}"
+                (label :text "${task.active == 'true' ? '⏹' : '▶'}")))))
+
+      (box
+        :orientation "h"
+        :class "footer"
+        :space-evenly false
+        (label :text "${tasks_data.shown} shown / ${tasks_data.total} total")
+        (box :hexpand true))))
+      )
+  

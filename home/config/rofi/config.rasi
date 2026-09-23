@@ -1,0 +1,18 @@
+configuration {
+    modi: "drun,run,window";
+    show-icons: false;
+    display-drun: "Applications";
+    display-run: "Run";
+    matching: "prefix";
+    sorting-method: "fzf";
+    drun-match-fields: "name,generic";
+    display-window: "Windows";
+    font: "GohuFont uni14 Nerd Font 11";
+    drun-display-format: "{name}";
+    disable-history: false;
+    hover-select: false;
+    me-select-entry: "";
+    me-accept-entry: "MousePrimary";
+}
+
+@theme "gruvbox-theme"
