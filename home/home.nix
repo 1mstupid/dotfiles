@@ -9,7 +9,7 @@
 		  EDITOR = "hx";
 		  QML2_IMPORT_PATH = "${pkgs.qt6.qtmultimedia}/lib/qt-6/qml";
 		  VISUAL = "hx";
-		  BROWSER = "helium-browser";
+		  BROWSER = "librewolf";
 		};
 		pointerCursor = {
       name = "capitaine-cursors";
@@ -23,6 +23,7 @@
 	];
 	
 	programs.home-manager.enable = true;
+
 	programs.bash = {
 		enable = true;
 	};
@@ -81,20 +82,12 @@
 		  "audio/wav" = "mpv.desktop";
 		};
 	};
-	programs.neovim = {
-	  enable = true;
-
-	  plugins = with pkgs.vimPlugins; [
-	    vim-sensible
-	    nerdtree
-	    fzf-vim
-	    gruvbox
-	  ];
-	};
 
 	xdg.configFile = {
 	  "kmonad".source = ./config/kmonad;
-	  "rofi".source = ./config/rofi;
+	  "rofi".source =
+	  	config.lib.file.mkOutOfStoreSymlink
+	  		"/home/waltz/dotfiles/home/config/rofi";
 	  "zsh".source = ./config/zsh;
 	  "helix".source = ./config/helix;
 	  "mpv".source = ./config/mpv;

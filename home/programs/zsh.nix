@@ -7,6 +7,9 @@
   programs.zsh = {
 	  enable = true;
 	  autocd = true;
+	  extraConfig = "
+	  		PS1='%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b '
+	  	";
 	  shellAliases = {
 	  	config = "hx ~/dotfiles/hosts/waltz/configuration.nix";
 		  ns = "nix search nixpkgs";

@@ -5,15 +5,10 @@
 
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    helium = {
-      url = "github:AlvaroParker/helium-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     ayugram-desktop = {
         url = "github:ndfined-crp/ayugram-desktop";
         inputs.nixpkgs.follows = "nixpkgs";
-      };
+    };
 
     home-manager = {
       url = "github:nix-community/home-manager";
