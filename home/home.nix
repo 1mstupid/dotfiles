@@ -4,7 +4,7 @@
 	home = {
 		username = "waltz";
 		homeDirectory = "/home/waltz";
-		stateVersion = "26.11";
+		stateVersion = "26.05";
 		sessionVariables = {
 		  EDITOR = "hx";
 		  QML2_IMPORT_PATH = "${pkgs.qt6.qtmultimedia}/lib/qt-6/qml";
