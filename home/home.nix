@@ -1,6 +1,6 @@
 { config, pkgs, inputs, ... }:
 {
-	imports = [ ./packages.nix ];
+	imports = [ ./packages.nix ./programs ];
 	home = {
 		username = "waltz";
 		homeDirectory = "/home/waltz";
@@ -89,34 +89,6 @@
 	    nerdtree
 	    fzf-vim
 	    gruvbox
-	  ];
-	};
-	programs.zsh = {
-	  enable = true;
-	  autocd = true;
-	  shellAliases = {
-	  	config = "hx ~/dotfiles/configuration.nix";
-		  ns = "nix search nixpkgs";
-	  	hm = "hx ~/dotfiles/home.nix";
-	  	flake = "hx ~/dotfiles/flake.nix";
-	    update = "git -C ~/dotfiles add . && git -C ~/dotfiles commit -m 'minor' && sudo nixos-rebuild switch --flake ~/dotfiles#nixos-btw";
-	  };
-	  oh-my-zsh = {
-	    enable = true;
-	    plugins = [
-	      "git"
-	    ];
-	  };
-
-	  plugins = [
-	    {
-	      name = "fast-syntax-highlighting";
-	      src = pkgs.zsh-fast-syntax-highlighting;
-	    }
-	    {
-	      name = "zsh-vi-mode";
-	      src = pkgs.zsh-vi-mode;
-	    }
 	  ];
 	};
 
