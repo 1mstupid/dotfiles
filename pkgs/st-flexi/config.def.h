@@ -190,7 +190,7 @@ char *xdndescchar = " !\"#$&'()*;<>?[\\]^`{|}~";
 static const char *colorname[] = {
 	/* 8 normal colors */
 	"#7c6f64",
-	//"#292929",
+	"#292929",
 	"#fb4934",
 	"#b8bb26",
 	"#d79921",
@@ -201,7 +201,7 @@ static const char *colorname[] = {
 
 	/* 8 bright colors */
 	"#7c6f64",
-	//"#292929",
+	"#292929",
 	"#fb4934",
 	"#b8bb26",
 	"#d79921",
