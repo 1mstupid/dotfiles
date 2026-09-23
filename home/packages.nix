@@ -71,8 +71,8 @@ in
 		desktop-file-utils		
 		xdg-user-dirs
 		qt6Packages.sddm
-	  inputs.ayugram-desktop.packages.${pkgs.stdenv.hostPlatform.system}.default
 	  inputs.helium.packages.${pkgs.stdenv.hostPlatform.system}.default
+	    inputs.ayugram-desktop.packages.${pkgs.system}.default	  
 		# mpvpaper 
 		# alacritty
 		# xinit
