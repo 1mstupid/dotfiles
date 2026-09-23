@@ -1,3 +1,3 @@
 {
-  imports = [ ./programs/default.nix ./services/default.nix ]
+  imports = [ ./programs/default.nix ./services/default.nix ];
 }
