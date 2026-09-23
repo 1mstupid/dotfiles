@@ -234,5 +234,6 @@ in
 		# hyprland
 		# hyprsunset
 		librewolf-bin
+
 	];
 }

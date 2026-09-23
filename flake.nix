@@ -61,7 +61,7 @@
               inherit inputs;
             };
 
-            home-manager.users.waltz = import ./home.nix;
+            home-manager.users.waltz = import ./home/home.nix;
           }
         ];
 

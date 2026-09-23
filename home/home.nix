@@ -125,15 +125,13 @@ in
 
 	xdg.configFile = {
 	  "kmonad".source = ./config/kmonad;
+	  "rofi".source = ./config/rofi;
 	  "zsh".source = ./config/zsh;
 	  "helix".source = ./config/helix;
 	  "mpv".source = ./config/mpv;
-	  "hypr".source =
+	  "mango".source =
 	    config.lib.file.mkOutOfStoreSymlink
-	      "/home/waltz/dotfiles/config/hypr";
-	  "nvim/lua".source =
-	    config.lib.file.mkOutOfStoreSymlink
-	      "/home/waltz/dotfiles/config/nvim/lua";
+	      "/home/waltz/dotfiles/home/config/mango";
 	};
 
   dconf.settings = {
