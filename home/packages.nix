@@ -23,6 +23,7 @@ in
 		jq
 		imagemagick
 		ffmpeg
+		awww
 		adwaita-fonts 
 		satty
 		swaybg
@@ -59,7 +60,6 @@ in
 		# nil
 		# nixpkgs-fmt
 		nodejs
-		yazi
 		super-productivity
 		gcc
 	  # bibata-cursors
@@ -68,10 +68,10 @@ in
 		# dwm
 		st
 		grim
+		broot
 		desktop-file-utils		
 		xdg-user-dirs
 		qt6Packages.sddm
-	  inputs.helium.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.ayugram-desktop.packages.${pkgs.system}.default
 		# mpvpaper 
 		# alacritty

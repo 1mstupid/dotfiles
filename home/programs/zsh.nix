@@ -1,5 +1,9 @@
 {config, pkgs, ...}:
 {
+	programs.zoxide = {
+    enable = true;
+    enableZshIntegration = true;
+  };
   programs.zsh = {
 	  enable = true;
 	  autocd = true;
@@ -8,6 +12,7 @@
 		  ns = "nix search nixpkgs";
 	  	hm = "hx ~/dotfiles/home/home.nix";
 	  	flake = "hx ~/dotfiles/flake.nix";
+	  	br = "broot";
 	    rebuild = "git -C ~/dotfiles add . && git -C ~/dotfiles commit -m 'minor' && sudo nixos-rebuild switch --flake ~/dotfiles#nixos-btw";
 	  };
 	  oh-my-zsh = {
