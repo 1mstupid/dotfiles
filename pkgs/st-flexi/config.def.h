@@ -226,7 +226,7 @@ static const char *colorname[] = {
 unsigned int defaultbg = 0.7;
 unsigned int bg = 17, bgUnfocused = 16;
 #else
-unsigned int defaultbg = 259;
+unsigned int defaultbg = 258;
 #endif // ALPHA_FOCUS_HIGHLIGHT_PATCH
 unsigned int defaultfg = 258;
 unsigned int defaultcs = 256;
