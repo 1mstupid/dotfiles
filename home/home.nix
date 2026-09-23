@@ -42,9 +42,9 @@
 		defaultApplications = {
 		   
 		  # Web
-		  "text/html" = "helium-browser.desktop";
-		  "x-scheme-handler/http" = "helium-browser.desktop";
-		  "x-scheme-handler/https" = "helium-browser.desktop";
+		  "text/html" = "librewolf.desktop";
+		  "x-scheme-handler/http" = "librewolf.desktop";
+		  "x-scheme-handler/https" = "librewolf.desktop";
 
 		  # Torrents
 		  "application/x-bittorrent" = "org.qbittorrent.qBittorrent.desktop";
@@ -67,7 +67,7 @@
 		  "image/png" = "imv.desktop";
 		  "image/gif" = "imv.desktop";
 		  "image/webp" = "imv.desktop";
-		  "image/svg+xml" = "helium-browser.desktop";
+		  "image/svg+xml" = "librewolf.desktop";
 
 		  # Video
 		  "video/mp4" = "mpv.desktop";
