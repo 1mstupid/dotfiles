@@ -1,8 +1,0 @@
-(defwidget screen-border-widget []
-  (box
-    :class "border-frame"
-    :orientation "vertical"
-    :space-evenly false
-    :valign "fill"
-    :halign "fill"
-    ""))

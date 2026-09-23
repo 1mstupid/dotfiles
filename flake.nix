@@ -5,30 +5,26 @@
 
     nixpkgs.url = "nixpkgs/nixos-26.05";
 
-    chillpill-shell = {
-          url = "github:LUCKYS1NGHH/chillpill-shell";
-          inputs.nixpkgs.follows = "nixpkgs";
-        };
-
     helium = {
       url = "github:AlvaroParker/helium-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    ayugram-desktop = {
+        url = "github:ndfined-crp/ayugram-desktop";
+        inputs.nixpkgs.follows = "nixpkgs";
+      };
+
     home-manager = {
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    nix-flatpak.url =
-      "github:gmodena/nix-flatpak/?ref=v0.7.0";
   };
 
   outputs = inputs@{
     self,
     nixpkgs,
     home-manager,
-    nix-flatpak,
     ...
   }:
     let
@@ -39,7 +35,7 @@
         inherit system;
 
         modules = [
-          ./configuration.nix
+          ./hosts/waltz/configuration.nix
           {
             environment.systemPackages = [
              
@@ -47,7 +43,6 @@
           }
 
           home-manager.nixosModules.home-manager
-          nix-flatpak.nixosModules.nix-flatpak
 
           {
             _module.args = {

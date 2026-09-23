@@ -1,7 +1,0 @@
-(defwindow clock
-  :monitor 0
-  :geometry (geometry :x "30px" :y "50px" :width "280px" :height "130px" :anchor "top left")
-  :stacking "fg"
-  :exclusive false
-  :focusable false
-  (clock))

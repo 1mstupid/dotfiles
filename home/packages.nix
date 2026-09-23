@@ -71,6 +71,7 @@ in
 		desktop-file-utils		
 		xdg-user-dirs
 		qt6Packages.sddm
+	  inputs.ayugram-desktop.packages.${pkgs.system}.default
 	  inputs.helium.packages.${pkgs.system}.default
 		# mpvpaper 
 		# alacritty

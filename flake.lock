@@ -1,23 +1,23 @@
 {
   "nodes": {
-    "chillpill-shell": {
+    "ayugram-desktop": {
       "inputs": {
-        "home-manager": "home-manager",
         "nixpkgs": [
           "nixpkgs"
-        ]
+        ],
+        "tg_owt": "tg_owt"
       },
       "locked": {
-        "lastModified": 1788435220,
-        "narHash": "sha256-tn+th0ILLFQE84Htlv051zdQ4xYZk3TjfHxuKUC+Oyk=",
-        "owner": "LUCKYS1NGHH",
-        "repo": "chillpill-shell",
-        "rev": "06ba919039b581ccc80845679edc193246323b75",
+        "lastModified": 1789925593,
+        "narHash": "sha256-Ze3owEgBWIlyoQbH5wzIhb2AV18PeJp0ZKT2pEhXGrE=",
+        "owner": "ndfined-crp",
+        "repo": "ayugram-desktop",
+        "rev": "d45c071c40a539bd7b4d421cf76c86d6e7bc0ef7",
         "type": "github"
       },
       "original": {
-        "owner": "LUCKYS1NGHH",
-        "repo": "chillpill-shell",
+        "owner": "ndfined-crp",
+        "repo": "ayugram-desktop",
         "type": "github"
       }
     },
@@ -79,24 +79,6 @@
     },
     "home-manager": {
       "inputs": {
-        "nixpkgs": "nixpkgs"
-      },
-      "locked": {
-        "lastModified": 1787379775,
-        "narHash": "sha256-XL2qfqmocfsvuEGyomZg4nOZfkuSe8vZtrOX99I+b6I=",
-        "owner": "nix-community",
-        "repo": "home-manager",
-        "rev": "ec1a8fdf74ed3f276148ee106299a2ba0e65d51f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "home-manager",
-        "type": "github"
-      }
-    },
-    "home-manager_2": {
-      "inputs": {
         "nixpkgs": [
           "nixpkgs"
         ]
@@ -116,39 +98,7 @@
         "type": "github"
       }
     },
-    "nix-flatpak": {
-      "locked": {
-        "lastModified": 1767983141,
-        "narHash": "sha256-7ZCulYUD9RmJIDULTRkGLSW1faMpDlPKcbWJLYHoXcs=",
-        "owner": "gmodena",
-        "repo": "nix-flatpak",
-        "rev": "440818969ac2cbd77bfe025e884d0aa528991374",
-        "type": "github"
-      },
-      "original": {
-        "owner": "gmodena",
-        "ref": "v0.7.0",
-        "repo": "nix-flatpak",
-        "type": "github"
-      }
-    },
     "nixpkgs": {
-      "locked": {
-        "lastModified": 1787209939,
-        "narHash": "sha256-WvvHR4kSQLAbtouMC/ruZ5UpLwlUcY3K4FAllMN+yGk=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "391b592eb44808b3bd0cb80bb71b63a5a118b8bb",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixpkgs-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_2": {
       "locked": {
         "lastModified": 1787204541,
         "narHash": "sha256-Rb7J0ykni6QA+m5ZC6t5gbBBgkS0xn3bf2fgKpSSbFE=",
@@ -164,11 +114,10 @@
     },
     "root": {
       "inputs": {
-        "chillpill-shell": "chillpill-shell",
+        "ayugram-desktop": "ayugram-desktop",
         "helium": "helium",
-        "home-manager": "home-manager_2",
-        "nix-flatpak": "nix-flatpak",
-        "nixpkgs": "nixpkgs_2"
+        "home-manager": "home-manager",
+        "nixpkgs": "nixpkgs"
       }
     },
     "systems": {
@@ -183,6 +132,27 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "tg_owt": {
+      "inputs": {
+        "nixpkgs": [
+          "ayugram-desktop",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1789271733,
+        "narHash": "sha256-RFKIHBPSaoh51FtLduUhiVebir25kyUbq+LAGPmPK2E=",
+        "owner": "ndfined-crp",
+        "repo": "tg_owt",
+        "rev": "f076391dc4cdd0e45026c3e1bba239369ee571a4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ndfined-crp",
+        "repo": "tg_owt",
         "type": "github"
       }
     }

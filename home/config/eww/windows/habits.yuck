@@ -1,8 +1,0 @@
-;; windows/taskwarrior.yuck
-(defwindow habits
-  :monitor 0
-  :geometry (geometry :x "-30px" :y "-30px" :width "280px" :height "500px" :anchor "bottom right")
-  :stacking "fg"
-  :exclusive false
-  :focusable false
-  (habits))  
