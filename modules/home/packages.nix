@@ -1,6 +1,6 @@
 {config, pkgs, inputs, ... }:
 let
-  st = pkgs.callPackage ../modules/packages/st-flexi/default.nix {};
+  st = pkgs.callPackage ../modules/system/packages/st-flexi/default.nix {};
 in
 {
   	home.packages = with pkgs; [

@@ -87,13 +87,13 @@
 	  "kmonad".source = ./config/kmonad;
 	  "rofi".source =
 	  	config.lib.file.mkOutOfStoreSymlink
-	  		"/home/waltz/dotfiles/home/config/rofi";
+	  		"/home/waltz/dotfiles/modules/home/config/rofi";
 	  "zsh".source = ./config/zsh;
 	  "helix".source = ./config/helix;
 	  "mpv".source = ./config/mpv;
 	  "mango".source =
 	    config.lib.file.mkOutOfStoreSymlink
-	      "/home/waltz/dotfiles/home/config/mango";
+	      "/home/waltz/dotfiles/modules/home/config/mango";
 	};
 
 	programs.gh.enable = true;

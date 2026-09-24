@@ -1,0 +1,16 @@
+/* Generated from wallpaper: wallhaven-vp2qv3.png */
+
+* {
+    bg:          #161718;
+    fg:          #d2cbbc;
+    accent:      #ef3e44;
+    accent-2:    #c9bd1d;
+    border:      #ef3e44;
+    urgent:      #ea3e44;
+    selected-fg: #d2cbbc;
+    entry-fg:    #c9bd1d;
+    prompt-fg:   #ef3e44;
+    header:      #c9bd1d;
+
+    background-color: @bg;
+}

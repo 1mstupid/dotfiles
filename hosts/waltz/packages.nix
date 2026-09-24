@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 let
-  samaritan-sddm = pkgs.callPackage ../../modules/packages/samaritan-sddm.nix { };
+  samaritan-sddm = pkgs.callPackage ../../modules/system/packages/samaritan-sddm.nix { };
 in
 {
 environment.systemPackages = with pkgs; [
