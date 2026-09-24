@@ -12,7 +12,7 @@
 		  BROWSER = "librewolf";
 		};
 		pointerCursor = {
-		  pointerCursor.enable = true;
+			enable = true;
       name = "capitaine-cursors";
       package = pkgs.capitaine-cursors;
       size = 24;
