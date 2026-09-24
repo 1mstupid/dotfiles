@@ -21,6 +21,7 @@ in
   	kdePackages.qtmultimedia
 		qbittorrent-enhanced
 		jq
+		yazi
 		imagemagick
 		ffmpeg
 		awww

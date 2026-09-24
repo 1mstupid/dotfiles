@@ -86,6 +86,9 @@
 
 	xdg.configFile = {
 	  "kmonad".source = ./config/kmonad;
+	  "wallpaper".source =
+	  	config.lib.mkOutOfStoreSymlink
+		  	"/home/waltz/dotfiles/assets/wallpaper";
 	  "rofi".source =
 	  	config.lib.file.mkOutOfStoreSymlink
 	  		"/home/waltz/dotfiles/modules/home/config/rofi";
