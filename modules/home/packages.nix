@@ -26,12 +26,11 @@ in
 		awww
 		adwaita-fonts 
 		satty
-		swaybg
 		brightnessctl
 		cava
 		cliphist
 		wl-clipboard
-		libpulseaudio
+		pulseaudio
 		xdg-utils
 		slurp
 		xdg-launch
@@ -50,7 +49,6 @@ in
 		libnotify
 		python3
 		dbus
-		readest
 		helix
 		mpv
 		# busybox
