@@ -30,7 +30,6 @@ in
 		cava
 		cliphist
 		wl-clipboard
-		pulseaudio
 		xdg-utils
 		slurp
 		xdg-launch
