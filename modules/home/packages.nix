@@ -31,6 +31,7 @@ in
 		cliphist
 		wl-clipboard
 		xdg-utils
+	  sound-theme-freedesktop
 		slurp
 		xdg-launch
 		gpu-screen-recorder
