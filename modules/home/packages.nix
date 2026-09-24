@@ -36,7 +36,7 @@ in
 		gpu-screen-recorder
 		wf-recorder
 		fd
-		libpulseaudio
+		pulseaudio
 		bluez
 		xdg-user-dirs
 		matugen
