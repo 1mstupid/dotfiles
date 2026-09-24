@@ -1,3 +1,3 @@
 {
-  networking.extraHosts = builtins.readFile ../../assets/hosts.txt;
+  networking.extraHosts = builtins.readFile ../../../assets/hosts.txt;
 }
