@@ -43,7 +43,7 @@ in
 		matugen
 		ddcutil
 		zenity
-		hypridle
+		# hypridle
 		kmonad
 	  pamixer
 		libnotify
@@ -58,7 +58,7 @@ in
 		# nil
 		# nixpkgs-fmt
 		nodejs
-		super-productivity
+		# super-productivity
 		gcc
 	  # bibata-cursors
 		anki-bin
