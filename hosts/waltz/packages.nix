@@ -24,7 +24,9 @@ environment.systemPackages = with pkgs; [
   
 
   programs.zsh.enable = true;
+
   programs.firefox.enable = true;
+
   xdg.portal = {
     enable = true;
     extraPortals = [
@@ -32,11 +34,6 @@ environment.systemPackages = with pkgs; [
     ];
   };
 
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-    withUWSM = true;
-  };
   services.displayManager.sddm = {
       enable = true;
       theme = "samaritan";
