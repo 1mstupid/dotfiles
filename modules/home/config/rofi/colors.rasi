@@ -1,16 +1,16 @@
-/* Generated from wallpaper: cute-anime-girl-with-bird-art-desktop-wallpaper.jpg */
+/* Generated from wallpaper: blackhole.jpg */
 
 * {
-    bg:          #20372c;
-    fg:          #d2cfbc;
-    accent:      #99e1be;
-    accent-2:    #e0c8b8;
-    border:      #99e1be;
-    urgent:      #cf9681;
-    selected-fg: #d2cfbc;
-    entry-fg:    #e0c8b8;
-    prompt-fg:   #99e1be;
-    header:      #e0c8b8;
+    bg:          #161320;
+    fg:          #d2cabc;
+    accent:      #8e71d6;
+    accent-2:    #d194bc;
+    border:      #8e71d6;
+    urgent:      #cb8a86;
+    selected-fg: #d2cabc;
+    entry-fg:    #d194bc;
+    prompt-fg:   #8e71d6;
+    header:      #d194bc;
 
     background-color: @bg;
 }

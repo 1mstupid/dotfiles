@@ -102,9 +102,6 @@
 	  "quickshell".source =
 	    config.lib.file.mkOutOfStoreSymlink
 	      "/home/waltz/dotfiles/modules/home/config/quickshell";
-	  "quickshell-network".source =
-	    config.lib.file.mkOutOfStoreSymlink
-	      "/home/waltz/dotfiles/modules/home/config/quickshell-network";
 	};
 
 	programs.gh.enable = true;
