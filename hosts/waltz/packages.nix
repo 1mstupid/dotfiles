@@ -1,13 +1,13 @@
 { config, pkgs, ... }:
 let
-  samaritan-sddm = pkgs.callPackage ../../modules/system/packages/samaritan-sddm.nix { };
+  samaritan-sddm = pkgs.callPackage ../../modules/system/extra/samaritan-sddm.nix { };
 in
 {
 environment.systemPackages = with pkgs; [
     vim 
     git
+    nh
     kitty
-    waybar
     samaritan-sddm
     # hyprpaper
     wget
