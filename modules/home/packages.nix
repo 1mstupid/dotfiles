@@ -39,6 +39,7 @@ in
 		gpu-screen-recorder
 		wf-recorder
 		fd
+		fzf
 		pulseaudio
 		bluez
 		xdg-user-dirs
