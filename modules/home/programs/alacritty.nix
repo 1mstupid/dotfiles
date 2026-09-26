@@ -1,4 +1,7 @@
-{ config, pkgs, ... }:
+{config, pkgs, ... }:
 
-throw "ALACRITTY MODULE IS LOADED"
-
+{
+  programs.alacritty = {
+    enable = true;
+    };
+}
