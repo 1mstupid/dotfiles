@@ -83,7 +83,7 @@ Singleton {
     readonly property int fontSize: Math.round(13 * barScale)
     readonly property int iconSize: Math.round(15 * barScale)
     readonly property int moduleHeight: Math.round(26 * barScale)
-    readonly property int effectiveBarHeight: Math.max(barHeight, moduleHeight + edgeInset + 8)
+    readonly property int effectiveBarHeight: 30
 
     FileView {
         path: root.configDir + "/bar-height"

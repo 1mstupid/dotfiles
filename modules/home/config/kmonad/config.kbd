@@ -32,7 +32,7 @@
 )
 
 (deflayer base
-  @q_esc w   e   r   t   y   u      i      o      p
+  q      w   e   r   t   y   u      i      o      p
   @a_ctl @s_alt @d_gui @f_sft g h @j_sft @k_gui @l_alt @scl_ctl
   z      x   c   v   b   n   m      ,      .      @sl_bs
   @spc_nav

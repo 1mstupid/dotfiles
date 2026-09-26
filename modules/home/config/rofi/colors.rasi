@@ -1,17 +1,17 @@
-/* Generated from wallpaper: my-neighbor-totoro-sunflowers.png */
+/* Generated from wallpaper: IMG_3148.png */
 
 * {
-    bg:          #213f45CC;
-    fg:          #d2ccbc;
-    accent:      #11b5d4;
-    active:      #ead9ae;
-    border:      #11b5d4;
-    urgent:      #d19894;
-    selected-bg: #213f45;
-    selected-fg: #d2ccbc;
-    entry-fg:    #ead9ae;
-    prompt-fg:   #11b5d4;
-    header:      #ead9ae;
+    bg:          #243129CC;
+    fg:          #d2cbbc;
+    accent:      #81bb9b;
+    active:      #afcacb;
+    border:      #81bb9b;
+    urgent:      #cb8a86;
+    selected-bg: #243129;
+    selected-fg: #d2cbbc;
+    entry-fg:    #afcacb;
+    prompt-fg:   #81bb9b;
+    header:      #afcacb;
 
     background-color: @bg;
 }
