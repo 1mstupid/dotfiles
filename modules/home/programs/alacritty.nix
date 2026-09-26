@@ -9,13 +9,13 @@
         live_config_reload = true;
 
         import = [
-          "${config.home.homeDirectory}/alacritty/current-theme.toml"
+          "${config.home.homeDirectory}/.config/alacritty/current-theme.toml"
         ];
       };
       window = {
         padding = {
-          x = 25;
-          y = 15;
+          x = 65;
+          y = 65;
         };
 
         dynamic_padding = true;
@@ -25,10 +25,10 @@
 
 
       font = {
-        normal.family = "Caskaydia Nerd Font Mono";
-        bold.family = "Caskaydia Nerd Font Mono";
-        italic.family = "Caskaydia Nerd Font Mono";
-        bold_italic.family = "Caskaydia Nerd Font Mono";
+        normal.family = "CaskaydiaMono Nerd Font Mono";
+        bold.family = "CaskaydiaMono Nerd Font Mono";
+        italic.family = "CaskaydiaMono Nerd Font Mono";
+        bold_italic.family = "CaskaydiaMono Nerd Font Mono";
         size = 12.0;
       };
 
