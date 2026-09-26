@@ -12,13 +12,24 @@
           "${config.home.homeDirectory}/alacritty/current-theme.toml"
         ];
       };
+      window = {
+        padding = {
+          x = 25;
+          y = 15;
+        };
+
+        dynamic_padding = true;
+
+        decorations = "Full";
+      };
+
 
       font = {
-        normal.family = "Caskaydia Nerd Font";
-        bold.family = "Caskaydia Nerd Font";
-        italic.family = "Caskaydia Nerd Font";
-        bold_italic.family = "Caskaydia Nerd Font";
-        size = 13.0;
+        normal.family = "Caskaydia Nerd Font Mono";
+        bold.family = "Caskaydia Nerd Font Mono";
+        italic.family = "Caskaydia Nerd Font Mono";
+        bold_italic.family = "Caskaydia Nerd Font Mono";
+        size = 12.0;
       };
 
       selection.save_to_clipboard = true;
