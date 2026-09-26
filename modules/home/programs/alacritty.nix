@@ -9,7 +9,7 @@
         live_config_reload = true;
 
         import = [
-          "${config.homeDirectory}/alacritty/current-theme.toml"
+          "${config.home.homeDirectory}/alacritty/current-theme.toml"
         ];
       };
 
