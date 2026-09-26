@@ -6,6 +6,7 @@
 		homeDirectory = "/home/waltz";
 		stateVersion = "26.05";
 		sessionVariables = {
+			FLAKE = "${config.home.homeDirectory}/dotfiles";
 		  EDITOR = "hx";
 		  QML2_IMPORT_PATH = "${pkgs.qt6.qtmultimedia}/lib/qt-6/qml";
 		  VISUAL = "hx";

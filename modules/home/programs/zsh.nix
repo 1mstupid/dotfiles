@@ -16,7 +16,7 @@
 	  	hm = "hx ~/dotfiles/home/home.nix";
 	  	flake = "hx ~/dotfiles/flake.nix";
 	  	br = "broot";
-	    rebuild = "git -C ~/dotfiles add . && git -C ~/dotfiles commit -m 'minor' && sudo nixos-rebuild switch --flake ~/dotfiles#nixos-btw";
+	    rebuild = "git -C ~/dotfiles add . ; git -C ~/dotfiles commit -m 'minor' ; nh os switch";
 	  };
 	  oh-my-zsh = {
 	    enable = true;

@@ -3,7 +3,7 @@
 {
   home.packages = with pkgs; [
     anki-bin
-    ayugram-desktop
+    inputs.ayugram-desktop.packages.${pkgs.system}.default
     broot
     feh
     helix
