@@ -1,16 +1,16 @@
-/* Generated from wallpaper: wallhaven-7jxg59.jpg */
+/* Generated from wallpaper: cute-anime-girl-with-bird-art-desktop-wallpaper.jpg */
 
 * {
-    bg:          #363720;
-    fg:          #d2d2bc;
-    accent:      #e0e0ae;
-    accent-2:    #d59cad;
-    border:      #e0e0ae;
-    urgent:      #d28999;
-    selected-fg: #d2d2bc;
-    entry-fg:    #d59cad;
-    prompt-fg:   #e0e0ae;
-    header:      #d59cad;
+    bg:          #20372c;
+    fg:          #d2cfbc;
+    accent:      #99e1be;
+    accent-2:    #e0c8b8;
+    border:      #99e1be;
+    urgent:      #cf9681;
+    selected-fg: #d2cfbc;
+    entry-fg:    #e0c8b8;
+    prompt-fg:   #99e1be;
+    header:      #e0c8b8;
 
     background-color: @bg;
 }

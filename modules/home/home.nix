@@ -6,7 +6,7 @@
 		homeDirectory = "/home/waltz";
 		stateVersion = "26.05";
 		sessionVariables = {
-			FLAKE = "${config.home.homeDirectory}/dotfiles";
+			NH_FLAKE = "${config.home.homeDirectory}/dotfiles";
 		  EDITOR = "hx";
 		  QML2_IMPORT_PATH = "${pkgs.qt6.qtmultimedia}/lib/qt-6/qml";
 		  VISUAL = "hx";
@@ -99,6 +99,12 @@
 	  "mango".source =
 	    config.lib.file.mkOutOfStoreSymlink
 	      "/home/waltz/dotfiles/modules/home/config/mango";
+	  "quickshell".source =
+	    config.lib.file.mkOutOfStoreSymlink
+	      "/home/waltz/dotfiles/modules/home/config/quickshell";
+	  "quickshell-network".source =
+	    config.lib.file.mkOutOfStoreSymlink
+	      "/home/waltz/dotfiles/modules/home/config/quickshell-network";
 	};
 
 	programs.gh.enable = true;

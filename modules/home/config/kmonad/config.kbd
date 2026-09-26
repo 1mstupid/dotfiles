@@ -13,15 +13,15 @@
 
 (defalias
   ;; Homerow mods
-  a_ctl (tap-hold-next-release 200 a lmet)
-  s_alt (tap-hold-next-release 200 s lalt)
-  d_gui (tap-hold-next-release 200 d lctl)
-  f_sft (tap-hold-next-release 200 f lsft)
+  a_ctl (tap-hold-next-release 150 a lmet)
+  s_alt (tap-hold-next-release 150 s lalt)
+  d_gui (tap-hold-next-release 150 d lctl)
+  f_sft (tap-hold-next-release 150 f lsft)
 
-  j_sft (tap-hold-next-release 200 j rsft)
-  k_gui (tap-hold-next-release 200 k rctl)
-  l_alt (tap-hold-next-release 200 l lalt)
-  scl_ctl (tap-hold-next-release 200 ; rmet)
+  j_sft (tap-hold-next-release 150 j rsft)
+  k_gui (tap-hold-next-release 150 k rctl)
+  l_alt (tap-hold-next-release 150 l lalt)
+  scl_ctl (tap-hold-next-release 150 ; rmet)
 
   ;; FIXED: Changed tap-dance to multi-tap and fixed the syntax
   q_esc (multi-tap 200 q esc)       ;; Tap once for Q, twice for Escape
