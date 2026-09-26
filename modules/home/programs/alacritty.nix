@@ -3,5 +3,22 @@
 {
   programs.alacritty = {
     enable = true;
+    settings = {
+      keyboard = {
+          bindings = [
+            {
+              chars = "\\u000c";
+              key = "K";
+              mods = "Control";
+            }
+          ];
+        };
+      window = {
+        dimensions = {
+            columns = 200;
+            lines = 3;
+        };
+      };
     };
+  };
 }
