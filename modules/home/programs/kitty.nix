@@ -26,18 +26,16 @@
 
       # Scrollback
       scrollback_lines = 10000;
-
-      # Fullscreen
-      map = "f11 toggle_fullscreen";
-
-      # Zoom — equivalent to your st bindings
-      map = "ctrl+shift+page_up change_font_size all +1.0";
-      map = "ctrl+shift+page_down change_font_size all -1.0";
-      map = "ctrl+shift+home change_font_size all 0";
-
-      # Copy/paste
-      map = "ctrl+shift+c copy_to_clipboard";
-      map = "ctrl+shift+v paste_from_clipboard";
     };
+    extraConfig = ''
+      map f11 toggle_fullscreen
+
+      map ctrl+shift+page_up change_font_size all +1.0
+      map ctrl+shift+page_down change_font_size all -1.0
+      map ctrl+shift+home change_font_size all 0
+
+      map ctrl+shift+c copy_to_clipboard
+      map ctrl+shift+v paste_from_clipboard
+    '';
   };
 }
