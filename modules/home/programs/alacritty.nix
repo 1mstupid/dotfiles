@@ -9,7 +9,7 @@
         live_config_reload = true;
 
         import = [
-          ./current-theme.toml
+          /home/waltz/.config/alacritty/current-theme.toml
         ];
       };
 

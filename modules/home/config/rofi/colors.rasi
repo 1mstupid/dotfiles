@@ -1,16 +1,16 @@
-/* Generated from wallpaper: wallhaven-8g8k3j.png */
+/* Generated from wallpaper: wallhaven-qrp31l.jpg */
 
 * {
-    bg:          #140f1f;
+    bg:          #202020;
     fg:          #d2cbbc;
-    accent:      #e7ce98;
-    accent-2:    #8d6fd2;
-    border:      #e7ce98;
-    urgent:      #cb5e64;
+    accent:      #bea7a7;
+    accent-2:    #c4beb6;
+    border:      #bea7a7;
+    urgent:      #cb8a86;
     selected-fg: #d2cbbc;
-    entry-fg:    #8d6fd2;
-    prompt-fg:   #e7ce98;
-    header:      #8d6fd2;
+    entry-fg:    #c4beb6;
+    prompt-fg:   #bea7a7;
+    header:      #c4beb6;
 
     background-color: @bg;
 }
