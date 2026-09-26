@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{config, pkgs, ... }:
 
 {
   programs.alacritty = {
@@ -9,7 +9,7 @@
         live_config_reload = true;
 
         import = [
-          /home/waltz/.config/alacritty/current-theme.toml
+          "${config.home.HomeDirectory}/.config/alacritty/current-theme.toml"
         ];
       };
 
