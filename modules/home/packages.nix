@@ -3,7 +3,6 @@
 {
   home.packages = with pkgs; [
     anki-bin
-    inputs.ayugram-desktop.packages.${pkgs.system}.default
     broot
     feh
     helix
@@ -15,7 +14,6 @@
     quickshell
     rofi
     satty
-    sioyek
     tmux
     yazi
 
