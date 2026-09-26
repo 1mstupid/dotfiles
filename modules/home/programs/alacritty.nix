@@ -3,8 +3,17 @@
 {
   programs.alacritty = {
     enable = true;
-
     settings = {
+      window = {
+        padding = {
+          x = 30;
+          y = 20;
+        };
+
+        dynamic_padding = true;
+
+        decorations = "Full";
+      };
       general = {
         live_config_reload = true;
 
@@ -34,7 +43,7 @@
           style = "Bold Italic";
         };
 
-        size = 12.0;
+        size = 13.0;
       };
 
       selection = {
