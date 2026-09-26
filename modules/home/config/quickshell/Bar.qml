@@ -25,13 +25,13 @@ PanelWindow {
         anchors.fill: parent
         // inset from the screen edges; the gap below comes from mango's
         // outer gaps (same value), so the bar and windows share one margin
-        anchors.topMargin: Theme.edgeInset
-        anchors.leftMargin: Theme.edgeInset
-        anchors.rightMargin: Theme.edgeInset
+        anchors.topMargin: 0
+        anchors.leftMargin: 0
+        anchors.rightMargin: 0
         anchors.bottomMargin: 0
 
         radius: Theme.barRadius
-        color: Qt.alpha(Theme.bg, 0.94)
+        color: Qt.alpha(Theme.bg, 0.34)
         border.width: 0
         border.color: Qt.alpha(Theme.accent, 0.35)
 

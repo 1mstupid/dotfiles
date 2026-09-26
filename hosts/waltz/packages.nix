@@ -7,7 +7,6 @@ environment.systemPackages = with pkgs; [
     vim 
     git
     nh
-    kitty
     samaritan-sddm
     # hyprpaper
     wget
