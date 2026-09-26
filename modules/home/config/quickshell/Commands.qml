@@ -16,7 +16,7 @@ import Quickshell.Io
 BarModule {
     id: root
 
-    icon: "󰘳"
+    icon: ""
     iconColor: pomoDone ? Theme.bg
              : pomoRunning ? Theme.accent : Qt.alpha(Theme.fg, 0.7)
     label: pomoRunning ? fmtPomo(pomoLeft) : pomoDone ? "0:00" : ""
@@ -300,12 +300,6 @@ BarModule {
 
             Repeater {
                 model: [
-                    { icon: "󰚰", label: "Check updates",
-                      run: () => Quickshell.execDetached(["kitty", "-e", "sh", "-c",
-                          "sudo apt update && apt list --upgradable; " +
-                          "printf '\\ndone - press enter to close '; read _"]) },
-                    { icon: "󰌌", label: "Keybindings",
-                      run: () => Quickshell.execDetached([Theme.configDir + "/scripts/help"]) },
                     { icon: "󰑓", label: "Restart bar",
                       run: () => Quickshell.execDetached([Theme.configDir + "/scripts/bar", "restart"]) },
                     { icon: "󰌢", label: "Screen off",

@@ -40,6 +40,7 @@
 
     cliphist
     wl-clipboard
+    wl-sunset
     libnotify
     xdg-utils
     xdg-launch

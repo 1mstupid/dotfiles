@@ -1,17 +1,17 @@
-/* Generated from wallpaper: wallpaperflare.com_wallpaper(3).jpg */
+/* Generated from wallpaper: my-neighbor-totoro-sunflowers.png */
 
 * {
-    bg:          #171717CC;
-    fg:          #d2cbbc;
-    accent:      #bea7a7;
-    active:      #c4beb6;
-    border:      #bea7a7;
-    urgent:      #cb8a86;
-    selected-bg: #171717;
-    selected-fg: #d2cbbc;
-    entry-fg:    #c4beb6;
-    prompt-fg:   #bea7a7;
-    header:      #c4beb6;
+    bg:          #213f45CC;
+    fg:          #d2ccbc;
+    accent:      #11b5d4;
+    active:      #ead9ae;
+    border:      #11b5d4;
+    urgent:      #d19894;
+    selected-bg: #213f45;
+    selected-fg: #d2ccbc;
+    entry-fg:    #ead9ae;
+    prompt-fg:   #11b5d4;
+    header:      #ead9ae;
 
     background-color: @bg;
 }
