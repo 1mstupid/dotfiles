@@ -1,6 +1,7 @@
 {
   imports = [
    ./zram.nix
+   ./wayland.nix
    ./etc.nix
    ./network.nix
    ./hosts.nix
