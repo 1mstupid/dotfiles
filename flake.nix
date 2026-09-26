@@ -2,7 +2,14 @@
   description = "Dummmy, you're making a massive mistake - Yourself 21/08";
 
   inputs = {
-
+   "nix-cachyos-kernel" = {
+        flake = true;
+        type = "github";
+        owner = "xddxdd";
+        repo = "nix-cachyos-kernel";
+        ref = "release";
+    };
+    
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     ayugram-desktop = {

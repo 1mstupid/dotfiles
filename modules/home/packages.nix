@@ -80,7 +80,7 @@
       '';
     })
 
-    inputs.ayugram-desktop.packages.${pkgs.system}.default
+    inputs.ayugram-desktop.packages.${pkgs.stdenv.hostPlatform.system}.default
 
     # hypridle
     # busybox

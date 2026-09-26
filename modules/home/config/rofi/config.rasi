@@ -1,112 +1,117 @@
 @import "colors.rasi"
 
+
 configuration {
-    show-icons: true;
-    icon-theme: "Papirus";
-    location: 0;
-    font: "JetBrainsMono Nerd Font 12";
-    display-drun: "Launch:";
+  modes: "window,drun,run,ssh";
+  font: "CaskaydiaMono Nerd Font Mono 18";
+  drun-display-format: "{name}";
 }
 
 window {
-    width: 45%;
-    transparency: "real";
-    orientation: vertical;
-    border-color: @accent;
-    border-radius: 10px;
-}
-
-mainbox {
-    children: [inputbar, listview];
-}
-
-// ELEMENT
-// -----------------------------------
-
-element {
-    padding: 4 12;
-    text-color: @bg;
-    border-radius: 5px;
-}
-
-element selected {
-    text-color: @fg;
-    background-color: @accent;
-}
-
-element-text {
-    background-color: inherit;
-    text-color: inherit;
-}
-
-element-icon {
-    size: 16 px;
-    background-color: inherit;
-    padding: 0 6 0 0;
-    alignment: vertical;
-}
-
-element.selected.active {
-    background-color: @bg;
-    text-color: @fg;
-}
-
-element.alternate.normal {
-    background-color: @bg;
-    text-color: @fg;
-}
-
-element.alternate.active {
-    background-color: @accent;
-    text-color: @fg;
-}
-
-element.selected.normal {
-    background-color: @accent;
-    text-color: @bg;
-}
-
-element.normal.active {
-    background-color: @bg;
-    text-color: @fg;
-}
-
-element.normal.normal {
-    background-color: @bg;
-    text-color: @fg;
-}
-
-element.normal.urgent {
-    background-color: @urgent;
-    text-color: @bg;
+  fullscreen: true;
+  padding: 35% 30%;       // you might want to ajust these to resize rofi.
+  transparency: "real";
+  background-color: @bg;
+  border-color: @accent;
 }
 
 listview {
-    columns: 2;
-    lines: 9;
-    padding: 8 0;
-    fixed-height: true;
-    fixed-columns: true;
-    fixed-lines: true;
-    border: 0 10 6 10;
+  border: 0 0 0 0;
+  padding: 23 0 0;
+  scrollbar: true;
 }
 
-// INPUT BAR
-//------------------------------------------------
+scrollbar {
+    width:        4px;
+    border:       0;
+    handle-color: @fg;
+    handle-width: 8px;
+    padding:      0 5;
+}
 
 entry {
-    text-color: @entry-fg;
-    padding: 10 10 0 0;
-    margin: 0 -2 0 0;
+    placeholder: "";
+}
+
+// less interesting stuff {{{
+
+// using elements from:
+// https://github.com/bardisty/gruvbox-rofi/blob/master/gruvbox-common.rasi
+
+textbox {
+    text-color: @fg;
+}
+
+element {
+    border:  0;
+    padding: 2px;
+}
+element.normal.normal {
+    background-color: @bg;
+    text-color:       @fg;
+}
+element.normal.urgent {
+    background-color: @bg;
+    text-color:       @urgent;
+}
+element.normal.active {
+    background-color: @bg;
+    text-color:       @active;
+}
+element.selected.normal {
+    background-color: @selected-bg;
+    text-color:       @selected-fg;
+}
+element.selected.urgent {
+    background-color: @selected-bg;
+    text-color:       @urgent;
+}
+element.selected.active {
+    background-color: @selected-bg;
+    text-color:       @selected-fg;
+}
+element.alternate.normal {
+    background-color: @bg;
+    text-color:       @fg;
+}
+element.alternate.urgent {
+    background-color: @bg;
+    text-color:       @urgent;
+}
+element.alternate.active {
+    background-color: @bg;
+    text-color:       @active;
+}
+
+sidebar {
+    border:       2px 0 0;
+    border-color: @fg;
 }
 
 inputbar {
-    padding: 10 0 0;
-    margin: 0 0 0 0;
+    spacing:    0;
+    text-color: @fg;
+    padding:    2px;
+    children:   [ prompt, textbox-prompt-sep, entry, case-indicator ];
 }
 
-prompt {
-    text-color: @prompt-fg;
-    padding: 10 6 0 10;
-    margin: 0 -2 0 0;
+case-indicator,
+entry,
+prompt,
+button {
+    spacing:    0;
+    text-color: @fg;
 }
+
+button.selected {
+    background-color: @bg;
+    text-color:       @fg;
+}
+
+textbox-prompt-sep {
+    expand:     false;
+    str:        ":";
+    text-color: @fg;
+    margin:     0 0.3em 0 0;
+}
+// }}}

@@ -1,12 +1,13 @@
 /* Generated from wallpaper: blackhole.jpg */
 
 * {
-    bg:          #161320;
+    bg:          #161320CC;
     fg:          #d2cabc;
     accent:      #8e71d6;
-    accent-2:    #d194bc;
+    active:      #d194bc;
     border:      #8e71d6;
     urgent:      #cb8a86;
+    selected-bg: #161320;
     selected-fg: #d2cabc;
     entry-fg:    #d194bc;
     prompt-fg:   #8e71d6;
