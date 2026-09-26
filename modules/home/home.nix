@@ -102,10 +102,13 @@
 
 	programs.gh.enable = true;
 
-  dconf.settings = {
-    "org/gnome/desktop/interface" = {
-      color-scheme = "prefer-dark";
-      gtk-theme = "Adwaita-dark";
-    };
-  };
+  dconf = {
+  	enable = false;
+  	settings = {
+	    "org/gnome/desktop/interface" = {
+	      color-scheme = "prefer-dark";
+	      gtk-theme = "Adwaita-dark";
+	    };
+	  };
+	};
 }
