@@ -13,7 +13,6 @@
     qbittorrent-enhanced
     quickshell
     bunnyfetch
-    rofi
     satty
     tmux
     yazi

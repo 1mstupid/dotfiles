@@ -78,7 +78,7 @@ BarModule {
     // pomodoro: countdown + drain bar live on the pill. Duration edits
     // only while idle: right-click cycles presets, scroll nudges ±5 min.
     property int pomoMinutes: 25
-    readonly property var pomoPresets: [15, 25, 45, 60]
+    readonly property var pomoPresets: [1, 15, 25, 45, 60]
     readonly property int pomoTotal: pomoMinutes * 60
     property double pomoEndMs: 0
     property int pomoLeft: 0
@@ -302,10 +302,6 @@ BarModule {
                 model: [
                     { icon: "󰑓", label: "Restart bar",
                       run: () => Quickshell.execDetached([Theme.configDir + "/scripts/bar", "restart"]) },
-                    { icon: "󰌢", label: "Screen off",
-                      run: () => Quickshell.execDetached([Theme.configDir + "/scripts/screen-off"]) },
-                    { icon: "󰐥", label: "Power menu",
-                      run: () => Quickshell.execDetached([Theme.configDir + "/scripts/power"]) }
                 ]
                 CommandRow {}
             }

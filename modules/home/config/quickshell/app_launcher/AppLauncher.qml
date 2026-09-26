@@ -2,6 +2,7 @@ import Quickshell
 import Quickshell.Wayland
 import Quickshell.Io
 import QtQuick
+import "./state"
 
 PanelWindow {
     id: root
@@ -105,8 +106,8 @@ PanelWindow {
     }
 
     // ── Accent colours ─────────────────────────────────────────────────────
-    readonly property color accentFill: Qt.rgba(Colors.colBlue.r, Colors.colBlue.g, Colors.colBlue.b, 0.18)
-    readonly property color accentIcon: Qt.rgba(Colors.colBlue.r, Colors.colBlue.g, Colors.colBlue.b, 0.28)
+    readonly property color accentFill: Qt.rgba(Theme.primary.r, Theme.primary.g, Theme.primary.b, 0.18)
+    readonly property color accentIcon: Qt.rgba(Theme.primary.r, Theme.primary.g, Theme.primary.b, 0.28)
     readonly property color fgDim: Qt.rgba(Theme.fg.r, Theme.fg.g, Theme.fg.b, 0.65)
 
     // ── Panel geometry ─────────────────────────────────────────────────────
@@ -142,7 +143,7 @@ PanelWindow {
         anchors.bottom: parent.bottom
 
         // Semi-translucent frosted panel
-        color: Qt.rgba(Colors.colBg.r, Colors.colBg.g, Colors.colBg.b, 0.8)
+        color: Qt.rgba(Theme.bg.r, Theme.bg.g, Theme.bg.b, 0.8)
         topLeftRadius: 18
         topRightRadius: 18
         bottomLeftRadius: 0
@@ -198,7 +199,7 @@ PanelWindow {
                     anchors.fill: parent
                     radius: 10
                     color: "transparent"
-                    border.color: Colors.colBlue
+                    border.color: Theme.primary
                     border.width: 1
                     opacity: searchInput.activeFocus ? 0.55 : 0
                     Behavior on opacity {
@@ -351,9 +352,9 @@ PanelWindow {
                                 Image {
                                     id: appIcon
                                     anchors.centerIn: parent
+                                    source: modelData.icon !== "" ? "image://icon/" + modelData.icon : ""
                                     width: 22
                                     height: 22
-                                    source: modelData.icon !== "" ? "image://icon/" + modelData.icon : ""
                                     smooth: true
                                     mipmap: true
                                 }
@@ -367,7 +368,7 @@ PanelWindow {
                                         family: "JetBrainsMono Nerd Font"
                                         weight: Font.Bold
                                     }
-                                    color: appRow.sel ? Colors.colBlue : Theme.fg
+                                    color: appRow.sel ? Theme.primary : Theme.fg
                                     Behavior on color {
                                         ColorAnimation {
                                             duration: 100
@@ -406,7 +407,7 @@ PanelWindow {
                                         width: recentLabel.width + 8
                                         height: 14
                                         radius: 4
-                                        color: Qt.rgba(Colors.colBlue.r, Colors.colBlue.g, Colors.colBlue.b, 0.22)
+                                        color: Qt.rgba(Theme.primary.r, Theme.primary.g, Theme.primary.b, 0.22)
                                         anchors.verticalCenter: parent.verticalCenter
 
                                         Text {
@@ -417,7 +418,7 @@ PanelWindow {
                                                 pixelSize: 9
                                                 family: "JetBrainsMono Nerd Font"
                                             }
-                                            color: Colors.colBlue
+                                            color: Theme.primary
                                         }
                                     }
 
