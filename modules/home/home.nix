@@ -106,6 +106,15 @@
 
 	programs.gh.enable = true;
 
+	gtk = {
+	  enable = true;
+
+	  iconTheme = {
+	    package = pkgs.papirus-icon-theme;
+	    name = "Papirus";
+	  };
+	};
+
   dconf = {
   	enable = false;
   	settings = {
