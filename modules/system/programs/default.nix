@@ -1,3 +1,3 @@
 {
-  imports = [ ./kmonad.nix ];
+  imports = [ ./kmonad.nix ./suwayomi.nix ];
 }
