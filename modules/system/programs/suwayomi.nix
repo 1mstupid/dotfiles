@@ -1,3 +1,3 @@
 {
-  programs.suwayomi-server.enable = true;
+  services.suwayomi-server.enable = true;
 }
