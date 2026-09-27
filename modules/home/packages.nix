@@ -10,11 +10,12 @@
     mangowc
     mpv
     qbittorrent-enhanced
-    quickshell
     satty
     tmux
     yazi
 
+    papirus-icon-theme
+    quickshell
     qt6.qtbase
     qt6.qtdeclarative
     kdePackages.qtmultimedia
