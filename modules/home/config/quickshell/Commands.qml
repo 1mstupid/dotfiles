@@ -78,7 +78,7 @@ BarModule {
     // pomodoro: countdown + drain bar live on the pill. Duration edits
     // only while idle: right-click cycles presets, scroll nudges ±5 min.
     property int pomoMinutes: 25
-    readonly property var pomoPresets: [1, 15, 25, 45, 60]
+    readonly property var pomoPresets: [1, 10, 25, 45, 60]
     readonly property int pomoTotal: pomoMinutes * 60
     property double pomoEndMs: 0
     property int pomoLeft: 0
@@ -152,7 +152,7 @@ BarModule {
                 // chime plays regardless of DND — it's an alarm; the
                 // notification lands in dunst history if DND holds it
                 Quickshell.execDetached(["paplay", "--volume=40000",
-                    "/proc/5487/cwd/.local/state/home-manager/gcroots/current-home/home-path/share/sounds/freedesktop/stereo/alarm-clock-elapsed.oga"])
+                    "/home/waltz/.local/state/home-manager/gcroots/current-home/home-path/share/sounds/freedesktop/stereo/alarm-clock-elapsed.oga"])
                 Quickshell.execDetached(["notify-send", "-u", "critical",
                     "Pomodoro", "Time's up — take a break"])
             }

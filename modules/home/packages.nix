@@ -12,7 +12,6 @@
     mpv
     qbittorrent-enhanced
     quickshell
-    bunnyfetch
     satty
     tmux
     yazi

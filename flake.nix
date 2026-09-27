@@ -12,6 +12,11 @@
     
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    helium-flake = {
+      url = "github:oxcl/nix-flake-helium-browser";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     ayugram-desktop = {
         url = "github:ndfined-crp/ayugram-desktop";
         inputs.nixpkgs.follows = "nixpkgs";

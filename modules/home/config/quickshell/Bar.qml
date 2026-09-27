@@ -79,7 +79,7 @@ PanelWindow {
             anchors.verticalCenter: parent.verticalCenter
             spacing: 4
 
-            Media {}
+            Metrics {}
             Volume {}
             Network {}
             Tray {}
