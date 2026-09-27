@@ -7,7 +7,6 @@
     feh
     helix
     kmonad
-    librewolf-bin
     mangowc
     mpv
     qbittorrent-enhanced

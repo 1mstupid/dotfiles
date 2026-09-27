@@ -10,7 +10,7 @@
 		  EDITOR = "hx";
 		  QML2_IMPORT_PATH = "${pkgs.qt6.qtmultimedia}/lib/qt-6/qml";
 		  VISUAL = "hx";
-		  BROWSER = "librewolf";
+		  BROWSER = "helium";
 		};
 		pointerCursor = {
 			enable = true;
@@ -44,9 +44,9 @@
 		defaultApplications = {
 		   
 		  # Web
-		  "text/html" = "librewolf.desktop";
-		  "x-scheme-handler/http" = "librewolf.desktop";
-		  "x-scheme-handler/https" = "librewolf.desktop";
+		  "text/html" = "helium.desktop";
+		  "x-scheme-handler/http" = "helium.desktop";
+		  "x-scheme-handler/https" = "helium.desktop";
 
 		  # Torrents
 		  "application/x-bittorrent" = "org.qbittorrent.qBittorrent.desktop";
