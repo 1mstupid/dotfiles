@@ -7,7 +7,7 @@ let
 
     src = pkgs.fetchurl {
       url = "https://github.com/Suwayomi/Suwayomi-Server-preview/releases/download/v2.3.2363/Suwayomi-Server-v2.3.2363.jar";
-      hash = lib.fakeHash;
+      hash = "sha256-cl4bg96ljR7ih6UnftUgHHhZRkM3zZKjTkuuYBi86nY=";
     };
 
     nativeBuildInputs = [
