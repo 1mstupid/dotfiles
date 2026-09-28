@@ -26,6 +26,7 @@
       l_alt (tap-hold-next-release 150 l lalt)
       scl_ctl (tap-hold-next-release 150 ; rmet)
 
+      q_esc (multi-tap 200 q esc)
       sl_bs (multi-tap 200 / del)
 
       spc_nav (tap-hold-next-release 200 spc (layer-toggle nav))
@@ -39,9 +40,9 @@
     )
 
     (deflayer nav
-      _    _    _    _    _    _    bspc home end  esc
-      _    _    _    _    _    _    left down up   rght bspc
-      _    _    _    _    _    _    caps pgdn pgup  _
+      _    _    _    _    _    _    _    bspc home end
+      _    _    _    _    _    left down up   rght bspc
+      _    _    _    _    _    _    _    caps pgdn pgup
       _
     )
   '';
