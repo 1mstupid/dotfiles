@@ -13,7 +13,4 @@
    ./bluetooth.nix
    ./boot.nix
  ];
-  services.rqbit = {
-    enable = true;
-  };
 }
