@@ -2,7 +2,6 @@
 
 {
   home.packages = with pkgs; [
-    anki-bin
     broot
     feh
     helix
@@ -24,9 +23,7 @@
     imagemagick
     playerctl
     pulseaudio
-    cava
     awww
-    gpu-screen-recorder
     wf-recorder
     grim
     slurp
@@ -35,7 +32,6 @@
     bluez
     pamixer
 
-    cliphist
     wl-clipboard
     wlsunset
     libnotify
@@ -43,7 +39,6 @@
     xdg-launch
     xdg-user-dirs
     desktop-file-utils
-    app2unit
     zenity
 
     adwaita-fonts
