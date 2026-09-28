@@ -4,7 +4,7 @@ let
   cfg = config.service.rqbit;
 in
 {
-  options.services.rqbit = {
+  options.service.rqbit = {
     enable = lib.mkEnableOption "rqbit BitTorrent client";
 
     package = lib.mkOption {
@@ -57,7 +57,7 @@ in
     networking.firewall.allowedTCPPorts =
       lib.mkIf cfg.openFirewall [ cfg.port ];
 
-    systemd.services.rqbit = {
+    systemd.service.rqbit = {
       description = "rqbit BitTorrent client";
       wantedBy = [ "multi-user.target" ];
       after = [ "network-online.target" ];
