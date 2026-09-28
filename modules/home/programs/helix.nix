@@ -11,7 +11,6 @@
         insert = {
           "C-[" = "normal_mode";
           "C-b" = [ "select_mode" "move_prev_word_start" ];
-
           up = "no_op";
           down = "no_op";
           left = "no_op";
@@ -20,7 +19,6 @@
           pagedown = "no_op";
           home = "no_op";
           end = "no_op";
-
           "C-space" = "completion";
         };
 
@@ -77,15 +75,10 @@
         auto-format = false;
         scroll-lines = 6;
 
-        inline-diagnostics = {
-          cursor-line = "disable";
-        };
-
+        inline-diagnostics.cursor-line = "disable";
         end-of-line-diagnostics = "disable";
 
-        lsp = {
-          enable = false;
-        };
+        lsp.enable = false;
 
         indent-guides = {
           render = true;
@@ -101,7 +94,7 @@
       };
     };
 
-      languages = {
+    languages = {
       language = [
         {
           name = "rust";
@@ -131,13 +124,9 @@
           name = "toml";
           scope = "source.toml";
           auto-format = true;
-          inherits = "base16_transparent";
-
-          "keyword.directive" = {
-            modifiers = [ "italic" ];
-          };
         }
       ];
     };
   };
+
 }
