@@ -3,7 +3,7 @@
 {
   services.rqbit = {
     enable = true;
-    downloadDir = "/home/waltz/Downloads"
+    downloadDir = "/home/waltz/Downloads";
   };
 }
 
