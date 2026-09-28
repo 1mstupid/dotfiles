@@ -86,11 +86,9 @@
 	};
 
 	xdg.configFile = {
-	  "kmonad".source = ./config/kmonad;
 	  "wallpaper".source =
 	  	config.lib.file.mkOutOfStoreSymlink
 		  	"/home/waltz/dotfiles/assets/wallpaper";
-	  "zsh".source = ./config/zsh;
 	  "helix".source = ./config/helix;
 	  "mpv".source = ./config/mpv;
 	  "mango".source =
