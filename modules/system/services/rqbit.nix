@@ -3,9 +3,11 @@
 {
   services.rqbit = {
     enable = true;
-    downloadDir = "/var/lib/rqbit/downloads";
-    user = "rqbit";
-    group = "rqbit";
+    downloadDir = "/home/waltz/Downloads";
   };
+  systemd.tmpfiles.rules = [
+    "a+ /home/waltz - - - - u:rqbit:x"
+    "a+ /home/waltz/Downloads - - - - u:rqbit:rwx"
+  ];
 }
 
