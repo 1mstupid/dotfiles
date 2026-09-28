@@ -84,7 +84,7 @@
         end-of-line-diagnostics = "disable";
 
         lsp = {
-          enable = true;
+          enable = false;
         };
 
         indent-guides = {
@@ -101,42 +101,43 @@
       };
     };
 
-    languages = [
-      {
-        name = "rust";
-        scope = "source.rust";
-        auto-format = true;
-      }
+      languages = {
+      language = [
+        {
+          name = "rust";
+          scope = "source.rust";
+          auto-format = true;
+        }
 
-      {
-        name = "c";
-        scope = "source.c";
-        auto-format = true;
-      }
+        {
+          name = "c";
+          scope = "source.c";
+          auto-format = true;
+        }
 
-      {
-        name = "cpp";
-        scope = "source.cpp";
-        auto-format = true;
-      }
+        {
+          name = "cpp";
+          scope = "source.cpp";
+          auto-format = true;
+        }
 
-      {
-        name = "python";
-        scope = "source.python";
-        auto-format = true;
-      }
+        {
+          name = "python";
+          scope = "source.python";
+          auto-format = true;
+        }
 
-      {
-        name = "toml";
-        scope = "source.toml";
-        auto-format = true;
-        inherits = "base16_transparent";
+        {
+          name = "toml";
+          scope = "source.toml";
+          auto-format = true;
+          inherits = "base16_transparent";
 
-        # keyword.directive = { modifiers = ["italic"] }
-        "keyword.directive" = {
-          modifiers = [ "italic" ];
-        };
-      }
-    ];
+          "keyword.directive" = {
+            modifiers = [ "italic" ];
+          };
+        }
+      ];
+    };
   };
 }
