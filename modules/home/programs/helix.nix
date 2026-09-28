@@ -5,7 +5,7 @@
     enable = true;
 
     settings = {
-      theme = "solyn";
+      theme = "base16_transparent";
 
       keys = {
         insert = {
