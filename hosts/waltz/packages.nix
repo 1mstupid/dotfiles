@@ -8,13 +8,12 @@ environment.systemPackages = with pkgs; [
     git
     nh
     samaritan-sddm
-    # hyprpaper
     wget
   ];
 
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
-    noto-fonts        # broad Unicode/CJK/etc coverage
+    noto-fonts
     noto-fonts-cjk-sans
     noto-fonts-color-emoji
     nerd-fonts.meslo-lg
@@ -23,8 +22,6 @@ environment.systemPackages = with pkgs; [
   
 
   programs.zsh.enable = true;
-
-  programs.firefox.enable = true;
 
   xdg.portal = {
     enable = true;
