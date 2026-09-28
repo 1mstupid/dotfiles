@@ -21,7 +21,6 @@
     kdePackages.qtmultimedia
     qt6Packages.sddm
 
-    speedcrunch
     ffmpeg
     imagemagick
     playerctl

@@ -35,5 +35,11 @@ in
   services.suwayomi-server = {
     enable = true;
     package = suwayomi-server-preview;
+    autoDownloadNewChapters = false;
+    maxSourcesInParallel = 6;
+
+    extensionRepos = [
+      "https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.pb"
+    ];
   };
 }

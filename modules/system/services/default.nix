@@ -1,6 +1,9 @@
 {
   imports = [
    ./zram.nix
+   ./kmonad.nix
+   ./rqbit.nix
+   ./suwayomi.nix
    ./wayland.nix
    ./etc.nix
    ./network.nix
@@ -10,4 +13,8 @@
    ./bluetooth.nix
    ./boot.nix
  ];
+  services.rqbit = {
+    enable = true;
+    openFirewall = true;
+  };
 }
