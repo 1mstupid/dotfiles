@@ -1,3 +1,3 @@
 {
-  imports = [ ./zsh.nix ./alacritty.nix ./helium.nix ];
+  imports = [ ./zsh.nix ./alacritty.nix ./helium.nix ./tmux.nix ];
 }

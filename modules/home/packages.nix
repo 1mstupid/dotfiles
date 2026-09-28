@@ -9,7 +9,6 @@
     kmonad
     mangowc
     mpv
-    qbittorrent-enhanced
     satty
     tmux
     yazi
@@ -81,25 +80,5 @@
     })
 
     inputs.ayugram-desktop.packages.${pkgs.stdenv.hostPlatform.system}.default
-
-    # hypridle
-    # busybox
-    # bibata-cursors
-    # dwm
-    # super-productivity
-    # mpvpaper
-    # alacritty
-    # xinit
-    # bspwm
-    # dunst
-    # eww
-    # picom
-    # xclip
-    # haskellPackages.greenclip
-    # sxhkd
-    # qutebrowser
-    # polybar
-    # hyprland
-    # hyprsunset
   ];
 }
