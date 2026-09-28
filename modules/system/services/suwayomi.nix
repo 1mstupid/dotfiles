@@ -35,8 +35,12 @@ in
   services.suwayomi-server = {
     enable = true;
     package = suwayomi-server-preview;
-    extensionRepos = [
-      "https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.pb"
-    ];
+    settings = {
+      server = {
+        extensionRepos = [
+          "https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json"
+        ];
+      };
+    };
   };
 }
