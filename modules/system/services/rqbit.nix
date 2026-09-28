@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 let
-  cfg = config.services.rqbit;
+  cfg = config.service.rqbit;
 in
 {
   options.services.rqbit = {

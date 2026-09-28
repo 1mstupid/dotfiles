@@ -13,7 +13,7 @@
    ./bluetooth.nix
    ./boot.nix
  ];
-  services.rqbit = {
+  service.rqbit = {
     enable = true;
     openFirewall = true;
   };
