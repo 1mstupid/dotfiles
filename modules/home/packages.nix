@@ -8,9 +8,7 @@
     kmonad
     mangowc
     mpv
-    satty
     tmux
-    yazi
 
     papirus-icon-theme
     quickshell
@@ -42,7 +40,6 @@
     zenity
 
     adwaita-fonts
-    matugen
     brightnessctl
     ddcutil
 
