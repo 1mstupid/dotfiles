@@ -1,6 +1,8 @@
 {
   imports = [
    ./zram.nix
+   ./graphics.nix
+   ./nixpkgs.nix
    ./kmonad.nix
    ./rqbit.nix
    ./suwayomi.nix

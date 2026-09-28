@@ -25,9 +25,9 @@ PanelWindow {
         anchors.fill: parent
         // inset from the screen edges; the gap below comes from mango's
         // outer gaps (same value), so the bar and windows share one margin
-        anchors.topMargin: 0
-        anchors.leftMargin: 0
-        anchors.rightMargin: 0
+        anchors.topMargin: 4
+        anchors.leftMargin: 200
+        anchors.rightMargin: 200
         anchors.bottomMargin: 0
 
         radius: Theme.barRadius

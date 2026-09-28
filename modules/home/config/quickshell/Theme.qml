@@ -69,7 +69,7 @@ Singleton {
     // gaps to the same value so windows float with the same margin.
     readonly property int edgeInset: Math.round(8 * autoScale)
     // matches border_radius in config.conf
-    readonly property int barRadius: 0
+    readonly property int barRadius: 10
 
     // In-bar elements follow autoScale × the scale slider; popups stay
     // fixed. barHeight is a floor: the window grows when scaled modules

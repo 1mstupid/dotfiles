@@ -35,7 +35,6 @@
         "net.ipv6.conf.default.accept_source_route" = 0;
         "net.ipv6.conf.default.accept_redirects" = 0;
 
-        "vm.max_map_count" = 1048576;
       };
 
       kernelModules = [

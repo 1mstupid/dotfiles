@@ -30,8 +30,6 @@ Item {
                 radius: Math.round(7 * Theme.barScale)
                 anchors.verticalCenter: parent.verticalCenter
                 color: urgent ? Theme.red
-                     : selected ? Theme.selbg
-                     : occupied ? Qt.alpha(Theme.fg, 0.08)
                      : "transparent"
 
                 Behavior on width { NumberAnimation { duration: 180; easing.type: Easing.OutCubic } }
@@ -45,26 +43,17 @@ Item {
                     NumberAnimation { to: 1.0; duration: 500; easing.type: Easing.InOutQuad }
                 }
 
-                Text {
-                    anchors.centerIn: parent
-                    visible: tag.occupied || tag.selected
-                    text: tag.index + 1
-                    color: tag.urgent ? Theme.bg
-                         : tag.selected ? Theme.selfg
-                         : Qt.alpha(Theme.fg, 0.85)
-                    font.family: Theme.fontFamily
-                    font.pixelSize: Math.round(12 * Theme.barScale)
-                    font.bold: tag.selected
-                    Behavior on color { ColorAnimation { duration: 180 } }
-                }
+
 
                 Rectangle {
-                    visible: !tag.occupied && !tag.selected
                     anchors.centerIn: parent
-                    width: Math.round(5 * Theme.barScale)
+                    width: Math.round(7 * Theme.barScale)
                     height: width
                     radius: width / 2
-                    color: Qt.alpha(Theme.fg, 0.25)
+                    color: urgent ? Theme.red
+                         : selected ? Theme.selbg
+                         : occupied ? Qt.alpha(Theme.fg, 0.58)
+                         : "transparent"
                 }
 
                 MouseArea {

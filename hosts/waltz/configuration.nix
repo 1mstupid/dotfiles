@@ -16,13 +16,6 @@
     ];
   };
 
-  nixpkgs.config.allowUnfree = true;
-
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-  };
-
   nix.settings.experimental-features = [ "nix-command" "flakes" ]; 
 
   system.stateVersion = "26.05";
