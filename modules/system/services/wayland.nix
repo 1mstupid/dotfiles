@@ -51,12 +51,19 @@
       wantedBy = [ "mango-session.target" ];
       partOf = [ "mango-session.target" ];
 
+      path = with pkgs; [
+        bash
+        coreutils
+        gnugrep
+      ];
+
       serviceConfig = {
         ExecStart = "${pkgs.quickshell}/bin/quickshell";
         WorkingDirectory = "%h";
         Restart = "on-failure";
       };
     };
+
 
     udiskie = {
       description = "udiskie automounter";
