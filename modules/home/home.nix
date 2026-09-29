@@ -109,7 +109,6 @@
 	    name = "Adwaita";
 	  };
 	};
-;
 
   dconf = {
   	enable = false;
