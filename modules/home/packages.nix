@@ -10,7 +10,7 @@
     mpv
     tmux
 
-    papirus-icon-theme
+    adwaita-icon-theme
     quickshell
     qt6.qtbase
     qt6.qtdeclarative

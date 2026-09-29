@@ -104,12 +104,12 @@
 
 	gtk = {
 	  enable = true;
-
 	  iconTheme = {
-	    package = pkgs.papirus-icon-theme;
-	    name = "Papirus";
+	    package = pkgs.adwaita-icon-theme;
+	    name = "Adwaita";
 	  };
 	};
+;
 
   dconf = {
   	enable = false;

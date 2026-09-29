@@ -57,12 +57,18 @@
         gnugrep
         procps
         networkmanager
+        findutils
+        util-linux
       ];
 
       serviceConfig = {
         ExecStart = "${pkgs.quickshell}/bin/quickshell";
         WorkingDirectory = "%h";
         Restart = "on-failure";
+
+        Environment = [
+          "PATH=/run/current-system/sw/bin:/etc/profiles/per-user/waltz/bin"
+        ];
       };
     };
 
