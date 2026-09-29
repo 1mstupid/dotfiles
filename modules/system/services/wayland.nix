@@ -14,17 +14,13 @@
 
   environment.systemPackages = [
     (pkgs.writeShellScriptBin "mango-session" ''
-      systemctl --user start mango-session.target
+      export XDG_CURRENT_DESKTOP=Mango
+      export XDG_SESSION_TYPE=wayland
+
       exec mango
     '')
   ];
 
-  # programs.niri.enable = true;
-  # programs.hyprland = {
-  #   enable = true;
-  #   xwayland.enable = true;
-  #   withUWSM = true;
-  # };
   systemd.user.targets.mango-session = {
     description = "Mango graphical session";
 
@@ -32,8 +28,6 @@
       BindsTo = "graphical-session.target";
       After = "graphical-session.target";
     };
-
-    wantedBy = [ "default.target" ];
   };
 
   systemd.user.services = {
@@ -47,6 +41,7 @@
         ExecStart = "${pkgs.awww}/bin/awww-daemon";
         WorkingDirectory = "%h";
         Restart = "on-failure";
+        RestartSec = "1s";
       };
     };
 
@@ -76,5 +71,4 @@
       };
     };
   };
-
 }
