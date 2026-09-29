@@ -9,6 +9,8 @@
         repo = "nix-cachyos-kernel";
         ref = "release";
     };
+    mango.url = "github:mangowm/mango";
+
     
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
@@ -64,7 +66,12 @@
               inherit inputs;
             };
 
-            home-manager.users.waltz = import ./modules/home/home.nix;
+            home-manager.users.waltz = {
+              imports = [
+                inputs.mango.hmModules.mango
+                ./modules/home/home.nix
+              ];
+            };
           }
         ];
 
