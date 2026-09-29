@@ -92,9 +92,6 @@
 	  "mpv".source =
 	    config.lib.file.mkOutOfStoreSymlink
 	      "/home/waltz/dotfiles/modules/home/config/mpv";
-	  "mango".source =
-	    config.lib.file.mkOutOfStoreSymlink
-	      "/home/waltz/dotfiles/modules/home/config/mango";
 	  "quickshell".source =
 	    config.lib.file.mkOutOfStoreSymlink
 	      "/home/waltz/dotfiles/modules/home/config/quickshell";
