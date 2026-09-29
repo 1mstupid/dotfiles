@@ -171,7 +171,6 @@
         # Layouts
         "SUPER,space,switch_layout"
         "SUPER+SHIFT,t,setlayout,dwindle"
-        "SUPER,t,setlayout,tile"
         "SUPER,a,setlayout,scroller"
         "SUPER,m,setlayout,monocle"
         "SUPER,o,toggleoverview"
