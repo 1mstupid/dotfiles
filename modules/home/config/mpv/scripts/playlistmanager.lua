@@ -5,9 +5,8 @@ local settings = {
 
   -- to bind multiple keys separate them by a space
 
-  -- main keys to show playlist and command menu
+  -- main key to show playlist
   key_showplaylist = "SHIFT+ENTER",
-  key_openmenu = "",
 
   -- display playlist while key is held down
   key_peek_at_playlist = "",
@@ -25,13 +24,12 @@ local settings = {
   key_removefile = "BS",
   key_closeplaylist = "ESC SHIFT+ENTER",
 
-  -- extra functionality keys
+  -- extra functionality dynamic keys
   key_sortplaylist = "",
   key_shuffleplaylist = "",
   key_reverseplaylist = "",
   key_loadfiles = "",
   key_saveplaylist = "",
-  key_selectplaylist = "",
 
   --replaces matches on filenames based on extension, put as empty string to not replace anything
   --replace rules are executed in provided order
@@ -97,8 +95,6 @@ local settings = {
   --sort playlist when files are added to playlist
   sortplaylist_on_file_add = false,
 
-  reverseplaylist_on_startup = false,
-
   --default sorting method, must be one of: "name-asc", "name-desc", "date-asc", "date-desc", "size-asc", "size-desc".
   default_sort = "name-asc",
 
@@ -107,9 +103,6 @@ local settings = {
 
   --Use ~ for home directory. Leave as empty to use mpv/playlists
   playlist_savepath = "",
-
-  -- prompt for playlist filename on save
-  playlist_save_interactive = true,
 
   -- constant filename to save playlist as. Note that it will override existing playlist. Leave empty for generated name.
   playlist_save_filename = "",
@@ -139,7 +132,6 @@ local settings = {
 
   -- reset cursor navigation when closing or opening playlist
   reset_cursor_on_close = true,
-  reset_cursor_on_open = true,
 
   --prefer to display titles for following files: "all", "url", "none". Sorting still uses filename.
   prefer_titles = "url",
@@ -149,9 +141,6 @@ local settings = {
 
   --call youtube-dl to resolve the titles of urls in the playlist
   resolve_url_titles = false,
-
-  --call ffprobe to resolve the titles of local files in the playlist (if they exist in the metadata)
-  resolve_local_titles = false,
 
   -- timeout in seconds for url title resolving
   resolve_title_timeout = 15,
@@ -198,7 +187,7 @@ local settings = {
   --%cursor = position of navigation
   --%plen = playlist length
   --%N = newline
-  playlist_header = "[%cursor/%plen]",
+  playlist_header = "播放列表 [%cursor/%plen]   |   %sort",
 
   --Playlist file templates
   --%pos = position of file with leading zeros
@@ -228,7 +217,6 @@ opts.read_options(settings, "playlistmanager", function(list) update_opts(list) 
 local utils = require("mp.utils")
 local msg = require("mp.msg")
 local assdraw = require("mp.assdraw")
-local input = require("mp.input")
 
 local alignment_table = {
     [1] = { ["x"] = "left",   ["y"] = "bottom" },
@@ -301,13 +289,15 @@ local filename = nil
 local pos = 0
 local plen = 0
 local cursor = 0
-local reversed_playlist_on_startup = false
 --table for saved media titles for later if we prefer them
 local title_table = {}
 -- table for urls and local file paths that we have requested to be resolved to titles
 local requested_titles = {}
 
 local filetype_lookup = {}
+
+local normalize_path = nil
+local is_windows = package.config:sub(1, 1) == "\\" -- detect path separator, detect path separator, windows uses backslashes
 
 function refresh_UI()
   if not playlist_visible then return end
@@ -343,10 +333,6 @@ function update_opts(changelog)
     resolve_titles()
   end
 
-  if changelog.resolve_local_titles then
-    resolve_titles()
-  end
-
   if changelog.playlist_display_timeout then
     keybindstimer = mp.add_periodic_timer(settings.playlist_display_timeout, remove_keybinds)
     keybindstimer:kill()
@@ -360,36 +346,42 @@ update_opts({filename_replace = true, loadfiles_filetypes = true})
 ----- winapi start -----
 -- in windows system, we can use the sorting function provided by the win32 API
 -- see https://learn.microsoft.com/en-us/windows/win32/api/shlwapi/nf-shlwapi-strcmplogicalw
-local winapisort = nil
-if settings.system == "windows" then
-  -- ffiok is false usually means the mpv builds without luajit
-  local ffiok, ffi = pcall(require, "ffi")
-  if ffiok then
+local winapi = {}
+local is_windows = package.config:sub(1,1) == "\\"
+
+if is_windows then
+  local is_ffi_loaded, ffi = pcall(require, "ffi")
+
+  if is_ffi_loaded then
+    winapi = {
+      ffi = ffi,
+      C = ffi.C,
+      CP_UTF8 = 65001,
+      shlwapi = ffi.load("shlwapi"),
+    }
+
+    -- ffi code from https://github.com/po5/thumbfast, Mozilla Public License Version 2.0
     ffi.cdef[[
-      int MultiByteToWideChar(unsigned int CodePage, unsigned long dwFlags, const char *lpMultiByteStr, int cbMultiByte, wchar_t *lpWideCharStr, int cchWideChar);
-      int StrCmpLogicalW(const wchar_t * psz1, const wchar_t * psz2);        
+      int __stdcall MultiByteToWideChar(unsigned int CodePage, unsigned long dwFlags, const char *lpMultiByteStr,
+      int cbMultiByte, wchar_t *lpWideCharStr, int cchWideChar);
+      int __stdcall StrCmpLogicalW(wchar_t *psz1, wchar_t *psz2);
     ]]
-   
-    local shlwapi = ffi.load("shlwapi.dll")
-    
-    function MultiByteToWideChar(MultiByteStr)
-      local UTF8_CODEPAGE = 65001
-      if MultiByteStr then
-        local utf16_len = ffi.C.MultiByteToWideChar(UTF8_CODEPAGE, 0, MultiByteStr, -1, nil, 0)
+
+    winapi.utf8_to_wide = function(utf8_str)
+      if utf8_str then
+        local utf16_len = winapi.C.MultiByteToWideChar(winapi.CP_UTF8, 0, utf8_str, -1, nil, 0)
+
         if utf16_len > 0 then
-          local utf16_str = ffi.new("wchar_t[?]", utf16_len)
-          if ffi.C.MultiByteToWideChar(UTF8_CODEPAGE, 0, MultiByteStr, -1, utf16_str, utf16_len) > 0 then
+          local utf16_str = winapi.ffi.new("wchar_t[?]", utf16_len)
+
+          if winapi.C.MultiByteToWideChar(winapi.CP_UTF8, 0, utf8_str, -1, utf16_str, utf16_len) > 0 then
             return utf16_str
           end
         end
       end
+
       return ""
     end
-    
-    winapisort = function (a, b)
-      return shlwapi.StrCmpLogicalW(MultiByteToWideChar(a), MultiByteToWideChar(b)) < 0
-    end
-    
   end
 end
 ----- winapi end -----
@@ -397,53 +389,49 @@ end
 local sort_modes = {
   {
     id="name-asc",
-    title="name ascending",
+    title="名称 A→Z",
     sort_fn=function (a, b, playlist)
-      if winapisort ~= nil then 
-        return winapisort(playlist[a].string, playlist[b].string)
-      end
       return alphanumsort(playlist[a].string, playlist[b].string)
     end,
   },
   {
     id="name-desc",
-    title="name descending",
+    title="名称 Z→A",
     sort_fn=function (a, b, playlist)
-      if winapisort ~= nil then 
-        return winapisort(playlist[b].string, playlist[a].string)
-      end
       return alphanumsort(playlist[b].string, playlist[a].string)
     end,
   },
   {
     id="date-asc",
-    title="date ascending",
+    title="时间 旧→新",
     sort_fn=function (a, b)
       return (get_file_info(a).mtime or 0) < (get_file_info(b).mtime or 0)
     end,
   },
   {
     id="date-desc",
-    title="date descending",
+    title="时间 新→旧",
     sort_fn=function (a, b)
       return (get_file_info(a).mtime or 0) > (get_file_info(b).mtime or 0)
     end,
   },
   {
     id="size-asc",
-    title="size ascending",
+    title="大小 小→大",
     sort_fn=function (a, b)
       return (get_file_info(a).size or 0) < (get_file_info(b).size or 0)
     end,
   },
   {
     id="size-desc",
-    title="size descending",
+    title="大小 大→小",
     sort_fn=function (a, b)
       return (get_file_info(a).size or 0) > (get_file_info(b).size or 0)
     end,
   },
 }
+
+local current_sort_mode = nil
 
 local sort_mode = 1
 for mode, sort_data in pairs(sort_modes) do
@@ -452,17 +440,37 @@ for mode, sort_data in pairs(sort_modes) do
   end
 end
 
+-- Expose sort state to user-data so other scripts (e.g. uosc) can read it.
+-- - sort-mode: the currently selected mode (next `s` key / `sort` message will use this)
+-- - active-sort-mode: the mode actually applied in the last `sortplaylist()` call,
+--   or empty string if the playlist has never been sorted by this script.
+mp.set_property_native('user-data/playlistmanager/sort-mode', sort_modes[sort_mode].id)
+mp.set_property_native('user-data/playlistmanager/active-sort-mode', '')
+
 function is_protocol(path)
-  return type(path) == 'string' and path:match('^%a[%a%d-_]+://') ~= nil
+  return type(path) == 'string' and path:find('^%a[%a%d-_]+://') ~= nil
 end
 
-function on_preloaded_hook()
-  if settings.reverseplaylist_on_startup and not reversed_playlist_on_startup then
-    reverseplaylist()
-    mp.set_property("playlist-pos", 0)
-    cursor = 0
-    reversed_playlist_on_startup = true
+function normalize(path)
+  if normalize_path ~= nil then
+    if normalize_path then
+      path = mp.command_native({"normalize-path", path})
+    else
+      local directory = mp.get_property("working-directory", "")
+      path = utils.join_path(directory, path:gsub('^%.[\\/]',''))
+      if is_windows then path = path:gsub("\\", "/") end
+    end
+    return path
   end
+  normalize_path = false
+  local commands = mp.get_property_native("command-list", {})
+  for _, command in ipairs(commands) do
+    if command.name == "normalize-path" then
+      normalize_path = true
+      break
+    end
+  end
+  return normalize(path)
 end
 
 function on_file_loaded()
@@ -495,7 +503,7 @@ function on_start_file()
   path = mp.get_property('path')
   --if not a url then join path with working directory
   if not is_protocol(path) then
-    path = utils.join_path(mp.get_property('working-directory'), path)
+    path = normalize(path)
     directory = utils.split_path(path)
   else
     directory = nil
@@ -624,7 +632,7 @@ function get_name_from_index(i, notitle)
   end
 
   --remove paths if they exist, keeping protocols for stripping
-  if string.sub(name, 1, 1) == '/' or name:match("^%a:[/\\]") then
+  if string.sub(name, 1, 1) == '/' or name:find("^%a:[/\\]") then
     _, name = utils.split_path(name)
   end
   return stripfilename(name):gsub("\\", '\\\239\187\191'):gsub("{", "\\{"):gsub("^ ", "\\h")
@@ -641,6 +649,7 @@ function parse_header(string)
                :gsub("%%cursor", cursor+1)
                :gsub("%%mediatitle", esc_title)
                :gsub("%%filename", esc_file)
+               :gsub("%%sort", current_sort_mode and sort_modes[current_sort_mode].title or "名称 A→Z")
                -- undo name escape
                :gsub("%%%%", "%%")
 end
@@ -869,17 +878,13 @@ function toggle_playlist(show_function)
   if playlist_visible then
     remove_keybinds()
   else
-    -- toggle always shows without timeout
-    show(0)
+    show(settings.playlist_display_timeout)
   end
 end
 
 function showplaylist(duration)
   refresh_globals()
   if plen == 0 then return end
-  if not playlist_visible and settings.reset_cursor_on_open then
-    resetcursor()
-  end
 
   playlist_visible = true
   add_keybinds()
@@ -896,9 +901,6 @@ end
 function showplaylist_non_interactive(duration)
   refresh_globals()
   if plen == 0 then return end
-  if not playlist_visible and settings.reset_cursor_on_open then
-    resetcursor()
-  end
   playlist_visible = true
   draw_playlist()
   keybindstimer:kill()
@@ -1076,10 +1078,6 @@ function playfile()
   if cursor ~= pos or is_idle then
     write_watch_later()
     mp.set_property("playlist-pos", cursor)
-    if (mp.get_property_native('pause')) then     -- TK resume playback on playlist file selection
-      mp.set_property_native("pause",false)
-      msg.info("Pause cycled")
-    end
   else
     if cursor~=plen-1 then
       cursor = cursor + 1
@@ -1118,32 +1116,35 @@ end
 
 --Creates a playlist of all files in directory, will keep the order and position
 --For exaple, Folder has 12 files, you open the 5th file and run this, the remaining 7 are added behind the 5th file and prior 4 files before it
-function playlist(force_dir)
+function playlist(refresh, force_dir)
   refresh_globals()
-  if not directory and plen > 0 then return end
+  if not refresh and not force_dir and plen > 0 then
+    return
+  end
   local hasfile = true
   if plen == 0 then
     hasfile = false
     dir = mp.get_property('working-directory')
-  else
+  elseif directory ~= nil then
     dir = directory
   end
 
-  if dir == "." then dir = "" end
-  if force_dir then dir = force_dir end
+  if force_dir then
+    dir = force_dir
+  end
+
+  if not dir or dir == "." then
+    return
+  end
 
   local files = file_filter(utils.readdir(dir, "files"))
-  if winapisort ~= nil then
-    table.sort(files, winapisort)
-  else
-    table.sort(files, alphanumsort)
-  end
-  
-  
+
   if files == nil then
     msg.verbose("no files in directory")
     return
   end
+
+  table.sort(files, alphanumsort)
 
   local filenames = get_playlist_filenames_set()
   local c, c2 = 0,0
@@ -1198,73 +1199,6 @@ function playlist(force_dir)
   return c + c2
 end
 
-local menu_items = {
-  {
-    label = "Show playlist",
-    action = function()
-      showplaylist()
-    end,
-  },
-  {
-    label = "Save playlist",
-    action = function()
-      mp.add_timeout(0.1, activate_playlist_save)
-    end,
-  },
-  {
-    label = "Select playlist",
-    action = function()
-      mp.add_timeout(0.1, select_playlist)
-    end,
-  },
-  {
-    label = "Load files to playlist",
-    action = function()
-      playlist()
-    end,
-  },
-  {
-    label = "Sort playlist",
-    action = function()
-      sortplaylist_by_next_mode()
-    end,
-  },
-  {
-    label = "Reverse playlist",
-    action = function()
-      reverseplaylist()
-    end,
-  },
-  {
-    label = "Shuffle playlist",
-    action = function()
-      shuffleplaylist()
-    end,
-  },
-  {
-    label = "Play random file",
-    action = function()
-      playlist_random()
-    end,
-  },
-}
-
-local menu_labels = {}
-for _, item in pairs(menu_items) do
-  table.insert(menu_labels, item.label)
-end
-
-function open_menu()
-  remove_keybinds()
-  input.select({
-    prompt = "Search menu: ",
-    items = menu_labels,
-    submit = function (index)
-      menu_items[index].action()
-    end,
-  })
-end
-
 function parse_home(path)
   if not path:find("^~") then
     return path
@@ -1284,60 +1218,13 @@ function parse_home(path)
   return result
 end
 
-function activate_playlist_name_prompt()
-  input.get({
-    cursor_position = 1,
-    prompt = "Enter playlist name: ",
-    submit = function (text)
-      input.terminate()
-      save_playlist(text)
-    end,
-    default_text = ".m3u"
-  })
-end
-
+local interactive_save = false
 function activate_playlist_save()
-  if settings.playlist_save_interactive then
+  if interactive_save then
     remove_keybinds()
-    activate_playlist_name_prompt()
+    mp.command("script-message playlistmanager-save-interactive \"start interactive filenaming process\"")
   else
     save_playlist()
-  end
-end
-
-
-function select_playlist()
-  remove_keybinds()
-  local save_path = get_playlist_save_path()
-  local files, err = utils.readdir(save_path, "files")
-  if err ~= nil then
-    mp.error("Error reading playlist files", err)
-    return
-  end
-
-  local playlists = {}
-  for index, file in pairs(files) do
-    table.insert(playlists, file)
-  end
-
-  input.select({
-    prompt = "Search for playlist: ",
-    items = playlists,
-    submit = function (index)
-      mp.commandv("loadfile", utils.join_path(save_path, playlists[index]))
-    end,
-  })
-end
-
-function get_playlist_save_path()
-  if settings.playlist_savepath == nil or settings.playlist_savepath == "" then
-    return mp.command_native({"expand-path", "~~home/"}).."/playlists"
-  else
-    local p = parse_home(settings.playlist_savepath)
-    if p == nil then
-      msg.error("Could not resolve playlist save path")
-    end
-    return p or ""
   end
 end
 
@@ -1347,11 +1234,17 @@ function save_playlist(filename)
   if length == 0 then return end
 
   --get playlist save path
-  local savepath = get_playlist_save_path()
+  local savepath
+  if settings.playlist_savepath == nil or settings.playlist_savepath == "" then
+    savepath = mp.command_native({"expand-path", "~~home/"}).."/playlists"
+  else
+    savepath = parse_home(settings.playlist_savepath)
+    if savepath == nil then return end
+  end
 
   --create savepath if it doesn't exist
   if utils.readdir(savepath) == nil then
-    local windows_args = {'powershell', '-NoProfile', '-Command', 'mkdir', savepath}
+    local windows_args = {'powershell', '-NoProfile', '-Command', 'mkdir', string.format("\"%s\"", savepath)}
     local unix_args = { 'mkdir', savepath }
     local args = settings.system == 'windows' and windows_args or unix_args
     local res = utils.subprocess({ args = args, cancellable = false })
@@ -1395,19 +1288,28 @@ function save_playlist(filename)
       i=i+1
     end
     local saved_msg = "Playlist written to: "..savepath
-    if settings.display_osd_feedback then mp.osd_message(saved_msg) end
+    mp.osd_message(saved_msg)
     msg.info(saved_msg)
     file:close()
   end
 end
 
 function alphanumsort(a, b)
-  local function padnum(d)
-    local dec, n = string.match(d, "(%.?)0*(.+)")
-    return #dec > 0 and ("%.12f"):format(d) or ("%s%03d%s"):format(dec, #n, n)
+  local is_ffi_loaded = pcall(require, 'ffi')
+  if is_windows and is_ffi_loaded then
+    local a_wide = winapi.utf8_to_wide(a)
+    local b_wide = winapi.utf8_to_wide(b)
+    return winapi.shlwapi.StrCmpLogicalW(a_wide, b_wide) == -1
+  else
+    -- alphanum sorting for humans in Lua
+    -- http://notebook.kulchenko.com/algorithms/alphanumeric-natural-sorting-for-humans-in-lua
+    local function padnum(d)
+      local dec, n = string.match(d, "(%.?)0*(.+)")
+      return #dec > 0 and ("%.12f"):format(d) or ("%s%03d%s"):format(dec, #n, n)
+    end
+    return tostring(a):lower():gsub("%.?%d+", padnum) .. ("%3d"):format(#b)
+        < tostring(b):lower():gsub("%.?%d+", padnum) .. ("%3d"):format(#a)
   end
-  return tostring(a):lower():gsub("%.?%d+",padnum)..("%3d"):format(#b)
-       < tostring(b):lower():gsub("%.?%d+",padnum)..("%3d"):format(#a)
 end
 
 -- fast sort algo from https://github.com/zsugabubus/dotfiles/blob/master/.config/mpv/scripts/playlist-filtersort.lua
@@ -1418,7 +1320,7 @@ function sortplaylist(startover)
   local order = {}
   for i=1, #playlist do
 		order[i] = i
-    playlist[i].string = get_name_from_index(i - 1)
+    playlist[i].string = get_name_from_index(i - 1, true)
 	end
 
   table.sort(order, function(a, b)
@@ -1454,18 +1356,14 @@ function sortplaylist(startover)
   if startover then
     mp.set_property('playlist-pos', 0)
   end
+  current_sort_mode = sort_mode
+  mp.set_property_native('user-data/playlistmanager/active-sort-mode', sort_modes[sort_mode].id)
   if playlist_visible then
     showplaylist()
   end
   if settings.display_osd_feedback then
     mp.osd_message("Playlist sorted with "..sort_modes[sort_mode].title)
   end
-end
-
-function sortplaylist_by_next_mode()
-  sortplaylist()
-  sort_mode = sort_mode + 1
-  if sort_mode > #sort_modes then sort_mode = 1 end
 end
 
 function reverseplaylist()
@@ -1560,6 +1458,16 @@ function add_keybinds()
   bind_keys_forced(settings.key_playfile, 'playfile', playfile)
   bind_keys_forced(settings.key_removefile, 'removefile', removefile, "repeatable")
   bind_keys_forced(settings.key_closeplaylist, 'closeplaylist', remove_keybinds)
+  bind_keys_forced(settings.key_sortplaylist, "sortplaylist", function()
+    sortplaylist()
+    sort_mode = sort_mode + 1
+    if sort_mode > #sort_modes then sort_mode = 1 end
+    mp.set_property_native('user-data/playlistmanager/sort-mode', sort_modes[sort_mode].id)
+  end)
+  bind_keys_forced(settings.key_reverseplaylist, "reverseplaylist", reverseplaylist)
+  bind_keys_forced(settings.key_shuffleplaylist, "shuffleplaylist", shuffleplaylist)
+  bind_keys_forced(settings.key_loadfiles, "loadfiles", playlist)
+  bind_keys_forced(settings.key_saveplaylist, "saveplaylist", activate_playlist_save)
 end
 
 function remove_keybinds()
@@ -1587,6 +1495,11 @@ function remove_keybinds()
     unbind_keys(settings.key_playfile, 'playfile')
     unbind_keys(settings.key_removefile, 'removefile')
     unbind_keys(settings.key_closeplaylist, 'closeplaylist')
+    unbind_keys(settings.key_sortplaylist, "sortplaylist")
+    unbind_keys(settings.key_reverseplaylist, "reverseplaylist")
+    unbind_keys(settings.key_shuffleplaylist, "shuffleplaylist")
+    unbind_keys(settings.key_loadfiles, "loadfiles")
+    unbind_keys(settings.key_saveplaylist, "saveplaylist")
   end
 end
 
@@ -1646,32 +1559,13 @@ end
 url_title_fetch_timer = mp.add_periodic_timer(0.1, url_fetching_throttler)
 url_title_fetch_timer:kill()
 
-local_request_queue = {}
-function local_request_queue.push(item) table.insert(local_request_queue, item) end
-function local_request_queue.pop() return table.remove(local_request_queue, 1) end
-local local_titles_to_fetch = local_request_queue
-local ongoing_local_request = false
-
--- this will only allow 1 concurrent local title resolve process
-function local_fetching_throttler()
-  if not ongoing_local_request then
-    local file = local_titles_to_fetch.pop()
-    if file then
-      ongoing_local_request = true
-      resolve_ffprobe_title(file)
-    end
-  end
-end
-
 function resolve_titles()
-  if settings.prefer_titles == 'none' then return end
-  if not settings.resolve_url_titles and not settings.resolve_local_titles then return end
+  if settings.prefer_titles == 'none' or not settings.resolve_url_titles then return end
 
   local length = mp.get_property_number('playlist-count', 0)
   if length < 2 then return end
   -- loop all items in playlist because we can't predict how it has changed
   local added_urls = false
-  local added_local = false
   for i=0,length - 1,1 do
     local filename = mp.get_property('playlist/'..i..'/filename')
     local title = mp.get_property('playlist/'..i..'/title')
@@ -1682,20 +1576,14 @@ function resolve_titles()
       and not requested_titles[filename]
     then
       requested_titles[filename] = true
-      if filename:match('^https?://') and settings.resolve_url_titles then
+      if filename:find('^https?://') and settings.resolve_url_titles then
         url_titles_to_fetch.push(filename)
         added_urls = true
-      elseif settings.prefer_titles == "all" and settings.resolve_local_titles then
-        local_titles_to_fetch.push(filename)
-        added_local = true
       end
     end
   end
   if added_urls then
     url_title_fetch_timer:resume()
-  end
-  if added_local then
-    local_fetching_throttler()
   end
 end
 
@@ -1748,37 +1636,6 @@ function resolve_ytdl_title(filename)
   )
 end
 
-function resolve_ffprobe_title(filename)
-  local args = { "ffprobe", "-show_format", "-show_entries", "format=tags", "-loglevel", "quiet", filename }
-  local req = mp.command_native_async(
-    {
-      name = "subprocess",
-      args = args,
-      playback_only = false,
-      capture_stdout = true
-    },
-    function (success, res)
-      ongoing_local_request = false
-      local_fetching_throttler()
-      if res.killed_by_us then
-        msg.verbose('Request to resolve local title ' .. filename .. ' timed out')
-        return
-      end
-      if res.status == 0 then
-        local title = string.match(res.stdout, "title=([^\n\r]+)")
-        if title then
-          msg.verbose(filename .. " resolved to '" .. title .. "'")
-          title_table[filename] = title
-          mp.set_property_native('user-data/playlistmanager/titles', title_table)
-          refresh_UI()
-        end
-      else
-        msg.error("Failed to resolve local title "..filename.." Error: "..(res.error or "unknown"))
-      end
-    end
-  )
-end
-
 --script message handler
 function handlemessage(msg, value, value2)
   if msg == "show" and value == "playlist" then
@@ -1806,29 +1663,33 @@ function handlemessage(msg, value, value2)
     mp.commandv('show-text', strippedname ) ; return
   end
   if msg == "sort" then sortplaylist(value) ; return end
+  if msg == "set-sort-mode" then
+    -- value: sort mode id (e.g. "date-desc") or 1-based index (e.g. "3")
+    -- value2: "true" to restart playback from first item after sorting
+    for i, mode in ipairs(sort_modes) do
+      if mode.id == value or tostring(i) == tostring(value) then
+        sort_mode = i
+        mp.set_property_native('user-data/playlistmanager/sort-mode', mode.id)
+        sortplaylist(value2 == "true")
+        return
+      end
+    end
+    return
+  end
   if msg == "shuffle" then shuffleplaylist() ; return end
   if msg == "reverse" then reverseplaylist() ; return end
-  if msg == "loadfiles" then playlist(value) ; return end
+  if msg == "refresh" then playlist(true) ; return end
+  if msg == "loadfiles" then playlist(false, value) ; return end
   if msg == "save" then save_playlist(value) ; return end
-  if msg == "save-interactive" then activate_playlist_name_prompt() ; return end
-  if msg == "open-menu" then open_menu() ; return end
-  if msg == "select-playlist" then select_playlist() ; return end
   if msg == "playlist-next" then playlist_next() ; return end
   if msg == "playlist-prev" then playlist_prev() ; return end
   if msg == "playlist-next-random" then playlist_random() ; return end
+  if msg == "enable-interactive-save" then interactive_save = true end
   if msg == "close" then remove_keybinds() end
 end
 
 mp.register_script_message("playlistmanager", handlemessage)
 
-bind_keys(settings.key_sortplaylist, "sortplaylist", sortplaylist_by_next_mode)
-bind_keys(settings.key_shuffleplaylist, "shuffleplaylist", shuffleplaylist)
-bind_keys(settings.key_reverseplaylist, "reverseplaylist", reverseplaylist)
-bind_keys(settings.key_loadfiles, "loadfiles", playlist)
-bind_keys(settings.key_saveplaylist, "saveplaylist", activate_playlist_save)
-bind_keys(settings.key_selectplaylist, "selectplaylist", select_playlist)
-bind_keys(settings.key_openmenu, "openmenu", open_menu)
-bind_keys(settings.key_showplaylist, "showplaylist", showplaylist)
 bind_keys(
   settings.key_peek_at_playlist,
   "peek_at_playlist",
@@ -1836,7 +1697,8 @@ bind_keys(
   { complex=true }
 )
 
+bind_keys(settings.key_showplaylist, "showplaylist", toggle_playlist)
+
 mp.register_event("start-file", on_start_file)
 mp.register_event("file-loaded", on_file_loaded)
 mp.register_event("end-file", on_end_file)
-mp.add_hook("on_preloaded", 50, on_preloaded_hook)

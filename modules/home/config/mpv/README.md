@@ -1,121 +1,130 @@
-# mpv config
+基于上游优秀的`mpv`配置 [mpv-config](https://github.com/dyphire/mpv-config)，针对我个人需求做了部分修改以及补充一些脚本（部分来自其他仓库,部分基本完全借助`ai`编写）
 
-![mpv logo](https://raw.githubusercontent.com/mpv-player/mpv.io/master/source/images/mpv-logo-128.png)
+---
 
-## Overview
+## 🚀 二次修改或者新增脚本说明
 
-**mpv** is a free (as in freedom and free beer), open-source, and cross-platform media player. It supports
-a wide variety of media file formats, audio and video codecs, and subtitle types.
+<details>
+<summary>点击展开脚本说明</summary>
 
-This repo contains my personal mpv configurations and scripts that I use and are significantly better than default mpv, VLC, and MPC. Before installing, please take your time to read this whole README as common issues can be easily solved by simply reading carefully.
+### `autocopyshot.lua`
+* **功能描述**：在触发`mpv`原生视频截图的同时复制到系统剪贴板
+* **`input.conf`写法示例**：
 
+```ini
+Ctrl+c      script-message screenshot-subtitles-copy   #menu: 截取 > 截屏 > Autocopyshot > 同源尺寸 - 有字幕 - 无 OSD-单帧
 
-## Preview
+Ctrl+alt+c  script-message screenshot-video-copy       #menu: 截取 > 截屏 > Autocopyshot > 同源尺寸 - 无字幕 - 无 OSD-单帧
 
-[![preview.png](https://i.postimg.cc/8zNHHPHy/preview.png)](https://postimg.cc/VdZnsw2M)
+Ctrl+shift+c script-message screenshot-window-copy     #menu: 截取 > 截屏 > Autocopyshot > 实际尺寸 - 有字幕 - 有 OSD-单帧
+```
 
-## Installation
+### `bangumi_sync`
+* **来源**：[x-Armin/mpv_bangumi_sync](https://github.com/x-Armin/mpv_bangumi_sync)
+* **功能描述**：基于`uosc`框架，同步和回传 Bangumi 观看记录
+* **`input.conf`写法示例**：参考原仓库说明
 
-### Windows
+### `clock.lua`
+* **功能描述**：实现时钟效果，显示当前系统时间、观看当前视频还需时间及视频结束时间
+* **`input.conf`写法示例**：
 
-Here are the steps to install mpv and to use my configuration files on Windows:
-* Download the latest 64bit mpv Windows build by shinchiro from [mpv.io/installation](https://mpv.io/installation/) or directly from [here](https://sourceforge.net/projects/mpv-player-windows/files/) and extract it wherever you please. This is now your mpv folder
-* Run `mpv-install.bat`, which is located in `installer` folder, with administrator priviledges by right-clicking and selecting Run as administrator
-* Download this repository as a ZIP file (or you can clone it using git)
-* Create a folder named `portable_config` (**this is important**), located at the same directory as `mpv.exe`
-* Extract or copy the contents of this repository that you have downloaded to the `portable_config` folder
-* To make some scripts work, you need to modify them from the release a little bit:
-  * In order for the `mpv-gif.lua` script to work, it requires [FFmpeg](https://ffmpeg.org/) with libass enabled and accessible via terminal. See the [installation instructions](https://github.com/Scheliux/mpv-gif-generator#installation) from the script's source repository for further info.
-  * **(Optional)** By default, the `mpv-gif.lua` script saves GIFs to `C:/Program Files/mpv/gifs`. To modify this, open `gif.conf`, which is located in `portable_config/script-opts` folder, with a text editor and specify the `dir`, which is output directory for GIFs, as you please. For example `dir="C:/Users/USERNAME/Pictures/mpv-gifs"`.
-* **(Optional)** Make your own mpv configuration. You can do that by modifying my configuration files and/or making your own from scratch or modifying others' configurations. Check out the [useful links](#useful-links) section for mpv configuration guides.
-* You're all set up.
+```ini
+t                 script-message-to clock toggle                                                                       #menu: 其他 > 开启/关闭 时间显示
+```
 
-### Linux
+### `cut_sub.lua`
+* **功能描述**：裁剪与视频同目录下近似名称的字幕和弹幕文件
+* **`input.conf`写法示例**：
 
-Here are the steps to install mpv and to use my configuration files on Linux:
+```ini
+#                script-message cut_sub_ab                                                                              #menu: 截取 > 字幕&弹幕 > 标记 A/B 点
+#                script-message cut_sub_clear                                                                           #menu: 截取 > 字幕&弹幕 > 清除标记
+```
 
-* Install mpv and xclip (clipboard CLI interface) using the package manager that comes with your Linux distribution. xclip is needed for [copy-time.lua](https://github.com/noelsimbolon/mpv-config/blob/linux/scripts/copy-time.lua) and [seek-to.lua](https://github.com/noelsimbolon/mpv-config/blob/linux/scripts/seek-to.lua) scripts to work properly. The package name for mpv and xclip might also vary depending on your Linux distribution. Here, I will make Arch Linux, that comes with `pacman` as its package manager, as an example
-  
-  ```
-  sudo pacman -S mpv xclip
-  ```
+### `dir_subs.lua`
+* **功能描述**：记录和恢复视频的字幕大小和位置状态，会影响同目录下所有视频的字幕状态
 
-  If you, for example, use Fedora Linux, that comes with `dnf` as its package manager, you can install mpv and xclip with the following command instead.
-  ```
-  sudo dnf install mpv xclip
-  ```
+### `embedded-lyrics.lua`
+* **功能描述**：自动提取音乐文件中的内嵌歌词并以字幕形式加载
+* **`input.conf`写法示例**：
 
-  If you use other Linux distributions, please refer to the documentation of your Linux distribution's package manager on how to install packages.
+```ini
+#                script-message embedded-lyrics-toggle                                                                  #menu: 功能 > 歌词 > 开/关 自动加载内嵌歌词
+#                script-message embedded-lyrics-save                                                                    #menu: 功能 > 歌词 > 提取并保存内嵌歌词
+```
 
-* Download this repository as a ZIP file (or you can clone it using git) and extract/copy it to your standard mpv configuration directory which is `~/.config/mpv`
-* Some things to highlight:
-  * In order for the `mpv-gif.lua` script to work, it requires [FFmpeg](https://ffmpeg.org/) with libass enabled and accessible via terminal. See the [installation instructions](https://github.com/Scheliux/mpv-gif-generator#installation) from the script's source repository for further info.
-  * **(Optional)** By default, the `mpv-gif.lua` script saves GIFs to `~/Videos/mpv-gifs`. To modify this, open `gif.conf`, which is located in `portable_config/script-opts` folder, with a text editor and specify the `dir`, which is output directory for GIFs, as you please. For example `dir="~/Videos"`.
-* **(Optional)** Make your own mpv configuration. You can do that by modifying my configuration files and/or making your own from scratch or modifying others' configurations. Check out the [useful links](#useful-links) section for mpv configuration guides.
-* You're all set up.
+### `extract_fonts.lua`
+* **功能描述**：导出视频中的内封字体
+* **`input.conf`写法示例**：
 
-## Scripts
+```ini
+Ctrl+S           script-binding extract-fonts                                                                           #menu: 截取 > 视频 > 提取MKV视频内封字体
+```
 
-Scripts from external sources:
+### `music-reset.lua`
+* **功能描述**：检测到带封面的音频文件时，自动将播放进度重置到开头，解决历史记录脚本对音乐文件恢复进度的问题
 
-* audio-visualizer.lua ([source](https://github.com/mfcc64/mpv-scripts#visualizerlua))\
-  Various audio visualization. It only works if you open audio files.
-  
-* autoload.lua ([source](https://github.com/mpv-player/mpv/blob/master/TOOLS/lua/autoload.lua))\
-  Automatically load playlist entries before and after the currently playing file, by scanning the directory.
+### `skip_sponsorblock.lua`
+* **功能描述**：参考上游 [chapterskip.lua](https://github.com/dyphire/mpv-config/blob/master/scripts/chapterskip.lua) 与 [sponsorblock_minimal.lua](https://github.com/dyphire/mpv-config/blob/master/scripts/sponsorblock_minimal.lua)，实现流媒体播放时识别 B 站和 YouTube 的各种特殊片段，插入章节信息并提供交互按钮。可配合油猴脚本 [play-with-mpv](https://github.com/Ladersbt/userscript/tree/main/play-with-mpv)（参考修改自 [akiirui/userscript](https://github.com/akiirui/userscript/tree/main/play-with-mpv) 和 [LuckyPuppy514/external-player](https://github.com/LuckyPuppy514/external-player)）使用，在上游基础上增加了若干功能并调整了 UI
 
-* copy-timestamp.lua ([source](https://github.com/linguisticmind/mpv-scripts/tree/master/copy-timestamp))\
-  Copies current timecode in HH:MM:SS.MS format to clipboard. Cross-platform (Mac, Windows, Linux).
+### `speed_manager.lua`
+* **功能描述**：记录和恢复播放速度，支持回档至上次速度
+* **`input.conf`写法示例**：
 
-* cycle-commands.lua ([source](https://github.com/CogentRedTester/mpv-scripts#cycle-commands))\
-  Cycles through a series of commands on a keypress. Each iteration of the cycle can contain as many commands as one wants. Syntax details are at the top of the file.
+```ini
+KP1              script-message toggle_speed; script-message-to uosc flash-speed                                        #menu: 播放 > 速度调整 > 速度 重置/恢复
+```
 
-* cycle-profile.lua ([source](https://github.com/CogentRedTester/mpv-scripts#cycle-profile))\
-  Cycles through a list of profiles sent via a script message and prints the profile-desc to the OSD. More details at the top of the file.
+### `sub_export.lua`
+* **功能描述**：在上游 [sub_export.lua](https://github.com/dyphire/mpv-config/blob/master/scripts/sub_export.lua) 基础上实现导出 SRT 字幕的同时自动转换并生成一份 ASS 字幕
+* **`input.conf`写法示例**：
 
-* modernz.lua ([source](https://github.com/Samillion/ModernZ))\
-  A modern OSC UI replacement for MPV that retains the functionality of the default OSC.
+```ini
+CTRL+s           script-message-to sub_export export-selected-subtitles                                                 #menu: 字幕 > 导出当前内封字幕
+```
 
-* mpv-gif.lua ([source](https://github.com/Scheliux/mpv-gif-generator))\
-  Script to generate GIFs from video playback. Requires FFmpeg with libass enabled. The exporting GIFs with subtitled currently doesn't work properly.
+### `uosc`
+* **来源**：整合 [上游](https://github.com/dyphire/mpv-config/tree/master/scripts/uosc) 和 [hooke007/mpv_PlayKit](https://github.com/hooke007/mpv_PlayKit/tree/main/portable_config/scripts/uosc) 特性
 
-* playlistmanager.lua ([source](https://github.com/jonniek/mpv-playlistmanager))\
-  Allows you to see and interact with your playlist in an intuitive way.
+### `uosc_webdav`
+* **来源**：参考修改自 [webdav.lua](https://gist.github.com/HedioKojima/fdbfdd73570650b01c809afb5ae7829b)
+* **功能描述**：基于`uosc`框架，实现 WebDAV 目录浏览与播放功能，支持多种排序、批量删除、外挂字幕自动匹配与内封字幕自动选轨、全目录连播列表、菜单实时搜索等；菜单支持方向键导航（右键激活选中项、左键/退格返回上一级）
+* **`input.conf`写法示例**：
 
-* seek-to.lua ([source](https://github.com/dexeonify/mpv-config/blob/main/scripts/seek-to.lua))\
-  Seek to an absolute timestamp specified via keyboard input or pasted from clipboard.
+```ini
+#                script-message open-webdav                                                                             #menu: 导航 > WebDAV > 打开 WebDAV 目录
+Q                script-message open-webdav-root                                                                        #menu: 导航 > WebDAV > 回到 WebDAV 根目录
+q                script-message webdav-back                                                                             ## 返回上一级
+c                script-message webdav-cycle-sort                                                                       #menu: 导航 > WebDAV > 切换 WebDAV 目录排序
+#                script-message webdav-toggle-sync-sort                                                                 #menu: 导航 > WebDAV > 开/关 继承 WebDAV 目录排序
+#                script-message webdav-toggle-video-only                                                                #menu: 导航 > WebDAV > 开/关 仅播放视频
+```
 
-* sponsorblock-minimal.lua ([source](https://codeberg.org/jouni/mpv_sponsorblock_minimal))\
-  Skip sponsor segments in YouTube videos.
+> **Note**: 已由群组版本替代
 
-* thumbfast.lua ([source](https://github.com/po5/thumbfast))\
-  High-performance on-the-fly thumbnailer for mpv. **The script does not display thumbnails on its own**, it is meant to be used alongside a UI script that calls thumbfast.
+### `uosc_history`
+* **来源**：[Koopex/uosc_history_menu](https://github.com/Koopex/uosc_history_menu)
+* **功能描述**：基于`uosc`框架，实现历史记录与收藏夹功能；收藏夹独立存储于单独文件（`script-opts/uosc_history.conf` 中可配置路径），便于手动预设与编辑；搜索支持 `*` 通配符
+* **收藏夹迁移逻辑**：
+  * 首次运行（无任何文件）：空收藏，退出后生成历史与收藏两个独立文件
+  * 迁移场景（旧文件含收藏、新收藏文件不存在）：自动从旧文件加载收藏，退出时写入新文件
+  * 向后兼容：`storage.load()` 仍返回旧文件中的 `bookmark_entries` 作为迁移回退源；`storage.save()` 不再写入该字段，首次保存后历史文件中的旧收藏数据自动清理
+* **`input.conf`写法示例**：参考原仓库说明
 
-Configuration files for these scripts can be found in the `script-opts` folder. I also modified some of these scripts' default keybindings. To see my modifications, look for script keybindings in `input.conf`.
+> **Note**: 已由群组版本替代
 
-## Shaders
+### `winisland.lua`
+* **功能描述**：与 [WinIsland](https://github.com/Eatgrapes/WinIsland) 联动以在 mpv 播放音乐时实现类似手机音乐软件的灵动岛效果
 
-The shaders included in the `shaders` folder:
+</details>
 
-* ArtCNN_C4F32 ([source](https://github.com/Artoriuz/ArtCNN/blob/main/GLSL/ArtCNN_C4F32.glsl))\
-  Used for luma upscaling.
+---
 
-* nnedi3-nns128-win8x4 ([source](https://github.com/bjin/mpv-prescalers/tree/master))\
-  Used for luma upscaling.
+## 🔄 与上游同步说明
+* 只保留和跟进经过二次修改后的上游脚本
 
-Use shaders based on your preference and system capabilities. For more info about shaders, read the resources in the [useful links](#useful-links) section.
+## 🤝 致谢
 
-## Useful Links
-
-* [mpv tutorial](https://thewiki.moe/tutorials/mpv/) by The Wiki
-* [mpv.conf guide](https://iamscum.wordpress.com/guides/videoplayback-guide/mpv-conf/) by iamscum
-* [mpv Configuration Guide for Watching Videos](https://kokomins.wordpress.com/2019/10/14/mpv-config-guide/) by Kokomins
-* [mpv Resampling](https://artoriuz.github.io/blog/mpv_upscaling.html) by João Vitor Chrisóstomo
-
-## Official Links
-
-* [mpv homepage](https://mpv.io/)  
-* [mpv wiki](https://github.com/mpv-player/mpv/wiki)
-* [mpv FAQ](https://github.com/mpv-player/mpv/wiki/FAQ)
-* [mpv manual](https://mpv.io/manual/stable/)
-* [mpv User Scripts](https://github.com/mpv-player/mpv/wiki/User-Scripts)
+* 感谢上游项目 [mpv-config](https://github.com/dyphire/mpv-config) 的优秀`mpv`配置
+* 感谢 mpv 社区中的各位脚本开发者，收录了一些他们编写的实用脚本
+* 感谢 mpv 社区中提供灵感与参考的各位，除了上游项目，还参考和借鉴了许多 github 内仓库中的`mpv`脚本
