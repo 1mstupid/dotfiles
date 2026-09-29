@@ -182,8 +182,7 @@
         "SUPER,r,switch_proportion_preset"
 
         # Screenshots & Media
-        "NONE,Print,spawn_shell,grim - | tee ~/pictures/screenshots/$(date +%Y-%m-%d_%H-%M-%S).png | wl-copy && notify-send \"screenshot\" \"screen captured\""
-        "SUPER+SHIFT,s,spawn_shell,grim -g \"$(slurp)\" - | tee ~/pictures/screenshots/$(date +%Y-%m-%d_%H-%M-%S).png | wl-copy && notify-send \"screenshot\" \"area captured\""
+        "SUPER+SHIFT,s,spawn_shell, ~/.config/scripts/screenshot"
 
         "NONE,XF86AudioMute,spawn,wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
         "NONE,XF86AudioLowerVolume,spawn,wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05-"
