@@ -227,20 +227,17 @@
 
       repeat_rate = 50;
       repeat_delay = 300;
-      left_handed = 0;
 
       disable_trackpad = 0;
       tap_to_click = 1;
       tap_and_drag = 1;
       drag_lock = 0;
       trackpad_natural_scrolling = 0;
-      disable_while_typing = 0;
 
       cursor_theme = "Bibata-Modern-Ice";
       cursor_size = 24;
       cursor_hide_timeout = 0;
 
-      ov_tab_mode = 1;
 
       allow_tearing = 1;
 
