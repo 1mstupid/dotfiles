@@ -55,6 +55,8 @@
         bash
         coreutils
         gnugrep
+        procps
+        networkmanager
       ];
 
       serviceConfig = {
@@ -63,7 +65,6 @@
         Restart = "on-failure";
       };
     };
-
 
     udiskie = {
       description = "udiskie automounter";
