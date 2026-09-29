@@ -6,7 +6,6 @@
     feh
     helix
     kmonad
-    mangowc
     mpv
     tmux
 
