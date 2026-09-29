@@ -10,71 +10,57 @@
   # };
   systemd.user.services = {
     awww = {
-      Unit = {
-        Description = "awww wallpaper daemon";
-        After = [ "graphical-session.target" ];
-        PartOf = [ "graphical-session.target" ];
-      };
+      description = "awww wallpaper daemon";
 
-      Service = {
+      wantedBy = [ "graphical-session.target" ];
+      after = [ "graphical-session.target" ];
+      partOf = [ "graphical-session.target" ];
+
+      serviceConfig = {
         ExecStart = "${pkgs.awww}/bin/awww-daemon";
         Restart = "on-failure";
-      };
-
-      Install = {
-        WantedBy = [ "graphical-session.target" ];
       };
     };
 
     quickshell = {
-      Unit = {
-        Description = "Quickshell";
-        After = [ "graphical-session.target" ];
-        PartOf = [ "graphical-session.target" ];
-      };
+      description = "Quickshell";
 
-      Service = {
+      wantedBy = [ "graphical-session.target" ];
+      after = [ "graphical-session.target" ];
+      partOf = [ "graphical-session.target" ];
+
+      serviceConfig = {
         ExecStart = "${pkgs.quickshell}/bin/quickshell";
         Restart = "on-failure";
-      };
-
-      Install = {
-        WantedBy = [ "graphical-session.target" ];
       };
     };
 
     udiskie = {
-      Unit = {
-        Description = "udiskie automounter";
-        After = [ "graphical-session.target" ];
-        PartOf = [ "graphical-session.target" ];
-      };
+      description = "udiskie automounter";
 
-      Service = {
+      wantedBy = [ "graphical-session.target" ];
+      after = [ "graphical-session.target" ];
+      partOf = [ "graphical-session.target" ];
+
+      serviceConfig = {
         ExecStart = "${pkgs.udiskie}/bin/udiskie";
         Restart = "on-failure";
-      };
-
-      Install = {
-        WantedBy = [ "graphical-session.target" ];
       };
     };
 
     xdg-desktop-portal-wlr = {
-      Unit = {
-        Description = "XDG Desktop Portal for wlroots";
-        After = [ "graphical-session.target" ];
-        PartOf = [ "graphical-session.target" ];
-      };
+      description = "XDG Desktop Portal for wlroots";
 
-      Service = {
-        ExecStart = "${pkgs.xdg-desktop-portal-wlr}/libexec/xdg-desktop-portal-wlr";
+      wantedBy = [ "graphical-session.target" ];
+      after = [ "graphical-session.target" ];
+      partOf = [ "graphical-session.target" ];
+
+      serviceConfig = {
+        ExecStart =
+          "${pkgs.xdg-desktop-portal-wlr}/libexec/xdg-desktop-portal-wlr";
         Restart = "on-failure";
-      };
-
-      Install = {
-        WantedBy = [ "graphical-session.target" ];
       };
     };
   };
+
 }
