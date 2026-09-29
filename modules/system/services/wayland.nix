@@ -45,6 +45,7 @@
 
       serviceConfig = {
         ExecStart = "${pkgs.awww}/bin/awww-daemon";
+        WorkingDirectory = "%h";
         Restart = "on-failure";
       };
     };
@@ -57,6 +58,7 @@
 
       serviceConfig = {
         ExecStart = "${pkgs.quickshell}/bin/quickshell";
+        WorkingDirectory = "%h";
         Restart = "on-failure";
       };
     };
@@ -69,8 +71,10 @@
 
       serviceConfig = {
         ExecStart = "${pkgs.udiskie}/bin/udiskie";
+        WorkingDirectory = "%h";
         Restart = "on-failure";
       };
     };
   };
+
 }
