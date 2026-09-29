@@ -89,7 +89,9 @@
 	  "wallpaper".source =
 	  	config.lib.file.mkOutOfStoreSymlink
 		  	"/home/waltz/dotfiles/assets/wallpaper";
-	  "mpv".source = ./config/mpv;
+	  "mpv".source =
+	    config.lib.file.mkOutOfStoreSymlink
+	      "/home/waltz/dotfiles/modules/home/config/mpv";
 	  "mango".source =
 	    config.lib.file.mkOutOfStoreSymlink
 	      "/home/waltz/dotfiles/modules/home/config/mango";
