@@ -47,20 +47,6 @@
         Restart = "on-failure";
       };
     };
-
-    xdg-desktop-portal-wlr = {
-      description = "XDG Desktop Portal for wlroots";
-
-      wantedBy = [ "graphical-session.target" ];
-      after = [ "graphical-session.target" ];
-      partOf = [ "graphical-session.target" ];
-
-      serviceConfig = {
-        ExecStart =
-          "${pkgs.xdg-desktop-portal-wlr}/libexec/xdg-desktop-portal-wlr";
-        Restart = "on-failure";
-      };
-    };
   };
 
 }
