@@ -190,8 +190,6 @@
         "NONE,XF86MonBrightnessUp,spawn,brightnessctl set +5%"
         "NONE,XF86MonBrightnessDown,spawn,brightnessctl set 5%-"
 
-        # Mouse / Axis
-        "SUPER+CTRL,r,reload_config"
       ];
 
       # ==========================================

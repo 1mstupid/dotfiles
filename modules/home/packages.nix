@@ -21,6 +21,7 @@
     playerctl
     pulseaudio
     awww
+    thunar
     wf-recorder
     grim
     slurp
