@@ -178,7 +178,8 @@ ff02::3 ip6-allhosts
 0.0.0.0 safereddit.com
 0.0.0.0 redlib.catsarch.com
 0.0.0.0 reddit.com
-0.0.0.0 youtube.com
+0.0.0.0 www.youtube.com
+0.0.0.0 inv.nadeko.net
 0.0.0.0 yewtu.be
 0.0.0.0 vid.puffyan.us
 0.0.0.0 yt.artemislena.eu
