@@ -5,7 +5,6 @@
    ./nixpkgs.nix
    ./kmonad.nix
    ./rqbit.nix
-   ./suwayomi.nix
    ./wayland.nix
    ./etc.nix
    ./network.nix
