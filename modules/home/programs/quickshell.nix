@@ -1,22 +1,26 @@
-{ pkgs, inputs, config, ... }:
+{ pkgs, inputs, ... }:
+
 let
   qs = inputs.quickshell.packages.${pkgs.system}.default;
 in
 {
+  home.packages = [ qs ];
 
-  home-manager.users.waltz.systemd = {
-    quickshell = {
-      description = "Quickshell";
+  systemd.user.services.quickshell = {
+    Unit = {
+      Description = "Quickshell";
+      After = [ "mango-session.target" ];
+      PartOf = [ "mango-session.target" ];
+    };
 
-      wantedBy = [ "mango-session.target" ];
-      partOf = [ "mango-session.target" ];
+    Service = {
+      ExecStart = "${qs}/bin/qs";
+      WorkingDirectory = "%h";
+      Restart = "on-failure";
+    };
 
-      serviceConfig = {
-        ExecStart = "${qs}/bin/qs";
-        WorkingDirectory = "%h";
-        Restart = "on-failure";
-      };
+    Install = {
+      WantedBy = [ "mango-session.target" ];
     };
   };
 }
-
