@@ -105,6 +105,8 @@
       bind = [
         "SUPER,Return,spawn,alacritty"
         "SUPER,t,spawn,qs ipc call applauncher toggle"
+        "SUPER,b,spawn,qs ipc call network toggle"
+
         "SUPER+SHIFT,p,spawn,qs ipc call powermenu toggle"
 
         # Window Management
