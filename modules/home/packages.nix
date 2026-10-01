@@ -71,6 +71,5 @@
       '';
     })
 
-    inputs.ayugram-desktop.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 }
