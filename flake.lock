@@ -1,26 +1,5 @@
 {
   "nodes": {
-    "ayugram-desktop": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "tg_owt": "tg_owt"
-      },
-      "locked": {
-        "lastModified": 1790620039,
-        "narHash": "sha256-vFY8jKgUupRGrcO9ZfVyVNwOLxRa7dqitXYwDUQqUaU=",
-        "owner": "ndfined-crp",
-        "repo": "ayugram-desktop",
-        "rev": "3015ae5439dd2c14f15c76c3d451610456fa140d",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ndfined-crp",
-        "repo": "ayugram-desktop",
-        "type": "github"
-      }
-    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -290,7 +269,6 @@
     },
     "root": {
       "inputs": {
-        "ayugram-desktop": "ayugram-desktop",
         "helium-flake": "helium-flake",
         "home-manager": "home-manager",
         "mango": "mango",
@@ -334,27 +312,6 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default-linux",
-        "type": "github"
-      }
-    },
-    "tg_owt": {
-      "inputs": {
-        "nixpkgs": [
-          "ayugram-desktop",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1789877109,
-        "narHash": "sha256-gFYDctvZQdqpKkSYf/QJZwRkQM2YPQ3wHfUxHIP8cDM=",
-        "owner": "ndfined-crp",
-        "repo": "tg_owt",
-        "rev": "25a781fb72647a14adee9f764761c5c8b773c6b0",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ndfined-crp",
-        "repo": "tg_owt",
         "type": "github"
       }
     }
