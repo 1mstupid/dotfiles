@@ -45,33 +45,6 @@
       };
     };
 
-    quickshell = {
-      description = "Quickshell";
-
-      wantedBy = [ "mango-session.target" ];
-      partOf = [ "mango-session.target" ];
-
-      path = with pkgs; [
-        bash
-        coreutils
-        gnugrep
-        procps
-        networkmanager
-        findutils
-        util-linux
-      ];
-
-      serviceConfig = {
-        ExecStart = "${pkgs.quickshell}/bin/quickshell";
-        WorkingDirectory = "%h";
-        Restart = "on-failure";
-
-        Environment = [
-          "PATH=/run/current-system/sw/bin:/etc/profiles/per-user/waltz/bin"
-        ];
-      };
-    };
-
     udiskie = {
       description = "udiskie automounter";
 
