@@ -14,7 +14,7 @@ in
     };
 
     Service = {
-      ExecStart = "${qs}/bin/qs";
+      ExecStart = "${qs}/bin/quickshell";
       WorkingDirectory = "%h";
       Restart = "on-failure";
     };
