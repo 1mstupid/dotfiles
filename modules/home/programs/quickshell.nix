@@ -1,7 +1,7 @@
 { pkgs, inputs, ... }:
 
 let
-  qs = inputs.quickshell.packages.${pkgs.system}.default;
+  qs = inputs.quickshell.packages.${pkgs.system}.qs;
 in
 {
   home.packages = [ qs ];
