@@ -11,7 +11,7 @@
     tmux
 
     adwaita-icon-theme
-    inputs.quickshell-config.packages.${pkgs.stdenv.hostPlatform.system}.default
+    inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default
     qt6.qtbase
     qt6.qtdeclarative
     kdePackages.qtmultimedia

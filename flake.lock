@@ -270,16 +270,16 @@
         "type": "github"
       }
     },
-    "quickshell-config": {
+    "quickshell": {
       "inputs": {
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1790889237,
-        "narHash": "sha256-z2iepqSMia4l5pZOAUxj3zA+Adc3pdTeYbjOt/U8T1U=",
+        "lastModified": 1790890075,
+        "narHash": "sha256-g5nCLOOD67oaOlFJ85yFMhD1/YgZTkIpA0D+1r90ATs=",
         "owner": "1mstupid",
         "repo": "quickshell-config",
-        "rev": "9540a5f2bc081fa5bb103dacdb3b6e1133bdd41f",
+        "rev": "a5a7a7d25fb774f4d28807a80ca53b53b7262824",
         "type": "github"
       },
       "original": {
@@ -296,7 +296,7 @@
         "mango": "mango",
         "nix-cachyos-kernel": "nix-cachyos-kernel",
         "nixpkgs": "nixpkgs_3",
-        "quickshell-config": "quickshell-config"
+        "quickshell": "quickshell"
       }
     },
     "scenefx": {
