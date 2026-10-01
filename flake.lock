@@ -140,11 +140,11 @@
         "wrappers": "wrappers"
       },
       "locked": {
-        "lastModified": 1790897568,
-        "narHash": "sha256-4f+AumB4TJ5rYgto+HxqFw+VzT7ck09dqyX40+O0w5E=",
+        "lastModified": 1790897779,
+        "narHash": "sha256-l5PQuZ4/TLf6khayZVtPKXeGbc/dp1jt76VqSC8JxWE=",
         "owner": "1mstupid",
         "repo": "mpv",
-        "rev": "b11fa6ba3665ecf1ca15c458398e670949cbb9e3",
+        "rev": "fc6fa853e7bcc703095d8f039d875104edc80c8b",
         "type": "github"
       },
       "original": {
