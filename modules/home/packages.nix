@@ -3,6 +3,7 @@
 {
   home.packages = with pkgs; [
     broot
+    yazi
     feh
     helix
     kmonad
