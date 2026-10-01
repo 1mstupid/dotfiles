@@ -11,14 +11,12 @@
     tmux
 
     adwaita-icon-theme
-    qt6Packages.sddm
 
     ffmpeg
     imagemagick
     playerctl
     pulseaudio
     awww
-    thunar
     wf-recorder
     grim
     slurp
@@ -37,7 +35,6 @@
     zenity
 
     adwaita-fonts
-    brightnessctl
     ddcutil
 
     fd
@@ -46,8 +43,6 @@
     ripgrep
     python3
     nodejs
-    gcc
-    dbus
 
     yt-dlp
 
