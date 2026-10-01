@@ -3,6 +3,7 @@ let
   qs = inputs.quickshell.packages.${pkgs.system}.default;
 in
 {
+
   home-manager.users.waltz.systemd = {
     quickshell = {
       description = "Quickshell";
