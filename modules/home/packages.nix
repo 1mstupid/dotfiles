@@ -7,7 +7,7 @@
     feh
     helix
     kmonad
-    mpv
+    inputs.mpv.packages.${pkgs.system}.default;
     tmux
 
     adwaita-icon-theme

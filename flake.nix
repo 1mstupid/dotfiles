@@ -12,6 +12,8 @@
     mango.url = "github:mangowm/mango";
 
     quickshell.url = "github:1mstupid/quickshell-config";
+    mpv.url = "github:1mstupid/mpv";
+
     
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
