@@ -34,9 +34,9 @@ Singleton {
         onTriggered: root._barStateLoads = 2
     }
 
-    property color bg: "#0d1117"
+    property color bg: "#000000"
     property color altbg: "#161b22"
-    property color fg: "#c9d1d9"
+    property color fg: "#ffffff"
     property color border: "#30363d"
     property color primary: "#58a6ff"
     property color secondary: "#8b949e"

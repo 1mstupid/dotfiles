@@ -31,7 +31,7 @@ PanelWindow {
         anchors.bottomMargin: 0
 
         radius: Theme.barRadius
-        color: Qt.alpha(Theme.bg, 0.88)
+        color: Qt.alpha(Theme.bg, 1)
         border.width: 0
         border.color: Qt.alpha(Theme.accent, 0.35)
 

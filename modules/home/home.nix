@@ -92,9 +92,6 @@
 	  "mpv".source =
 	    config.lib.file.mkOutOfStoreSymlink
 	      "/home/waltz/dotfiles/modules/home/config/mpv";
-	  "quickshell".source =
-	    config.lib.file.mkOutOfStoreSymlink
-	      "/home/waltz/dotfiles/modules/home/config/quickshell";
 	};
 
 	programs.gh.enable = true;

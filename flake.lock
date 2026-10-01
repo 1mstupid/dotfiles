@@ -254,6 +254,40 @@
         "type": "github"
       }
     },
+    "nixpkgs_4": {
+      "locked": {
+        "lastModified": 1790822859,
+        "narHash": "sha256-69xHQhAeMAD2wDXO7T2pcOZIF9Sga2W+JkmY2a11Ops=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "c59305bab2065cfecc4944690d9eedbb56f3a9fa",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "quickshell-config": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_4"
+      },
+      "locked": {
+        "lastModified": 1790889237,
+        "narHash": "sha256-z2iepqSMia4l5pZOAUxj3zA+Adc3pdTeYbjOt/U8T1U=",
+        "owner": "1mstupid",
+        "repo": "quickshell-config",
+        "rev": "9540a5f2bc081fa5bb103dacdb3b6e1133bdd41f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "1mstupid",
+        "repo": "quickshell-config",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "ayugram-desktop": "ayugram-desktop",
@@ -261,7 +295,8 @@
         "home-manager": "home-manager",
         "mango": "mango",
         "nix-cachyos-kernel": "nix-cachyos-kernel",
-        "nixpkgs": "nixpkgs_3"
+        "nixpkgs": "nixpkgs_3",
+        "quickshell-config": "quickshell-config"
       }
     },
     "scenefx": {
