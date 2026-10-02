@@ -8,7 +8,7 @@
     vis
     helix
     kmonad
-    inputs.mpv.packages.${pkgs.system}.default
+    inputs.mpv.packages.${stdenv.hostPlatform.system}.default
     tmux
 
     adwaita-icon-theme
