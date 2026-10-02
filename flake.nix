@@ -43,6 +43,7 @@
     pkgs = import nixpkgs {
       inherit system;
     };
+    
     programs = import ./modules/programs/default2.nix {
       inherit pkgs;
       homeDirectory = "/home/waltz";

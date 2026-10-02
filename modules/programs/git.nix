@@ -1,18 +1,5 @@
 { pkgs, homeDirectory }:
 
-let
-  gitConfig = pkgs.writeText "gitconfig" ''
-    [user]
-      name = "Ítalo Barros"
-      email = "italoHSB@tutamail.com"
-
-    [init]
-      defaultBranch = main
-
-    [core]
-      editor = helix
-  '';
-in
 pkgs.symlinkJoin {
   name = "git";
 

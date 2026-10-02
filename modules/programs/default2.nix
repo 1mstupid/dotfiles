@@ -1,16 +1,14 @@
 { pkgs, homeDirectory }:
-
 {
   tmux = import ./tmux.nix {
     inherit pkgs;
   };
-
-  git = import ./git.nix {
-    inherit pkgs homeDirectory;
-  };
-
   gh = import ./gh.nix {
     inherit pkgs homeDirectory;
+  };
+  git = import ./git.nix {
+    inherit pkgs;
+    homeDirectory = "/home/waltz";
   };
 
   alacritty = import ./alacritty.nix {
