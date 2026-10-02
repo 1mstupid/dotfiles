@@ -1,4 +1,4 @@
-{ pkgs }:
+{ pkgs, homeDirectory }:
 
 pkgs.symlinkJoin {
   name = "gh";
@@ -9,7 +9,7 @@ pkgs.symlinkJoin {
 
   postBuild = ''
     wrapProgram $out/bin/gh \
-      --set GH_CONFIG_DIR "$HOME/.local/state/gh"
+      --set GH_CONFIG_DIR "${homeDirectory}/.local/state/gh"
   '';
 }
 
