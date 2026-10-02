@@ -42,15 +42,18 @@
     flake-parts,
     ...
   }:
-    let
-      system = "x86_64-linux";
-      pkgs = import nixpkgs {
-        inherit system;
-      };
-    in
+  let
+    system = "x86_64-linux";
+
+    pkgs = import nixpkgs {
+      inherit system;
+    };
+  in
   {
     packages.${system}.tmux =
-      import ./modules/programs/tmux.nix { inherit pkgs; };
+      import ./modules/programs/tmux.nix {
+        inherit pkgs;
+      };
 
     nixosConfigurations.nixos-btw = nixpkgs.lib.nixosSystem {
       inherit system;
