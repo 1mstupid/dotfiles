@@ -18,7 +18,6 @@ let
 
     # keymap general
     bind-key C-SPACE send-prefix
-    bind r source-file ${tmuxConf}
 
     # appearance
     set -g status-position top
