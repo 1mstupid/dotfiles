@@ -9,7 +9,10 @@
         repo = "nix-cachyos-kernel";
         ref = "release";
     };
-    mango.url = "github:mangowm/mango";
+    mango = {
+      url = "github:mangowm/mango";
+      inputs.nixpkgs.follows = "nixpkgs";
+    }; 
 
     quickshell.url = "github:1mstupid/quickshell-config";
     mpv.url = "github:1mstupid/mpv";
