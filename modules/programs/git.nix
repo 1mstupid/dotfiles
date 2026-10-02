@@ -1,4 +1,4 @@
-{ pkgs }:
+{ pkgs, homeDirectory }:
 
 let
   gitConfig = pkgs.writeText "gitconfig" ''
