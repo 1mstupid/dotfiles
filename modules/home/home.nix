@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, git, gh, ... }:
+{ config, pkgs, lib, inputs, git, gh, xdg, ... }:
 {
 	imports = [ ./packages.nix ../programs ];
 	home = {
@@ -31,51 +31,9 @@
 		enable = true;
 	};
 
-	xdg.mimeApps = {
-	  enable = true;
-		defaultApplications = {
-		   
-		  # Web
-		  "text/html" = "helium.desktop";
-		  "x-scheme-handler/http" = "helium.desktop";
-		  "x-scheme-handler/https" = "helium.desktop";
+	home.file.".local/xdg/config/mimeapps.list".source =
+  xdg.mimeapps;
 
-		  # Torrents
-		  "application/x-bittorrent" = "org.qbittorrent.qBittorrent.desktop";
-		  "x-scheme-handler/magnet" = "org.qbittorrent.qBittorrent.desktop";
-
-		  # Text / code
-		  "text/plain" = "Helix.desktop";
-		  "text/markdown" = "Helix.desktop";
-		  "text/x-c" = "Helix.desktop";
-		  "text/x-c++" = "Helix.desktop";
-		  "text/x-python" = "Helix.desktop";
-		  "text/x-rust" = "Helix.desktop";
-		  "text/x-shellscript" = "Helix.desktop";
-
-		  # Documents
-		  "application/pdf" = "sioyek.desktop";
-
-		  # Images
-		  "image/jpeg" = "imv.desktop";
-		  "image/png" = "imv.desktop";
-		  "image/gif" = "imv.desktop";
-		  "image/webp" = "imv.desktop";
-		  "image/svg+xml" = "librewolf.desktop";
-
-		  # Video
-		  "video/mp4" = "mpv.desktop";
-		  "video/webm" = "mpv.desktop";
-		  "video/x-matroska" = "mpv.desktop";
-		  "video/quicktime" = "mpv.desktop";
-
-		  # Audio
-		  "audio/mpeg" = "mpv.desktop";
-		  "audio/ogg" = "mpv.desktop";
-		  "audio/flac" = "mpv.desktop";
-		  "audio/wav" = "mpv.desktop";
-		};
-	};
 
 	home.file.".local/share/wallpapers".source =
 	  config.lib.file.mkOutOfStoreSymlink
@@ -104,11 +62,6 @@
 	    '    helper = !gh auth git-credential' \
 	    > "$HOME/.local/state/git/config"
 	'';
-
-
-
-
-
 
   dconf = {
   	enable = false;

@@ -3,9 +3,11 @@
   tmux = import ./tmux.nix {
     inherit pkgs;
   };
+
   gh = import ./gh.nix {
     inherit pkgs homeDirectory;
   };
+
   git = import ./git.nix {
     inherit pkgs;
     homeDirectory = "/home/waltz";
@@ -21,5 +23,9 @@
 
   mango = import ./mango.nix {
     inherit pkgs;
+  };
+
+  xdg = import ./xdg.nix {
+    inherit pkgs homeDirectory;
   };
 }

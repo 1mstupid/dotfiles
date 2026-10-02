@@ -73,6 +73,7 @@
             helix = self.packages.${system}.helix;
             alacritty = self.packages.${system}.alacritty;
             mango = self.packages.${system}.mango;
+            xdg = self.packages.${system}.xdg;
             git = self.packages.${system}.git;
             gh = self.packages.${system}.gh;
           };
