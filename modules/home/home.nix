@@ -88,22 +88,25 @@
 	home.activation.gitConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
 	  mkdir -p "$HOME/.local/state/git"
 
-	  cat > "$HOME/.local/state/git/config" <<'EOF'
-	[user]
-	    name = "Ítalo Barros"
-	    email = "italoHSB@tutamail.com"
-	[init]
-	    defaultBranch = main
-	[core]
-	    editor = hx
-	[credential "https://github.com"]
-	    helper =
-	    helper = !gh auth git-credential
-	[credential "https://gist.github.com"]
-	    helper =
-	    helper = !gh auth git-credential
-	EOF
+	  printf '%s\n' \
+	    '[user]' \
+	    '    name = "Ítalo Barros"' \
+	    '    email = "italoHSB@tutamail.com"' \
+	    '[init]' \
+	    '    defaultBranch = main' \
+	    '[core]' \
+	    '    editor = hx' \
+	    '[credential "https://github.com"]' \
+	    '    helper =' \
+	    '    helper = !gh auth git-credential' \
+	    '[credential "https://gist.github.com"]' \
+	    '    helper =' \
+	    '    helper = !gh auth git-credential' \
+	    > "$HOME/.local/state/git/config"
 	'';
+
+
+
 
 
 
