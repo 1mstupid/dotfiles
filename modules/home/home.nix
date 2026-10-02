@@ -84,6 +84,24 @@
 		git
 		gh
 	];
+	home.activation.gitConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+	  mkdir -p "$HOME/.local/state/git"
+
+	  if [ ! -f "$HOME/.local/state/git/config" ]; then
+	    cat > "$HOME/.local/state/git/config" <<'EOF'
+	[user]
+	    name = "Ítalo Barros"
+	    email = "italoHSB@tutamail.com"
+
+	[init]
+	    defaultBranch = main
+
+	[core]
+	    editor = helix
+	EOF
+	  fi
+	'';
+
 
   dconf = {
   	enable = false;
