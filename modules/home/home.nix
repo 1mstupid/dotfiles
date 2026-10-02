@@ -96,7 +96,7 @@
 	      '[init]' \
 	      '    defaultBranch = main' \
 	      '[core]' \
-	      '    editor = helix' \
+	      '    editor = hx' \
 	      > "$HOME/.local/state/git/config"
 	  fi
 	'';
