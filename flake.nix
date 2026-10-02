@@ -54,6 +54,11 @@
       import ./modules/programs/tmux.nix {
         inherit pkgs;
       };
+    packages.${system}.helix =
+      import ./modules/programs/helix.nix {
+        inherit pkgs;
+      };
+
 
     nixosConfigurations.nixos-btw = nixpkgs.lib.nixosSystem {
       inherit system;
