@@ -1,4 +1,4 @@
-{ inputs, pkgs }:
+{ inputs, pkgs, lib }:
 
 let
   tmuxConf = pkgs.writeText "tmux.conf" ''
