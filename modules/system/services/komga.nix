@@ -81,7 +81,6 @@ in
 
     virtualHosts = {
       "${komgaDomain}" = {
-        enableACME = true;
         forceSSL = true;
 
         locations."/" = {
@@ -91,7 +90,6 @@ in
       };
 
       "${qbittorrentDomain}" = {
-        enableACME = true;
         forceSSL = true;
 
         locations."/" = {
@@ -105,13 +103,6 @@ in
   # --------------------------------------------------------------------
   # Let's Encrypt
   # --------------------------------------------------------------------
-
-  security.acme = {
-    acceptTerms = true;
-    defaults.email = "italolv20@gmail.com";
-  };
-
-  # Only Nginx is exposed.
   networking.firewall.allowedTCPPorts = [
     80
     443
