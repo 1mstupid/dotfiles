@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, self, ... }:
+{ config, pkgs, inputs, helix, tmux, ... }:
 
 {
   home.packages = with pkgs; [
