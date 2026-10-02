@@ -32,7 +32,7 @@
 	    }
 	    {
 	    	name = "fzf-tab";
-	    	src = pkgs.zsh-fzf-tab
+	    	src = pkgs.zsh-fzf-tab;
 	    }
 	    {
         name = "vi-mode";
