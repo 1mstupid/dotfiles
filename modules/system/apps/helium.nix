@@ -10,9 +10,8 @@
 
     flags = [
       "--user-data-dir=/home/waltz/.local/share/helium"
-      "--disable-breakpad"
-      "--crash-dumps-dir=/home/waltz/.local/share/helium/Crash\\Reports"
       "--ozone-platform-hint=auto"
+      "--database=/home/waltz/.local/share/helium/net.imput.helium/Crash Reports"
     ];
 
     policies = {
