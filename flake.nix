@@ -78,6 +78,8 @@
 
           home-manager.extraSpecialArgs = {
             inherit inputs;
+            tmux = self.packages.${system}.tmux;
+            helix = self.packages.${system}.helix;
           };
 
           home-manager.users.waltz = {

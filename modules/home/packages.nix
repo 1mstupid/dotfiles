@@ -8,8 +8,6 @@
     vis
     helix
     kmonad
-    self.packages.${pkgs.system}.tmux
-    self.packages.${pkgs.system}.helix
     inputs.mpv.packages.${pkgs.stdenv.hostPlatform.system}.default
     tmux
 
