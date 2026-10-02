@@ -10,6 +10,7 @@
 
     flags = [
       "--user-data-dir=/home/waltz/.local/share/helium"
+      "--crash-dumps-dir=/home/waltz/.local/share/helium/Crash Reports"
       "--ozone-platform-hint=auto"
     ];
 
@@ -30,4 +31,5 @@
       ];
     };
   };
+
 }
