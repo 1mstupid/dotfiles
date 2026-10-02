@@ -52,7 +52,7 @@
   {
     packages.${system}.tmux =
       import ./modules/programs/tmux.nix {
-        inherit pkgs inputs lib;
+        inherit pkgs inputs;
       };
 
     nixosConfigurations.nixos-btw = nixpkgs.lib.nixosSystem {
