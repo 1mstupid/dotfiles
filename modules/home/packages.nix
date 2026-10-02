@@ -53,6 +53,7 @@
     fzf
     jq
     ripgrep
+    binutils
     python3
     nodejs
 

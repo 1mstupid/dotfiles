@@ -11,7 +11,6 @@
     flags = [
       "--user-data-dir=/home/waltz/.local/share/helium"
       "--ozone-platform-hint=auto"
-      "--database=/home/waltz/.local/share/helium/net.imput.helium/Crash Reports"
     ];
 
     policies = {
