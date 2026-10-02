@@ -9,6 +9,7 @@
     enable = true;
 
     flags = [
+      "--user-data-dir=/home/waltz/.local/share/helium"
       "--ozone-platform-hint=auto"
     ];
 
