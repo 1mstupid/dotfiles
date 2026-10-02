@@ -12,4 +12,3 @@ pkgs.symlinkJoin {
       --set GH_CONFIG_DIR "${homeDirectory}/.local/state/gh"
   '';
 }
-

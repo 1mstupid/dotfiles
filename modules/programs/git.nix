@@ -22,6 +22,6 @@ pkgs.symlinkJoin {
 
   postBuild = ''
     wrapProgram $out/bin/git \
-      --set GIT_CONFIG_GLOBAL ${gitConfig}
+      --set GIT_CONFIG_GLOBAL "${homeDirectory}/.local/state/git/config"
   '';
 }
