@@ -21,6 +21,7 @@
     wf-recorder
     grim
     slurp
+    qbittorrent
     sound-theme-freedesktop
 
     bluez
