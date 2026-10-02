@@ -5,6 +5,7 @@
     broot
     yazi
     feh
+    vis
     helix
     kmonad
     inputs.mpv.packages.${pkgs.system}.default
