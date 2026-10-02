@@ -67,14 +67,27 @@ let
     audio/flac=mpv.desktop
     audio/wav=mpv.desktop
   '';
+
+  userDirs = pkgs.writeText "user-dirs.dirs" ''
+    XDG_DESKTOP_DIR="${homeDirectory}"
+    XDG_DOWNLOAD_DIR="${homeDirectory}/downloads"
+    XDG_DOCUMENTS_DIR="${homeDirectory}/documents"
+    XDG_MUSIC_DIR="${homeDirectory}/music"
+    XDG_PICTURES_DIR="${homeDirectory}/pictures"
+    XDG_VIDEOS_DIR="${homeDirectory}/videos"
+    XDG_PUBLICSHARE_DIR="${homeDirectory}/public"
+    XDG_TEMPLATES_DIR="${homeDirectory}/templates"
+  '';
+
+  userDirsLocale = pkgs.writeText "user-dirs.locale" ''
+    C
+  '';
 in
 {
-  # Packages which need the alternate XDG environment.
   mpv = wrapXdg pkgs.mpv;
   imv = wrapXdg pkgs.imv;
   sioyek = wrapXdg pkgs.sioyek;
   helix = wrapXdg pkgs.helix;
 
-  # Expose this so your Home Manager config can install it.
-  inherit mimeapps;
+  inherit mimeapps userDirs userDirsLocale;
 }

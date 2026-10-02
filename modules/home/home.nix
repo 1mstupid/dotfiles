@@ -31,18 +31,25 @@
 		enable = true;
 	};
 
-	home.file.".local/xdg/config/mimeapps.list".source =
-  xdg.mimeapps;
+		home.file = {
+		  ".local/xdg/config/mimeapps.list".source =
+		    xdg.mimeapps;
 
+		  ".local/xdg/config/user-dirs.dirs".source =
+		    xdg.userDirs;
 
-	home.file.".local/share/wallpapers".source =
-	  config.lib.file.mkOutOfStoreSymlink
-	    "/home/waltz/dotfiles/assets/wallpaper";
+		  ".local/xdg/config/user-dirs.locale".source =
+		    xdg.userDirsLocale;
+	    ".local/share/wallpapers".source =
+			  config.lib.file.mkOutOfStoreSymlink
+		    "/home/waltz/dotfiles/assets/wallpaper";
+		};
 
 	home.packages = [
 		git
 		gh
 	];
+
 	home.activation.gitConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
 	  mkdir -p "$HOME/.local/state/git"
 
