@@ -93,8 +93,8 @@
 	      '    name = "Ítalo Barros"' \
 	      '    email = "italoHSB@tutamail.com"' \
 	      '' \
-	      '[init]' \
-	      '    defaultBranch = main' \
+	      "[init]" \
+	      "    defaultBranch = main" \
 	      '' \
 	      '[core]' \
 	      '    editor = helix' \
