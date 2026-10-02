@@ -6,7 +6,7 @@ let
   mediaRoot = "/srv/media";
   downloadsRoot = "/srv/downloads";
 
-  komgaDomain = "komga.example.com";
+  komgaDomain = "italoHSB@tutamail.com";
   qbittorrentDomain = "torrent.example.com";
 in
 {
