@@ -19,7 +19,7 @@
       # ==========================================
 
       borderpx = 2;
-      border_radius = 0;
+      border_radius = 6;
       no_border_when_single = 1;
       no_radius_when_single = 0;
 
