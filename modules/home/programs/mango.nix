@@ -34,73 +34,27 @@
       # Blur
       # ==========================================
 
-      blur = 1;
-      blur_layer = 1;
+      blur = 0;
+      blur_layer = 0;
       blur_optimized = 1;
-
-      blur_params = {
-        radius = 6;
-        num_passes = 3;
-        brightness = 0.85;
-        contrast = 0.9;
-        saturation = 1.0;
-        noise = 0.02;
-      };
 
       # ==========================================
       # Shadows
       # ==========================================
 
-      shadows = 1;
-      layer_shadows = 1;
-      shadow_only_floating = 1;
-
-      shadows_size = 18;
-      shadows_blur = 15;
-      shadows_position_x = 0;
-      shadows_position_y = 6;
-      shadowscolor = "0x00000040";
+      shadows = 0;
+      layer_shadows = 0;
 
       # ==========================================
       # Animations
       # ==========================================
 
-      animations = 1;
-      layer_animations = 1;
+      animations = 0;
+      layer_animations = 0;
 
-      animation_type_open = "slide";
-      animation_type_close = "slide";
-
-      animation_fade_in = 1;
-      animation_fade_out = 1;
-
-      tag_animation_direction = 1;
-
-      zoom_initial_ratio = 0.3;
-      zoom_end_ratio = 0.8;
-
-      fadein_begin_opacity = 0.5;
-      fadeout_begin_opacity = 0.8;
-
-      animation_duration_move = 40;
-      animation_duration_open = 100;
-      animation_duration_tag = 50;
-      animation_duration_close = 50;
-      animation_duration_focus = 0;
-
-      animation_curve = {
-        open = "0.46,1.0,0.29,1";
-        move = "0.46,1.0,0.29,1";
-        tag = "0.46,1.0,0.29,1";
-        close = "0.08,0.92,0,1";
-        focus = "0.46,1.0,0.29,1";
-        opafadeout = "0.5,0.5,0.5,0.5";
-        opafadein = "0.46,1.0,0.29,1";
-      };
-
-      # ==========================================
-      # Applications
-      # ==========================================
+      #
+      # Bind
+      # 
 
       bind = [
         "SUPER,Return,spawn,alacritty"
