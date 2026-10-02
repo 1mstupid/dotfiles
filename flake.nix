@@ -43,25 +43,13 @@
     pkgs = import nixpkgs {
       inherit system;
     };
+    programs = import ./modules/programs/default2.nix {
+      inherit pkgs;
+      homeDirectory = "/home/waltz";
+    };
   in
   {
-    packages.${system} = {
-        tmux = import ./modules/programs/tmux.nix {
-          inherit pkgs;
-        };
-        alacritty = import ./modules/programs/alacritty.nix {
-          inherit pkgs;
-          homeDirectory = "/home/waltz";
-        };
-        helix = import ./modules/programs/helix.nix {
-          inherit pkgs;
-        };
-        mango = import ./modules/programs/mango.nix {
-          inherit pkgs;
-        };
-      };
-
-
+    packages.${system} = programs;
     nixosConfigurations.nixos-btw = nixpkgs.lib.nixosSystem {
       inherit system;
 
@@ -84,6 +72,8 @@
             helix = self.packages.${system}.helix;
             alacritty = self.packages.${system}.alacritty;
             mango = self.packages.${system}.mango;
+            git = self.packages.${system}.git;
+            gh = self.packages.${system}.gh;
           };
 
           home-manager.users.waltz = {

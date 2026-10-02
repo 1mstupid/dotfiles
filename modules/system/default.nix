@@ -1,3 +1,3 @@
 {
-  imports = [ ./services/default.nix ];
+  imports = [ ./services ./apps ];
 }

@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, inputs, git, gh, ... }:
 {
 	imports = [ ./packages.nix ../programs ];
 	home = {
@@ -29,15 +29,6 @@
 	programs.bash = {
 		enable = true;
 	};
-
-	programs.git = {
-		enable = true;
-		settings.user = {
-			name = "Ítalo Barros";
-			email = "italolv20@gmail.com";
-		};
-	};	
-
 
 	xdg.mimeApps = {
 	  enable = true;
@@ -89,15 +80,10 @@
 	  config.lib.file.mkOutOfStoreSymlink
 	    "/home/waltz/dotfiles/assets/wallpaper";
 
-	programs.gh.enable = true;
-
-	gtk = {
-	  enable = true;
-	  iconTheme = {
-	    package = pkgs.adwaita-icon-theme;
-	    name = "Adwaita";
-	  };
-	};
+	home.packages = with pkgs; [
+		git
+		gh
+	];
 
   dconf = {
   	enable = false;

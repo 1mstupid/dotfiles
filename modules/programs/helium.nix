@@ -15,13 +15,6 @@
       "PasswordManagerEnabled" = false;                        # Disable password manager
       "SyncDisabled" = true;                                  # Disable sync
       "DefaultSearchProviderEnabled" = true;
-      "DefaultSearchProviderSearchURL" = "https://4get.eloy.ar/web?s={searchTerms}";
-      "ExtensionInstallForcelist" = [                          # Pre-install extensions
-        "cjpalhdlnbpafiamejdnhcphjbkeiagm"                   # uBlock Origin
-        "hfjbmagddngcpeloejdejnfgbamkjaeg"
-        "eimadpbcbfnmbkopoojfekhnkhdbieeh"
-        "nngceckbapebfimnlniiiahkandclblb"
-      ];
     };
   };
 }
