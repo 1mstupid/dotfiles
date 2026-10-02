@@ -6,7 +6,7 @@ let
   mediaRoot = "/srv/media";
   downloadsRoot = "/srv/downloads";
 
-  komgaDomain = "italoHSB@tutamail.com";
+  komgaDomain = "komga.example.com";
   qbittorrentDomain = "torrent.example.com";
 in
 {
@@ -89,7 +89,7 @@ in
 
   security.acme = {
     acceptTerms = true;
-    defaults.email = "italoHSB@tutamail";
+    defaults.email = "italoHSB@tutamail.com";
   };
 
   networking.firewall.allowedTCPPorts = [
