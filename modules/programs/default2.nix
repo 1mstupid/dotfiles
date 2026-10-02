@@ -10,7 +10,7 @@
   };
 
   gh = import ./gh.nix {
-    inherit pkgs;
+    inherit pkgs homeDirectory;
   };
 
   alacritty = import ./alacritty.nix {
