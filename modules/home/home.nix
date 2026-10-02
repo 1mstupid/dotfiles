@@ -7,6 +7,7 @@
 		stateVersion = "26.05";
 		sessionVariables = {
 			NH_FLAKE = "${config.home.homeDirectory}/dotfiles";
+		  GIT_CONFIG_GLOBAL = "${config.home.homeDirectory}/.local/state/git/config";
 		  EDITOR = "hx";
 		  QML2_IMPORT_PATH = "${pkgs.qt6.qtmultimedia}/lib/qt-6/qml";
 		  VISUAL = "hx";
@@ -92,15 +93,15 @@
 	      '[user]' \
 	      '    name = "Ítalo Barros"' \
 	      '    email = "italoHSB@tutamail.com"' \
-	      ' ' \
-	      "[init]" \
-	      "    defaultBranch = main" \
-	      ' ' \
+	      '[init]' \
+	      '    defaultBranch = main' \
 	      '[core]' \
 	      '    editor = helix' \
 	      > "$HOME/.local/state/git/config"
 	  fi
 	'';
+
+
 
   dconf = {
   	enable = false;
