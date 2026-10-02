@@ -12,11 +12,6 @@
         ref = "release";
     };
 
-    mango = {
-      url = "github:mangowm/mango";
-      inputs.nixpkgs.follows = "nixpkgs";
-    }; 
-
     quickshell.url = "github:1mstupid/quickshell-config";
 
     mpv.url = "github:1mstupid/mpv";
@@ -54,10 +49,16 @@
         tmux = import ./modules/programs/tmux.nix {
           inherit pkgs;
         };
+        alacritty = import ./modules/programs/alacritty.nix {
+          inherit pkgs;
+          homeDirectory = "/home/waltz";
+        };
         helix = import ./modules/programs/helix.nix {
           inherit pkgs;
         };
-        
+        mango = import ./modules/programs/mango.nix {
+          inherit pkgs;
+        };
       };
 
 
@@ -81,10 +82,8 @@
             inherit inputs;
             tmux = self.packages.${system}.tmux;
             helix = self.packages.${system}.helix;
-            alacritty = import ./modules/programs/alacritty.nix {
-              inherit pkgs;
-              homeDirectory = "/home/waltz";
-            };
+            alacritty = self.packages.${system}.alacritty;
+            mango = self.packages.${system}.mango;
           };
 
           home-manager.users.waltz = {

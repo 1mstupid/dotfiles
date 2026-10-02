@@ -3,6 +3,5 @@
     ./zsh.nix
     ./quickshell.nix
     ./helium.nix
-    ./mango.nix
   ];
 }
