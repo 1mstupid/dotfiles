@@ -9,10 +9,9 @@
     inherit pkgs;
   };
 
-  git = import ./gh.nix {
+  gh = import ./gh.nix {
     inherit pkgs;
   };
-
 
   alacritty = import ./alacritty.nix {
     inherit pkgs homeDirectory;
