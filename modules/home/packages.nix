@@ -1,11 +1,19 @@
-{ config, pkgs, inputs, helix, tmux, ... }:
-
+{
+  config,
+  pkgs,
+  inputs,
+  helix,
+  tmux,
+  alacritty,
+  ...
+}:
 {
   home.packages = with pkgs; [
     broot
     yazi
     feh
     vis
+    alacritty
     helix
     kmonad
     inputs.mpv.packages.${pkgs.stdenv.hostPlatform.system}.default

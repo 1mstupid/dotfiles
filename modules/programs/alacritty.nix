@@ -1,40 +1,53 @@
-{ config, pkgs, ... }:
+{ pkgs, homeDirectory }:
 
-{
-  programs.alacritty = {
-    enable = true;
+let
+  configToml = pkgs.formats.toml { };
 
-    settings = {
-      general = {
-        live_config_reload = true;
+  alacrittyConfig = configToml.generate "alacritty.toml" {
+    general = {
+      live_config_reload = true;
 
-        import = [
-          "${config.home.homeDirectory}/.config/alacritty/current-theme.toml"
-        ];
-      };
-      window = {
-        padding = {
-          x = 65;
-          y = 65;
-        };
+      import = [
+        "${homeDirectory}/.cache/wallpaper-theme/current-theme.toml"
+      ];
+    };
 
-        dynamic_padding = true;
-
-        decorations = "Full";
+    window = {
+      padding = {
+        x = 65;
+        y = 65;
       };
 
+      dynamic_padding = true;
+      decorations = "Full";
+    };
 
-      font = {
-        normal.family = "Maple Mono NL NF";
-        bold.family = "Maple Mono NL NF";
-        italic.family = "Maple Mono NL NF";
-        bold_italic.family = "Maple Mono NL NF";
-        size = 12.0;
+    font = {
+      normal = {
+        family = "Maple Mono NL NF";
       };
 
-      selection.save_to_clipboard = true;
+      bold = {
+        family = "Maple Mono NL NF";
+      };
 
-      keyboard.bindings = [
+      italic = {
+        family = "Maple Mono NL NF";
+      };
+
+      bold_italic = {
+        family = "Maple Mono NL NF";
+      };
+
+      size = 12.0;
+    };
+
+    selection = {
+      save_to_clipboard = true;
+    };
+
+    keyboard = {
+      bindings = [
         {
           key = "PageUp";
           mods = "Control|Shift";
@@ -77,4 +90,18 @@
       ];
     };
   };
+
+in
+pkgs.writeShellApplication {
+  name = "alacritty";
+
+  runtimeInputs = [
+    pkgs.alacritty
+  ];
+
+  text = ''
+    exec ${pkgs.alacritty}/bin/alacritty \
+      --config-file ${alacrittyConfig} \
+      "$@"
+  '';
 }

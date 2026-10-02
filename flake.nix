@@ -57,6 +57,7 @@
         helix = import ./modules/programs/helix.nix {
           inherit pkgs;
         };
+        
       };
 
 
@@ -80,6 +81,10 @@
             inherit inputs;
             tmux = self.packages.${system}.tmux;
             helix = self.packages.${system}.helix;
+            alacritty = import ./modules/programs/alacritty.nix {
+              inherit pkgs;
+              homeDirectory = "/home/waltz";
+            };
           };
 
           home-manager.users.waltz = {
