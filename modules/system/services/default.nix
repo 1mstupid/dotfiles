@@ -6,7 +6,6 @@
    ./graphics.nix
    ./nixpkgs.nix
    ./kmonad.nix
-   ./rqbit.nix
    ./wayland.nix
    ./etc.nix
    ./network.nix

@@ -31,9 +31,22 @@
 	      src = pkgs.zsh-fast-syntax-highlighting;
 	    }
 	    {
-	      name = "zsh-vi-mode";
-	      src = pkgs.zsh-vi-mode;
+	    	name = "fzf-tab";
+	    	src = pkgs.zsh-fzf-tab
 	    }
+	    {
+        name = "vi-mode";
+	      src = pkgs.zsh-vi-mode;
+        file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
+      }
+      {
+      	name  = "fzf-history-search";
+      	src = pkgs.zsh-fzf-history-search;
+      }
+      {
+      	name = "nix-shell";
+      	src = pkgs.zsh-nix-shell;
+      }
 	  ];
 	};
 }

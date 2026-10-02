@@ -7,7 +7,7 @@ let
   downloadsRoot = "/srv/downloads";
 
   komgaDomain = "komga.example.com";
-  qbittorrentDomain = "italoHSB@tutamail.com";
+  qbittorrentDomain = "torrent.example.com";
 in
 {
   users.groups.${mediaGroup} = {};
