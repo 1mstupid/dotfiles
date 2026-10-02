@@ -176,7 +176,6 @@ ff02::3 ip6-allhosts
 0.0.0.0 adsaccount.appcpi.net
 0.0.0.0 cloud-based-service.us-south.cf.appdomain.cloud
 0.0.0.0 safereddit.com
-0.0.0.0 redlib.catsarch.com
 0.0.0.0 reddit.com
 0.0.0.0 inv.nadeko.net
 0.0.0.0 yewtu.be
