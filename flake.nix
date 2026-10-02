@@ -52,6 +52,10 @@
     packages.${system} = programs;
     nixosConfigurations.nixos-btw = nixpkgs.lib.nixosSystem {
       inherit system;
+      
+      specialArgs = {
+        inherit inputs;
+      };
 
       modules = [
         ./hosts/waltz/configuration.nix
@@ -59,10 +63,6 @@
         home-manager.nixosModules.home-manager
 
         {
-          _module.args = {
-            inherit inputs;
-          };
-
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
 
