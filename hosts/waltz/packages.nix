@@ -12,10 +12,9 @@ environment.systemPackages = with pkgs; [
 
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
-    noto-fonts
+    maple-mono.NL-NF
     noto-fonts-cjk-sans
     noto-fonts-color-emoji
-    nerd-fonts.meslo-lg
     nerd-fonts.caskaydia-mono
   ];
   
