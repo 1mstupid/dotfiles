@@ -6,7 +6,6 @@ in
 environment.systemPackages = with pkgs; [
     vim 
     git
-    nh
     samaritan-sddm
     wget
   ];
@@ -28,6 +27,15 @@ environment.systemPackages = with pkgs; [
     extraPortals = [
       pkgs.xdg-desktop-portal-wlr
     ];
+  };
+  programs.nh = {
+      enable = true;
+      clean = {
+        enable = true;
+        dates = "weekly";
+        extraArgs = "--keep 2 --keep-since 2d";
+      };
+    };
   };
 
   services.displayManager.sddm = {
