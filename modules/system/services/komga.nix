@@ -10,10 +10,6 @@ let
   qbittorrentDomain = "torrent.example.com";
 in
 {
-  # --------------------------------------------------------------------
-  # Shared permissions
-  # --------------------------------------------------------------------
-
   users.groups.${mediaGroup} = {};
 
   users.users.komga.extraGroups = [ mediaGroup ];
@@ -34,10 +30,6 @@ in
     "d ${downloadsRoot}/complete    2775 root ${mediaGroup} -"
   ];
 
-  # --------------------------------------------------------------------
-  # Komga
-  # --------------------------------------------------------------------
-
   services.komga = {
     enable = true;
 
@@ -47,9 +39,6 @@ in
     };
   };
 
-  # --------------------------------------------------------------------
-  # qBittorrent
-  # --------------------------------------------------------------------
 
   services.qbittorrent = {
     enable = true;
@@ -67,10 +56,6 @@ in
     };
   };
 
-  # --------------------------------------------------------------------
-  # Nginx
-  # --------------------------------------------------------------------
-
   services.nginx = {
     enable = true;
 
@@ -81,6 +66,7 @@ in
 
     virtualHosts = {
       "${komgaDomain}" = {
+        enableACME = true;
         forceSSL = true;
 
         locations."/" = {
@@ -90,6 +76,7 @@ in
       };
 
       "${qbittorrentDomain}" = {
+        enableACME = true;
         forceSSL = true;
 
         locations."/" = {
@@ -100,9 +87,11 @@ in
     };
   };
 
-  # --------------------------------------------------------------------
-  # Let's Encrypt
-  # --------------------------------------------------------------------
+  security.acme = {
+    acceptTerms = true;
+    defaults.email = "italoHSB@tutamail";
+  };
+
   networking.firewall.allowedTCPPorts = [
     80
     443
