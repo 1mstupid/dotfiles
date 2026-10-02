@@ -85,14 +85,9 @@
 		};
 	};
 
-	xdg.configFile = {
-	  "wallpaper".source =
-	  	config.lib.file.mkOutOfStoreSymlink
-		  	"/home/waltz/dotfiles/assets/wallpaper";
-	  "mpv".source =
-	    config.lib.file.mkOutOfStoreSymlink
-	      "/home/waltz/dotfiles/modules/home/config/mpv";
-	};
+	home.file.".local/share/wallpapers".source =
+	  config.lib.file.mkOutOfStoreSymlink
+	    "/home/waltz/dotfiles/assets/wallpaper";
 
 	programs.gh.enable = true;
 
