@@ -88,7 +88,6 @@
 
           home-manager.users.waltz = {
             imports = [
-              inputs.mango.hmModules.mango
               ./modules/home/home.nix
             ];
           };
