@@ -8,6 +8,7 @@
     enable = true;
     flags = [
       "--ozone-platform-hint=auto"
+      "--user-data-dir=/home/waltz/.local/share/helium"
     ];
 
     policies = {

@@ -97,6 +97,8 @@ pkgs.writeShellApplication {
 
   runtimeInputs = [
     pkgs.alacritty
+    pkgs.maple-mono.NL-NF
+
   ];
 
   text = ''
