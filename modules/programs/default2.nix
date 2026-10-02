@@ -6,7 +6,7 @@
   };
 
   git = import ./git.nix {
-    inherit pkgs;
+    inherit pkgs homeDirectory;
   };
 
   gh = import ./gh.nix {
