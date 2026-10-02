@@ -92,33 +92,33 @@ let
       };
     };
 
-    language = [
-      {
-        name = "rust";
-        scope = "source.rust";
-        auto-format = true;
-      }
-      {
-        name = "c";
-        scope = "source.c";
-        auto-format = true;
-      }
-      {
-        name = "cpp";
-        scope = "source.cpp";
-        auto-format = true;
-      }
-      {
-        name = "python";
-        scope = "source.python";
-        auto-format = true;
-      }
-      {
-        name = "toml";
-        scope = "source.toml";
-        auto-format = true;
-      }
-    ];
+    # language = [
+    #   {
+    #     name = "rust";
+    #     scope = "source.rust";
+    #     auto-format = true;
+    #   }
+    #   {
+    #     name = "c";
+    #     scope = "source.c";
+    #     auto-format = true;
+    #   }
+    #   {
+    #     name = "cpp";
+    #     scope = "source.cpp";
+    #     auto-format = true;
+    #   }
+    #   {
+    #     name = "python";
+    #     scope = "source.python";
+    #     auto-format = true;
+    #   }
+    #   {
+    #     name = "toml";
+    #     scope = "source.toml";
+    #     auto-format = true;
+    #   }
+    # ];
   };
 
   configFile = configToml.generate "helix-config.toml" config;
