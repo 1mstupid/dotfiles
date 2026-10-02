@@ -50,13 +50,13 @@
     };
   in
   {
-    packages.${system}.tmux =
-      import ./modules/programs/tmux.nix {
-        inherit pkgs;
-      };
-    packages.${system}.helix =
-      import ./modules/programs/helix.nix {
-        inherit pkgs;
+    packages.${system} = {
+        tmux = import ./modules/programs/tmux.nix {
+          inherit pkgs;
+        };
+        helix = import ./modules/programs/helix.nix {
+          inherit pkgs;
+        };
       };
 
 
