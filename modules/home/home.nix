@@ -88,20 +88,19 @@
 	  mkdir -p "$HOME/.local/state/git"
 
 	  if [ ! -f "$HOME/.local/state/git/config" ]; then
-	    cat > "$HOME/.local/state/git/config" <<'EOF'
-	[user]
-	    name = "Ítalo Barros"
-	    email = "italoHSB@tutamail.com"
-
-	[init]
-	    defaultBranch = main
-
-	[core]
-	    editor = helix
-	EOF
+	    printf '%s\n' \
+	      '[user]' \
+	      '    name = "Ítalo Barros"' \
+	      '    email = "italoHSB@tutamail.com"' \
+	      '' \
+	      '[init]' \
+	      '    defaultBranch = main' \
+	      '' \
+	      '[core]' \
+	      '    editor = helix' \
+	      > "$HOME/.local/state/git/config"
 	  fi
 	'';
-
 
   dconf = {
   	enable = false;
