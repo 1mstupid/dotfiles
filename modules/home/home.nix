@@ -80,7 +80,7 @@
 	  config.lib.file.mkOutOfStoreSymlink
 	    "/home/waltz/dotfiles/assets/wallpaper";
 
-	home.packages = with pkgs; [
+	home.packages = [
 		git
 		gh
 	];
