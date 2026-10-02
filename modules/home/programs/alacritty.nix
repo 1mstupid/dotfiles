@@ -25,10 +25,10 @@
 
 
       font = {
-        normal.family = "CaskaydiaMono Nerd Font Mono";
-        bold.family = "CaskaydiaMono Nerd Font Mono";
-        italic.family = "CaskaydiaMono Nerd Font Mono";
-        bold_italic.family = "CaskaydiaMono Nerd Font Mono";
+        normal.family = "Maple Mono NL NF";
+        bold.family = "Maple Mono NL NF";
+        italic.family = "Maple Mono NL NF";
+        bold_italic.family = "Maple Mono NL NF";
         size = 12.0;
       };
 
