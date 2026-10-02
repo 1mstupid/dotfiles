@@ -92,10 +92,10 @@
 	      '[user]' \
 	      '    name = "Ítalo Barros"' \
 	      '    email = "italoHSB@tutamail.com"' \
-	      '' \
+	      ' ' \
 	      "[init]" \
 	      "    defaultBranch = main" \
-	      '' \
+	      ' ' \
 	      '[core]' \
 	      '    editor = helix' \
 	      > "$HOME/.local/state/git/config"
