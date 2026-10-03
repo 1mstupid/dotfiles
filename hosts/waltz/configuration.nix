@@ -1,4 +1,5 @@
-{ config, lib, pkgs, self, ... }:
+{ config, lib, pkgs, programs, ... }:
+
 {
   imports = [
     ../../modules/system/default.nix
@@ -8,15 +9,17 @@
 
   users.users.waltz = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "sudo" ];
+    extraGroups = [
+      "wheel"
+      "sudo"
+    ];
 
-    shell = "${self.packages.${pkgs.system}.zsh-wrapper}/bin/zsh";
+    shell = "${programs.zsh-wrapper}/bin/zsh";
 
     packages = with pkgs; [
       tree
     ];
   };
-
 
   nix.settings.experimental-features = [
     "nix-command"
