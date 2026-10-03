@@ -76,6 +76,7 @@
             xdg = self.packages.${system}.xdg;
             git = self.packages.${system}.git;
             gh = self.packages.${system}.gh;
+            qs = inputs.quickshell.packages.${system}.qs;
           };
 
           home-manager.users.waltz = {
