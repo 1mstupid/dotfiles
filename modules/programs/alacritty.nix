@@ -1,4 +1,4 @@
-{ pkgs, homeDirectory }:
+{ pkgs, homeDirectory, zsh }:
 
 let
   configToml = pkgs.formats.toml { };
@@ -10,6 +10,10 @@ let
       import = [
         "${homeDirectory}/.cache/wallpaper-theme/current-theme.toml"
       ];
+    };
+
+    shell = {
+      program = "${zsh}/bin/zsh";
     };
 
     window = {
@@ -98,7 +102,6 @@ pkgs.writeShellApplication {
   runtimeInputs = [
     pkgs.alacritty
     pkgs.maple-mono.NL-NF
-
   ];
 
   text = ''
