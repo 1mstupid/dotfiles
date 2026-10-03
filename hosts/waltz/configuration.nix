@@ -14,9 +14,9 @@
 
     packages = with pkgs; [
       tree
-      self.packages.${pkgs.system}.zsh-wrapper
     ];
   };
+
 
   nix.settings.experimental-features = [
     "nix-command"
