@@ -10,10 +10,11 @@
     isNormalUser = true;
     extraGroups = [ "wheel" "sudo" ];
 
-    shell = self.packages.${pkgs.system}.zsh-wrapper;
+    shell = pkgs.zsh;
 
     packages = with pkgs; [
       tree
+      self.packages.${pkgs.system}.zsh-wrapper
     ];
   };
 
