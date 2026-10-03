@@ -277,6 +277,7 @@ let
     windowrule=isfloating:1,title:Save As
 
     windowrule=animation_type_open:zoom,animation_type_close:zoom,appid:mpv
+    # Autostart
     exec=qs
     exec=awww-daemon
   '';
@@ -286,6 +287,8 @@ let
 
     runtimeInputs = [
       pkgs.mango
+      qs
+      pkgs.awww
     ];
 
     text = ''
@@ -303,66 +306,4 @@ in
     qs
     pkgs.awww
   ];
-
-  # ==========================================
-  # Mango session
-  # ==========================================
-
-  systemd.user.targets.mango-session = {
-    Unit = {
-      Description = "Mango graphical session";
-      BindsTo = [ "graphical-session.target" ];
-      After = [ "graphical-session.target" ];
-    };
-
-    Install = {
-      WantedBy = [ "graphical-session.target" ];
-    };
-  };
-
-  # ==========================================
-  # Wallpaper
-  # ==========================================
-
-  systemd.user.services.awww = {
-    Unit = {
-      Description = "awww wallpaper daemon";
-      PartOf = [ "mango-session.target" ];
-      After = [ "mango-session.target" ];
-    };
-
-    Service = {
-      ExecStart = "${pkgs.awww}/bin/awww-daemon";
-      WorkingDirectory = "%h";
-      Restart = "on-failure";
-      RestartSec = "1s";
-    };
-
-    Install = {
-      WantedBy = [ "mango-session.target" ];
-    };
-  };
-
-  # ==========================================
-  # Quickshell
-  # ==========================================
-
-  systemd.user.services.quickshell = {
-    Unit = {
-      Description = "Quickshell";
-      PartOf = [ "mango-session.target" ];
-      After = [ "mango-session.target" ];
-    };
-
-    Service = {
-      ExecStart = "${qs}/bin/qs";
-      WorkingDirectory = "%h";
-      Restart = "on-failure";
-      RestartSec = "1s";
-    };
-
-    Install = {
-      WantedBy = [ "mango-session.target" ];
-    };
-  };
 }
