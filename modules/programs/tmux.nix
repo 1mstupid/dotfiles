@@ -17,7 +17,9 @@ let
     set -g set-clipboard on
 
     # keymap general
-    bind-key C-SPACE send-prefix
+    set -g prefix C-Space
+    unbind C-b
+    bind C-Space send-prefix
 
     # appearance
     set -g status-position top
@@ -72,9 +74,6 @@ let
     bind e display-popup
     bind G new-window -n 'lazygit' lazygit
 
-    bind-key f run-shell "tmux neww ~/bin/tmux-sessionizer"
-    bind-key u run-shell "~/bin/tmux-sessionizer u"
-    bind-key n run-shell "~/bin/tmux-sessionizer ~/org"
     bind-key b set-option status
   '';
 
