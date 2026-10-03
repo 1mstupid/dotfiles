@@ -199,7 +199,6 @@ let
     axis_bind_apply_timeout=100
     focus_on_activate=1
     idleinhibit_ignore_visible=0
-    focus_on_activate=1
     sloppyfocus=1
     warpcursor=1
 
@@ -267,11 +266,9 @@ let
     windowrule=appid:thunar,focused_opacity:0.80
     windowrule=appid:thunar,unfocused_opacity:0.80
 
-    # Simple Floating Tools
     windowrule=isfloating:1,appid:org.pulseaudio.pavucontrol
     windowrule=isfloating:1,appid:org.quickshell,title:^Network$
 
-    # Native GTK & XDG Desktop Portals / File Selection Dialogs
     windowrule=isfloating:1,appid:xdg-desktop-portal-gtk
     windowrule=isfloating:1,width:816,height:537,appid:dialog
     windowrule=isfloating:1,title:Open File
@@ -279,7 +276,6 @@ let
     windowrule=isfloating:1,title:Choose wallpaper
     windowrule=isfloating:1,title:Save As
 
-    # Other Window Rules
     windowrule=animation_type_open:zoom,animation_type_close:zoom,appid:mpv
   '';
 
@@ -291,27 +287,28 @@ let
     ];
 
     text = ''
-      # Start the Mango session target.
-      systemctl --user start mango-session.target
+      export XDG_CURRENT_DESKTOP=Mango
+      export XDG_SESSION_TYPE=wayland
+      export XDG_SESSION_DESKTOP=Mango
 
       exec ${pkgs.mango}/bin/mango -c ${mangoConfig} "$@"
     '';
   };
-
 in
 {
   home.packages = [
     mango
     qs
+    pkgs.awww
   ];
 
   # ==========================================
-  # Mango session target
+  # Mango session
   # ==========================================
 
   systemd.user.targets.mango-session = {
     Unit = {
-      Description = "Mango session";
+      Description = "Mango graphical session";
       BindsTo = [ "graphical-session.target" ];
       After = [ "graphical-session.target" ];
     };
@@ -322,20 +319,44 @@ in
   };
 
   # ==========================================
+  # Wallpaper
+  # ==========================================
+
+  systemd.user.services.awww = {
+    Unit = {
+      Description = "awww wallpaper daemon";
+      PartOf = [ "mango-session.target" ];
+      After = [ "mango-session.target" ];
+    };
+
+    Service = {
+      ExecStart = "${pkgs.awww}/bin/awww-daemon";
+      WorkingDirectory = "%h";
+      Restart = "on-failure";
+      RestartSec = "1s";
+    };
+
+    Install = {
+      WantedBy = [ "mango-session.target" ];
+    };
+  };
+
+  # ==========================================
   # Quickshell
   # ==========================================
 
   systemd.user.services.quickshell = {
     Unit = {
       Description = "Quickshell";
-      After = [ "mango-session.target" ];
       PartOf = [ "mango-session.target" ];
+      After = [ "mango-session.target" ];
     };
 
     Service = {
       ExecStart = "${qs}/bin/qs";
       WorkingDirectory = "%h";
       Restart = "on-failure";
+      RestartSec = "1s";
     };
 
     Install = {
