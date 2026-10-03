@@ -25,6 +25,8 @@
     inherit pkgs inputs;
   };
 
+  qs = inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.qs;
+
   xdg = import ./xdg.nix {
     inherit pkgs homeDirectory;
   };
