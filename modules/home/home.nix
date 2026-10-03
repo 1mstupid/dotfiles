@@ -7,6 +7,7 @@
 		stateVersion = "26.05";
 		sessionVariables = {
 			NH_FLAKE = "${config.home.homeDirectory}/dotfiles";
+			XDG_CONFIG_HOME = "${config.home.homeDirectory}/.local/xdg/config";
 		  GIT_CONFIG_GLOBAL = "${config.home.homeDirectory}/.local/state/git/config";
 		  EDITOR = "hx";
 		  QML2_IMPORT_PATH = "${pkgs.qt6.qtmultimedia}/lib/qt-6/qml";
