@@ -54,6 +54,25 @@
     programs.gh
   ];
 
+  
+  services.mpd = {
+    enable = true;
+    musicDirectory = "${home.homeDirectory}/Music";
+
+    extraConfig = ''
+      audio_output {
+        type "pipewire"
+        name "PipeWire"
+      }
+    '';
+  };
+
+  services.mpdris2 = {
+    enable = true;
+  };
+
+
+
   home.activation.gitConfig =
     lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       mkdir -p "$HOME/.local/state/git"
