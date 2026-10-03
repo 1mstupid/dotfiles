@@ -7,7 +7,6 @@
   zsh-wrapper = import ./zsh.nix {
     inherit pkgs inputs;
   };
-
   gh = import ./gh.nix {
     inherit pkgs homeDirectory;
   };
