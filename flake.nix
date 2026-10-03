@@ -76,7 +76,7 @@
             mango = self.packages.${system}.mango;
             xdg = self.packages.${system}.xdg;
             git = self.packages.${system}.git;
-            zsh-overlay = self.packages.${system}.zsh-overlay;
+            zsh = self.packages.${system}.zsh-wrapper;
             gh = self.packages.${system}.gh;
             qs = inputs.quickshell.packages.${system}.qs;
           };
