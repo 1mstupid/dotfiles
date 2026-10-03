@@ -42,7 +42,7 @@ in
           home-manager.useUserPackages = true;
 
           home-manager.extraSpecialArgs = {
-            inherit programs sessionVariables;
+            inherit programs sessionVariables inputs;
           };
 
           home-manager.users.waltz = {
