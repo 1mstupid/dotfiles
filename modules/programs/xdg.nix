@@ -70,13 +70,12 @@ let
 
   userDirs = pkgs.writeText "user-dirs.dirs" ''
     XDG_DESKTOP_DIR="${homeDirectory}"
-    XDG_DOWNLOAD_DIR="${homeDirectory}/downloads"
-    XDG_DOCUMENTS_DIR="${homeDirectory}/documents"
-    XDG_MUSIC_DIR="${homeDirectory}/music"
-    XDG_PICTURES_DIR="${homeDirectory}/pictures"
-    XDG_VIDEOS_DIR="${homeDirectory}/videos"
-    XDG_PUBLICSHARE_DIR="${homeDirectory}/public"
-    XDG_TEMPLATES_DIR="${homeDirectory}/templates"
+    XDG_DOWNLOAD_DIR="${homeDirectory}/Downloads"
+    XDG_DOCUMENTS_DIR="${homeDirectory}/Documents"
+    XDG_MUSIC_DIR="${homeDirectory}/Music"
+    XDG_PICTURES_DIR="${homeDirectory}/Pictures"
+    XDG_VIDEOS_DIR="${homeDirectory}/Videos"
+    XDG_PUBLICSHARE_DIR="${homeDirectory}/Public"
   '';
 
   userDirsLocale = pkgs.writeText "user-dirs.locale" ''
