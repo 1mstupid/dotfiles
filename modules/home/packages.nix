@@ -6,9 +6,11 @@
   tmux,
   alacritty,
   mango,
-  qs,
   ...
 }:
+let
+  qs = inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.qs;
+in
 {
   home.packages = with pkgs; [
     broot
