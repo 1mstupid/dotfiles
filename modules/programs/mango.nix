@@ -277,6 +277,8 @@ let
     windowrule=isfloating:1,title:Save As
 
     windowrule=animation_type_open:zoom,animation_type_close:zoom,appid:mpv
+    exec=qs
+    exec=awww-daemon
   '';
 
   mango = pkgs.writeShellApplication {
