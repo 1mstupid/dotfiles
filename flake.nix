@@ -45,7 +45,7 @@
     };
     
     programs = import ./modules/programs/default2.nix {
-      inherit pkgs;
+      inherit pkgs inputs;
       homeDirectory = "/home/waltz";
     };
   in
