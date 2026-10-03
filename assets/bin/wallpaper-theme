@@ -89,7 +89,7 @@ awww img "$IMG" --resize crop --transition-type wipe --transition-angle 30 \
 sed -i "s|^exec-once=awww img .*|exec-once=awww img /home/waltz/.local/share/wallpapers/$(basename "$IMG") --resize crop|" "$CONFIG_DIR/config.conf"
 echo "$IMG" > "$HOME/.cache/mango/current_wallpaper"
 
-"$CONFIG_DIR/scripts/mango-reload" >/dev/null 2>&1 || true
+"/home/waltz/.local/bin/mango-reload" >/dev/null 2>&1 || true
 
 sleep 0.5
 notify-send -a "Wallpaper" -t 2500 "Wallpaper theme" "Palette from $(basename "$IMG")"
