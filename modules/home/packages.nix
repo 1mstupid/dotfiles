@@ -5,14 +5,12 @@
   helix,
   tmux,
   alacritty,
-  mango,
   ...
 }:
 {
   home.packages = with pkgs; [
     broot
     yazi
-    mango
     feh
     vis
     alacritty
