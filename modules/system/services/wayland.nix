@@ -21,22 +21,24 @@ in
     (pkgs.writeShellScriptBin "mango-session" ''
       export XDG_CURRENT_DESKTOP=Mango
       export XDG_SESSION_TYPE=wayland
+      export XDG_SESSION_DESKTOP=Mango
 
+      # Start everything belonging to the Mango graphical session.
       systemctl --user start mango-session.target
-      systemctl --user start quickshell.service
 
-      mango
-      status=$?
-
-      systemctl --user stop quickshell.service
-      systemctl --user stop mango-session.target
-
-      exit $status
+      # mango is your wrapper from ./mango.nix, so this also
+      # supplies the generated mango.conf.
+      exec mango
     '')
   ];
 
   systemd.user.targets.mango-session = {
     description = "Mango graphical session";
+
+    wants = [
+      "awww.service"
+      "quickshell.service"
+    ];
   };
 
   systemd.user.services = {
@@ -57,12 +59,14 @@ in
     quickshell = {
       description = "Quickshell";
 
+      wantedBy = [ "mango-session.target" ];
       partOf = [ "mango-session.target" ];
 
       serviceConfig = {
         ExecStart = "${qs}/bin/qs";
         WorkingDirectory = "%h";
         Restart = "on-failure";
+        RestartSec = "1s";
       };
     };
   };
