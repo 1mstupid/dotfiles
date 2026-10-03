@@ -17,7 +17,9 @@
   };
 
   alacritty = import ./alacritty.nix {
-    inherit pkgs homeDirectory;
+    inherit pkgs;
+    homeDirectory = "/home/waltz";
+    zsh = self.packages.${system}.zsh-wrapper;
   };
 
   helix = import ./helix.nix {
