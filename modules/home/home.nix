@@ -57,7 +57,7 @@
   
   services.mpd = {
     enable = true;
-    musicDirectory = "${home.homeDirectory}/Music";
+    musicDirectory = "/home/waltz/Music";
 
     extraConfig = ''
       audio_output {
