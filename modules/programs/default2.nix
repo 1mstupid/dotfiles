@@ -3,6 +3,10 @@
   tmux = import ./tmux.nix {
     inherit pkgs;
   };
+  zsh = import ./zsh.nix {
+    inherit pkgs;
+  };
+
 
   gh = import ./gh.nix {
     inherit pkgs homeDirectory;

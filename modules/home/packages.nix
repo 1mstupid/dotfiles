@@ -3,6 +3,7 @@
   pkgs,
   inputs,
   helix,
+  zsh,
   tmux,
   alacritty,
   mango,
@@ -15,6 +16,7 @@ in
   home.packages = with pkgs; [
     broot
     yazi
+    zsh
     mango
     qs
     feh
