@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, git, gh, xdg, ... }:
+{ config, pkgs, lib, inputs, git, gh,zsh, xdg, ... }:
 {
 	imports = [ ./packages.nix ../programs ];
 	home = {
@@ -52,6 +52,7 @@
 
 	home.packages = [
 		git
+		zsh
 		gh
 	];
 
