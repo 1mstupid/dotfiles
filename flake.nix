@@ -44,10 +44,21 @@
     pkgs = import nixpkgs {
       inherit system;
     };
-    
-    programs = import ./modules/programs/default2.nix {
-      inherit pkgs inputs;
-      homeDirectory = "/home/waltz";
+
+    homeDirectory = "/home/waltz";
+
+    sessionVariables = {
+      NH_FLAKE = "${homeDirectory}/dotfiles";
+      XDG_CONFIG_HOME = "${homeDirectory}/.local/xdg/config";
+      GIT_CONFIG_GLOBAL = "${homeDirectory}/.local/state/git/config";
+      EDITOR = "hx";
+      QML2_IMPORT_PATH = "${pkgs.qt6.qtmultimedia}/lib/qt-6/qml";
+      VISUAL = "hx";
+      BROWSER = "helium";
+    };
+
+    programs = import ./modules/programs/default.nix {
+      inherit pkgs inputs homeDirectory sessionVariables;
       zsh = self.packages.${system}.zsh-wrapper;
     };
   in
@@ -70,7 +81,7 @@
           home-manager.useUserPackages = true;
 
           home-manager.extraSpecialArgs = {
-            inherit inputs;
+            inherit inputs sessionVariables;
             tmux = self.packages.${system}.tmux;
             helix = self.packages.${system}.helix;
             alacritty = self.packages.${system}.alacritty;
