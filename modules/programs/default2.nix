@@ -1,4 +1,4 @@
-{ pkgs, inputs, homeDirectory }:
+{ pkgs, homeDirectory }:
 {
   tmux = import ./tmux.nix {
     inherit pkgs;
