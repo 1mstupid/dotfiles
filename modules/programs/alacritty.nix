@@ -12,7 +12,7 @@ let
       ];
     };
 
-    shell = {
+    terminal.shell = {
       program = "${zsh}/bin/zsh";
     };
 
