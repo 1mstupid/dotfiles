@@ -1,36 +1,72 @@
-{ pkgs, theme ? "red", viMode ? true }:
+{ pkgs, theme ? "", viMode ? true }:
 
 let
+  zshPlugins = {
+    fzf-tab = {
+      src = pkgs.zsh-fzf-tab;
+      file = "fzf-tab.plugin.zsh";
+    };
+
+    fzf-history-search = {
+      src = pkgs.zsh-fzf-history-search;
+      file = "zsh-fzf-history-search.plugin.zsh";
+    };
+
+    nix-shell = {
+      src = pkgs.zsh-nix-shell;
+      file = "nix-shell.plugin.zsh";
+    };
+
+    fast-syntax-highlighting = {
+      src = pkgs.zsh-fast-syntax-highlighting;
+      file = "share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh";
+    };
+
+    vi-mode = {
+      src = pkgs.zsh-vi-mode;
+      file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
+    };
+  };
+
+  plugin = name:
+    let
+      p = zshPlugins.${name};
+    in
+    "${p.src}/${p.file}";
+
   zshrc = pkgs.writeText "zshrc" ''
-    # ---------------------------------------------------------------------------
+    # ==========================================================================
+    # Zsh
+    # ==========================================================================
+
+    setopt autocd
+
+    # ==========================================================================
     # Oh My Zsh
-    # ---------------------------------------------------------------------------
+    # ==========================================================================
 
-    export ZSH=${pkgs.oh-my-zsh}/share/oh-my-zsh
+    export ZSH="${pkgs.oh-my-zsh}/share/oh-my-zsh"
 
-    ZSH_THEME=""
-
+    # Keep the git plugin from the original Home Manager configuration.
     plugins=(
       git
     )
 
-    source $ZSH/oh-my-zsh.sh
+    # Don't let OMZ install/update anything.
+    export DISABLE_AUTO_UPDATE=true
+    export DISABLE_UPDATE_PROMPT=true
 
-    # ---------------------------------------------------------------------------
-    # Options
-    # ---------------------------------------------------------------------------
+    source "$ZSH/oh-my-zsh.sh"
 
-    setopt autocd
-
-    # ---------------------------------------------------------------------------
+    # ==========================================================================
     # Prompt
-    # ---------------------------------------------------------------------------
+    # ==========================================================================
 
-    PS1="%B%{$fg[${theme}]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[${theme}]%}]%{$reset_color%}$ %b"
+    PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$ %b"
 
-    # ---------------------------------------------------------------------------
+    # ==========================================================================
     # Aliases
-    # ---------------------------------------------------------------------------
+    # ==========================================================================
 
     alias config="hx ~/dotfiles/hosts/waltz/configuration.nix"
     alias ns="nix search nixpkgs"
@@ -39,54 +75,80 @@ let
     alias br="broot"
     alias rebuild="git -C ~/dotfiles add .; git -C ~/dotfiles commit -m 'minor'; nh os switch"
 
-    # ---------------------------------------------------------------------------
+    # ==========================================================================
     # zoxide
-    # ---------------------------------------------------------------------------
+    # ==========================================================================
 
     eval "$(${pkgs.zoxide}/bin/zoxide init zsh)"
 
-    # ---------------------------------------------------------------------------
+    # ==========================================================================
+    # Completion
+    # ==========================================================================
+
+    autoload -Uz compinit
+    compinit
+
+    # ==========================================================================
     # fzf-tab
-    # ---------------------------------------------------------------------------
+    #
+    # This is loaded after completion, like a normal zsh plugin.
+    # ==========================================================================
 
-    source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
+    source ${plugin "fzf-tab"}
 
-    # fzf-tab keybindings
-    zstyle ':fzf-tab:*' switch-group '<' '>'
-    zstyle ':fzf-tab:*' fzf-bindings \
-      'ctrl-space:toggle+down' \
-      'ctrl-a:accept'
-
-    # ---------------------------------------------------------------------------
+    # ==========================================================================
     # fzf history search
-    # ---------------------------------------------------------------------------
+    #
+    # The plugin itself installs Ctrl-R. Do NOT manually bind Ctrl-R to some
+    # guessed widget name.
+    # ==========================================================================
 
-    source ${pkgs.zsh-fzf-history-search}/share/zsh-fzf-history-search/zsh-fzf-history-search.plugin.zsh
+    source ${plugin "fzf-history-search"}
 
-    # Ctrl-R = history search
-    bindkey '^R' fzf-history-search
+    # ==========================================================================
+    # nix-shell
+    # ==========================================================================
 
-    # ---------------------------------------------------------------------------
-    # Nix shell
-    # ---------------------------------------------------------------------------
+    source ${plugin "nix-shell"}
 
-    source ${pkgs.zsh-nix-shell}/share/zsh-nix-shell/nix-shell.plugin.zsh
-
-    # ---------------------------------------------------------------------------
+    # ==========================================================================
     # Fast syntax highlighting
-    # ---------------------------------------------------------------------------
+    #
+    # This needs to be loaded after widgets/functions have been defined.
+    # ==========================================================================
 
-    source ${pkgs.zsh-fast-syntax-highlighting}/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+    source ${plugin "fast-syntax-highlighting"}
 
     ${pkgs.lib.optionalString viMode ''
-      # -------------------------------------------------------------------------
-      # Vi mode
-      # -------------------------------------------------------------------------
+      # ========================================================================
+      # zsh-vi-mode
+      # ========================================================================
 
-      source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+      # zsh-vi-mode has its own keymap initialization. Load it last so it can
+      # establish its viins/vicmd maps without being overwritten by plugins.
+      source ${plugin "vi-mode"}
+    ''}
 
-      # Escape / Ctrl-[ -> normal mode
-      export ZVM_VI_ESCAPE_BINDKEY='^['
+    # ==========================================================================
+    # Plugin configuration
+    # ==========================================================================
+
+    # fzf-tab
+    zstyle ':fzf-tab:*' switch-group '<' '>'
+
+    # fzf-tab: don't replace the normal completion menu with another zsh menu.
+    zstyle ':completion:*' menu no
+
+    # ==========================================================================
+    # zsh-vi-mode integration
+    # ==========================================================================
+
+    ${pkgs.lib.optionalString viMode ''
+      # Initialize fzf's shell integration after zsh-vi-mode has established
+      # its keymaps.
+      if (( $+commands[fzf] )); then
+        zvm_after_init_commands+=(eval "$(fzf --zsh)")
+      fi
     ''}
   '';
 
@@ -96,9 +158,8 @@ pkgs.writeShellApplication {
 
   runtimeInputs = with pkgs; [
     zsh
-    zoxide
     fzf
-    git
+    zoxide
   ];
 
   text = ''
