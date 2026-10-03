@@ -5,8 +5,9 @@
   };
   zsh = import ./zsh.nix {
     inherit pkgs;
+    theme = "red";
+    viMode = true;
   };
-
 
   gh = import ./gh.nix {
     inherit pkgs homeDirectory;
