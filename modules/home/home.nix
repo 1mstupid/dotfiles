@@ -41,9 +41,13 @@
 
 		  ".local/xdg/config/user-dirs.locale".source =
 		    xdg.userDirsLocale;
+
 	    ".local/share/wallpapers".source =
 			  config.lib.file.mkOutOfStoreSymlink
 		    "/home/waltz/dotfiles/assets/wallpaper";
+	    ".local/bin".source =
+			  config.lib.file.mkOutOfStoreSymlink
+		    "/home/waltz/dotfiles/assets/bin";
 		};
 
 	home.packages = [
