@@ -17,13 +17,8 @@
 		homeDirectory = "/home/waltz";
 		stateVersion = "26.05";
 		sessionVariables = sessionVariables;
-		pointerCursor = {
-			enable = true;
-      name = "capitaine-cursors";
-      package = pkgs.capitaine-cursors;
-      size = 24;
-		};
 	};
+
 	home.sessionPath = [
 	  "${config.home.homeDirectory}/.cargo/bin"
 	  "${config.home.homeDirectory}/.local/bin"

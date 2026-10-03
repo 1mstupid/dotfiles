@@ -299,6 +299,7 @@ let
       pkgs.mango
       qs
       pkgs.awww
+      pkgs.bibata-cursors
     ];
 
     text = ''
