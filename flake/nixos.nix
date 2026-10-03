@@ -1,35 +1,36 @@
 { inputs, ... }:
 
+let
+  system = "x86_64-linux";
+
+  pkgs = import inputs.nixpkgs {
+    inherit system;
+  };
+
+  homeDirectory = "/home/waltz";
+
+  sessionVariables = {
+    NH_FLAKE = "${homeDirectory}/dotfiles";
+    XDG_CONFIG_HOME = "${homeDirectory}/.local/xdg/config";
+    GIT_CONFIG_GLOBAL = "${homeDirectory}/.local/state/git/config";
+    EDITOR = "hx";
+    QML2_IMPORT_PATH = "${pkgs.qt6.qtmultimedia}/lib/qt-6/qml";
+    VISUAL = "hx";
+    BROWSER = "helium";
+  };
+
+  programs = import ../modules/programs {
+    inherit pkgs inputs homeDirectory sessionVariables;
+  };
+in
 {
   flake.nixosConfigurations.nixos-btw =
     inputs.nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
+      inherit system;
 
-      specialArgs =
-        let
-          pkgs = import inputs.nixpkgs {
-            system = "x86_64-linux";
-          };
-
-          homeDirectory = "/home/waltz";
-
-          sessionVariables = {
-            NH_FLAKE = "${homeDirectory}/dotfiles";
-            XDG_CONFIG_HOME = "${homeDirectory}/.local/xdg/config";
-            GIT_CONFIG_GLOBAL = "${homeDirectory}/.local/state/git/config";
-            EDITOR = "hx";
-            QML2_IMPORT_PATH = "${pkgs.qt6.qtmultimedia}/lib/qt-6/qml";
-            VISUAL = "hx";
-            BROWSER = "helium";
-          };
-
-          programs = import ../modules/programs {
-            inherit pkgs inputs homeDirectory sessionVariables;
-          };
-        in
-        {
-          inherit inputs programs sessionVariables;
-        };
+      specialArgs = {
+        inherit inputs programs sessionVariables;
+      };
 
       modules = [
         ../hosts/waltz/configuration.nix
