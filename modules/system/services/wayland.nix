@@ -1,5 +1,8 @@
-{ config, pkgs, ... }:
+{ pkgs, inputs, ... }:
 
+let
+  qs = inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.qs;
+in
 {
   programs.mango.enable = true;
 
@@ -13,21 +16,25 @@
   '';
 
   environment.systemPackages = [
+    qs
+
     (pkgs.writeShellScriptBin "mango-session" ''
       export XDG_CURRENT_DESKTOP=Mango
       export XDG_SESSION_TYPE=wayland
 
-      exec mango
+      systemctl --user start mango-session.target
+
+      mango
+      status=$?
+
+      systemctl --user stop mango-session.target
+
+      exit $status
     '')
   ];
 
   systemd.user.targets.mango-session = {
     description = "Mango graphical session";
-
-    unitConfig = {
-      BindsTo = "graphical-session.target";
-      After = "graphical-session.target";
-    };
   };
 
   systemd.user.services = {
@@ -45,14 +52,15 @@
       };
     };
 
-    udiskie = {
-      description = "udiskie automounter";
+    quickshell = {
+      description = "Quickshell";
 
-      wantedBy = [ "mango-session.target" ];
+      after = [ "mango-session.target" ];
       partOf = [ "mango-session.target" ];
+      wantedBy = [ "mango-session.target" ];
 
       serviceConfig = {
-        ExecStart = "${pkgs.udiskie}/bin/udiskie";
+        ExecStart = "${qs}/bin/qs";
         WorkingDirectory = "%h";
         Restart = "on-failure";
       };
