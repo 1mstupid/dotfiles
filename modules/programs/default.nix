@@ -1,24 +1,28 @@
-{ pkgs, inputs, homeDirectory, sessionVariables, zsh }:
+{ pkgs, inputs, homeDirectory, sessionVariables }:
+
+let
+  zsh-wrapper = import ./zsh.nix {
+    inherit pkgs inputs homeDirectory sessionVariables;
+  };
+in
 {
   tmux = import ./tmux.nix {
     inherit pkgs;
   };
 
-  zsh-wrapper = import ./zsh.nix {
-    inherit pkgs inputs homeDirectory sessionVariables;
-  };
+  inherit zsh-wrapper;
 
   gh = import ./gh.nix {
     inherit pkgs homeDirectory;
   };
 
   git = import ./git.nix {
-    inherit pkgs;
-    homeDirectory = "/home/waltz";
+    inherit pkgs homeDirectory;
   };
 
   alacritty = import ./alacritty.nix {
-    inherit pkgs homeDirectory zsh;
+    inherit pkgs homeDirectory;
+    zsh = zsh-wrapper;
   };
 
   helix = import ./helix.nix {

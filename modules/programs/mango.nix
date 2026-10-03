@@ -143,7 +143,7 @@ let
     bind=SUPER,r,switch_proportion_preset
 
     # Screenshots & Media
-    bind=SUPER+SHIFT,s,spawn_shell, screenshot
+    bind=SUPER+SHIFT,s,spawn_shell, ~/.local/bin/screenshot
 
     bind=NONE,XF86AudioMute,spawn,wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
     bind=NONE,XF86AudioLowerVolume,spawn,wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05-

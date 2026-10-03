@@ -7,7 +7,6 @@
    ./nixpkgs.nix
    ./kmonad.nix
    ./wayland.nix
-   ./etc.nix
    ./network.nix
    ./hosts.nix
    ./Tz.nix

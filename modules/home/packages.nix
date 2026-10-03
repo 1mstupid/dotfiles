@@ -2,29 +2,24 @@
   config,
   pkgs,
   inputs,
-  helix,
-  zsh,
-  tmux,
-  alacritty,
-  mango,
+  programs,
   ...
 }:
-let
-  qs = inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.qs;
-in
 {
   home.packages = with pkgs; [
     yazi
-    zsh
-    mango
-    qs
+
+    programs.zsh-wrapper
+    programs.mango
+    programs.qs
+    programs.alacritty
+    programs.helix
+    programs.tmux
+
     feh
     vis
-    alacritty
-    helix
-    kmonad
+
     inputs.mpv.packages.${pkgs.stdenv.hostPlatform.system}.default
-    tmux
 
     adwaita-icon-theme
 
@@ -36,7 +31,6 @@ in
     wf-recorder
     grim
     slurp
-    qbittorrent
     sound-theme-freedesktop
 
     bluez
@@ -66,8 +60,6 @@ in
 
     nvd
     nix-output-monitor
-    # nil
-    # nixpkgs-fmt
 
     (symlinkJoin {
       name = "sioyek";
@@ -80,6 +72,5 @@ in
           --prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath [ pipewire ]}
       '';
     })
-
   ];
 }
