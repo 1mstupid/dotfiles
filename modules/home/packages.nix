@@ -44,7 +44,6 @@ in
     pamixer
 
     wl-clipboard
-    wl-recorder
     wlsunset
     libnotify
     xdg-utils
