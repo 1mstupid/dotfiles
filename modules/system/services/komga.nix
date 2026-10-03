@@ -66,8 +66,6 @@ in
 
     virtualHosts = {
       "${komgaDomain}" = {
-        enableACME = true;
-        forceSSL = true;
 
         locations."/" = {
           proxyPass = "http://127.0.0.1:25600";
@@ -76,8 +74,6 @@ in
       };
 
       "${qbittorrentDomain}" = {
-        enableACME = true;
-        forceSSL = true;
 
         locations."/" = {
           proxyPass = "http://127.0.0.1:8080";
@@ -85,11 +81,6 @@ in
         };
       };
     };
-  };
-
-  security.acme = {
-    acceptTerms = true;
-    defaults.email = "italoHSB@tutamail.com";
   };
 
   networking.firewall.allowedTCPPorts = [
