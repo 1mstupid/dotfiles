@@ -5,8 +5,9 @@
   };
 
   zsh-wrapper = import ./zsh.nix {
-    inherit pkgs inputs;
+    inherit pkgs inputs homeDirectory sessionVariables;
   };
+
   gh = import ./gh.nix {
     inherit pkgs homeDirectory;
   };

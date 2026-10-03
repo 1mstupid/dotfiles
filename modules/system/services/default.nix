@@ -1,7 +1,6 @@
 {
   imports = [
    ./dnsproxy.nix
-   ./komga.nix
    ./zram.nix
    ./graphics.nix
    ./nixpkgs.nix
