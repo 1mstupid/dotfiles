@@ -48,6 +48,7 @@
     programs = import ./modules/programs/default2.nix {
       inherit pkgs inputs;
       homeDirectory = "/home/waltz";
+      zsh = self.packages.${system}.zsh-wrapper;
     };
   in
   {
