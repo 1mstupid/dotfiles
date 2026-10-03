@@ -305,6 +305,7 @@ let
       export XDG_CURRENT_DESKTOP=Mango
       export XDG_SESSION_TYPE=wayland
       export XDG_SESSION_DESKTOP=Mango
+      export PATH="/home/waltz/.local/bin:$PATH"
 
       exec ${pkgs.mango}/bin/mango -c ${mangoConfig} "$@"
     '';
