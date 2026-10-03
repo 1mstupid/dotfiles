@@ -27,6 +27,7 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    wrappers.url = "github:BirdeeHub/nix-wrapper-modules";
 
   };
 

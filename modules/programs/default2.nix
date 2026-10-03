@@ -4,7 +4,7 @@
     inherit pkgs;
   };
 
-  zsh = import ./zsh.nix {
+  zsh-wrapper = import ./zsh.nix {
     inherit pkgs inputs;
   };
 
