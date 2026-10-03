@@ -1,42 +1,49 @@
 { pkgs, theme ? "", viMode ? true }:
 
 let
-  zshPlugins = {
-    fzf-tab = {
+  # These correspond directly to the plugins from the original
+  # programs.zsh.plugins configuration.
+  plugins = [
+    {
+      name = "fzf-tab";
       src = pkgs.zsh-fzf-tab;
       file = "fzf-tab.plugin.zsh";
-    };
+    }
 
-    fzf-history-search = {
+    {
+      name = "fzf-history-search";
       src = pkgs.zsh-fzf-history-search;
       file = "zsh-fzf-history-search.plugin.zsh";
-    };
+    }
 
-    nix-shell = {
+    {
+      name = "nix-shell";
       src = pkgs.zsh-nix-shell;
       file = "nix-shell.plugin.zsh";
-    };
+    }
 
-    fast-syntax-highlighting = {
+    {
+      name = "fast-syntax-highlighting";
       src = pkgs.zsh-fast-syntax-highlighting;
       file = "share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh";
-    };
-
-    vi-mode = {
-      src = pkgs.zsh-vi-mode;
-      file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
-    };
+    }
+  ] ++ pkgs.lib.optional viMode {
+    name = "vi-mode";
+    src = pkgs.zsh-vi-mode;
+    file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
   };
 
-  plugin = name:
-    let
-      p = zshPlugins.${name};
-    in
-    "${p.src}/${p.file}";
+  # Reproduce the important part of Home Manager's plugin handling:
+  # each plugin gets a stable directory and the configured entry file
+  # is sourced from the Nix store.
+  pluginSources =
+    pkgs.lib.concatMapStringsSep "\n" (plugin: ''
+      source ${plugin.src}/${plugin.file}
+    '') plugins;
 
   zshrc = pkgs.writeText "zshrc" ''
     # ==========================================================================
-    # Zsh
+    # Options
     # ==========================================================================
 
     setopt autocd
@@ -47,14 +54,16 @@ let
 
     export ZSH="${pkgs.oh-my-zsh}/share/oh-my-zsh"
 
-    # Keep the git plugin from the original Home Manager configuration.
+    # Same as:
+    #
+    # programs.zsh.oh-my-zsh = {
+    #   enable = true;
+    #   plugins = [ "git" ];
+    # };
+
     plugins=(
       git
     )
-
-    # Don't let OMZ install/update anything.
-    export DISABLE_AUTO_UPDATE=true
-    export DISABLE_UPDATE_PROMPT=true
 
     source "$ZSH/oh-my-zsh.sh"
 
@@ -76,12 +85,6 @@ let
     alias rebuild="git -C ~/dotfiles add .; git -C ~/dotfiles commit -m 'minor'; nh os switch"
 
     # ==========================================================================
-    # zoxide
-    # ==========================================================================
-
-    eval "$(${pkgs.zoxide}/bin/zoxide init zsh)"
-
-    # ==========================================================================
     # Completion
     # ==========================================================================
 
@@ -89,84 +92,79 @@ let
     compinit
 
     # ==========================================================================
+    # zoxide
+    # ==========================================================================
+
+    eval "$(${pkgs.zoxide}/bin/zoxide init zsh)"
+
+    # ==========================================================================
+    # User plugins
+    # ==========================================================================
+
+    ${pluginSources}
+
+    # ==========================================================================
     # fzf-tab
+    # ==========================================================================
+
+    # fzf-tab's completion UI is activated by normal completion (Tab).
     #
-    # This is loaded after completion, like a normal zsh plugin.
-    # ==========================================================================
-
-    source ${plugin "fzf-tab"}
-
-    # ==========================================================================
-    # fzf history search
-    #
-    # The plugin itself installs Ctrl-R. Do NOT manually bind Ctrl-R to some
-    # guessed widget name.
-    # ==========================================================================
-
-    source ${plugin "fzf-history-search"}
-
-    # ==========================================================================
-    # nix-shell
-    # ==========================================================================
-
-    source ${plugin "nix-shell"}
-
-    # ==========================================================================
-    # Fast syntax highlighting
-    #
-    # This needs to be loaded after widgets/functions have been defined.
-    # ==========================================================================
-
-    source ${plugin "fast-syntax-highlighting"}
-
-    ${pkgs.lib.optionalString viMode ''
-      # ========================================================================
-      # zsh-vi-mode
-      # ========================================================================
-
-      # zsh-vi-mode has its own keymap initialization. Load it last so it can
-      # establish its viins/vicmd maps without being overwritten by plugins.
-      source ${plugin "vi-mode"}
-    ''}
-
-    # ==========================================================================
-    # Plugin configuration
-    # ==========================================================================
-
-    # fzf-tab
+    # These are fzf-tab's group-navigation bindings.
     zstyle ':fzf-tab:*' switch-group '<' '>'
 
-    # fzf-tab: don't replace the normal completion menu with another zsh menu.
-    zstyle ':completion:*' menu no
+    # ==========================================================================
+    # zsh-fzf-history-search
+    # ==========================================================================
+
+    # The plugin itself installs Ctrl-R.
+    # Its upstream default is ^r.
+    #
+    # Do not overwrite it with a guessed widget name.
 
     # ==========================================================================
-    # zsh-vi-mode integration
+    # fast-syntax-highlighting
+    # ==========================================================================
+
+    # Must be loaded after the widgets/plugins it highlights.
+    #
+    # This is intentionally near the end of .zshrc.
+
+    # ==========================================================================
+    # zsh-vi-mode
     # ==========================================================================
 
     ${pkgs.lib.optionalString viMode ''
-      # Initialize fzf's shell integration after zsh-vi-mode has established
-      # its keymaps.
-      if (( $+commands[fzf] )); then
-        zvm_after_init_commands+=(eval "$(fzf --zsh)")
-      fi
+      # zsh-vi-mode manages its own viins/vicmd keymaps.
+      #
+      # Don't use ordinary bindkey commands here to overwrite those maps.
+      # The plugin itself installs Escape/C-[ handling.
     ''}
+  '';
+
+  # This is the crucial part:
+  #
+  # Zsh reads $ZDOTDIR/.zshrc itself.
+  #
+  # We therefore make the generated zshrc the actual startup file instead
+  # of sourcing it and subsequently launching a second, unconfigured zsh.
+  zdotdir = pkgs.runCommand "zsh-zdotdir" {} ''
+    mkdir -p "$out"
+    ln -s ${zshrc} "$out/.zshrc"
   '';
 
 in
 pkgs.writeShellApplication {
   name = "zsh";
 
-  runtimeInputs = with pkgs; [
-    zsh
-    fzf
-    zoxide
+  runtimeInputs = [
+    pkgs.zsh
+    pkgs.fzf
+    pkgs.zoxide
   ];
 
   text = ''
-    exec ${pkgs.zsh}/bin/zsh \
-      -d \
-      -i \
-      -c 'source ${zshrc}; exec zsh -i' \
-      "$@"
+    export ZDOTDIR="${zdotdir}"
+
+    exec ${pkgs.zsh}/bin/zsh "$@"
   '';
 }
