@@ -23,10 +23,12 @@ in
       export XDG_SESSION_TYPE=wayland
 
       systemctl --user start mango-session.target
+      systemctl --user start quickshell.service
 
       mango
       status=$?
 
+      systemctl --user stop quickshell.service
       systemctl --user stop mango-session.target
 
       exit $status
@@ -55,9 +57,7 @@ in
     quickshell = {
       description = "Quickshell";
 
-      after = [ "mango-session.target" ];
       partOf = [ "mango-session.target" ];
-      wantedBy = [ "mango-session.target" ];
 
       serviceConfig = {
         ExecStart = "${qs}/bin/qs";
