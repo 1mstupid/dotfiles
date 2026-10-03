@@ -1,6 +1,10 @@
-{ pkgs }:
+{ pkgs, inputs, ... }:
 
 let
+  system = pkgs.stdenv.hostPlatform.system;
+
+  qs = inputs.quickshell.packages.${system}.qs;
+
   mangoConfig = pkgs.writeText "mango.conf" ''
     # ==========================================
     # Gaps
@@ -195,6 +199,7 @@ let
     axis_bind_apply_timeout=100
     focus_on_activate=1
     idleinhibit_ignore_visible=0
+    focus_on_activate=1
     sloppyfocus=1
     warpcursor=1
 
@@ -278,15 +283,63 @@ let
     windowrule=animation_type_open:zoom,animation_type_close:zoom,appid:mpv
   '';
 
-in
-pkgs.writeShellApplication {
-  name = "mango";
+  mango = pkgs.writeShellApplication {
+    name = "mango";
 
-  runtimeInputs = [
-    pkgs.mango
+    runtimeInputs = [
+      pkgs.mango
+    ];
+
+    text = ''
+      # Start the Mango session target.
+      systemctl --user start mango-session.target
+
+      exec ${pkgs.mango}/bin/mango -c ${mangoConfig} "$@"
+    '';
+  };
+
+in
+{
+  home.packages = [
+    mango
+    qs
   ];
 
-  text = ''
-    exec ${pkgs.mango}/bin/mango -c ${mangoConfig} "$@"
-  '';
+  # ==========================================
+  # Mango session target
+  # ==========================================
+
+  systemd.user.targets.mango-session = {
+    Unit = {
+      Description = "Mango session";
+      BindsTo = [ "graphical-session.target" ];
+      After = [ "graphical-session.target" ];
+    };
+
+    Install = {
+      WantedBy = [ "graphical-session.target" ];
+    };
+  };
+
+  # ==========================================
+  # Quickshell
+  # ==========================================
+
+  systemd.user.services.quickshell = {
+    Unit = {
+      Description = "Quickshell";
+      After = [ "mango-session.target" ];
+      PartOf = [ "mango-session.target" ];
+    };
+
+    Service = {
+      ExecStart = "${qs}/bin/qs";
+      WorkingDirectory = "%h";
+      Restart = "on-failure";
+    };
+
+    Install = {
+      WantedBy = [ "mango-session.target" ];
+    };
+  };
 }

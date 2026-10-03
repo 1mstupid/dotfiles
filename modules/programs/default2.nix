@@ -22,7 +22,7 @@
   };
 
   mango = import ./mango.nix {
-    inherit pkgs;
+    inherit pkgs input;
   };
 
   xdg = import ./xdg.nix {
