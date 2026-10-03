@@ -3,10 +3,9 @@
   tmux = import ./tmux.nix {
     inherit pkgs;
   };
+
   zsh = import ./zsh.nix {
-    inherit pkgs;
-    theme = "red";
-    viMode = true;
+    inherit pkgs inputs;
   };
 
   gh = import ./gh.nix {
