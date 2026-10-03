@@ -246,11 +246,11 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1790991190,
-        "narHash": "sha256-Zz0N/5b1+2n27T+i1J3gYZ009b+Ac7jg1OLcr5W1XAc=",
+        "lastModified": 1791039834,
+        "narHash": "sha256-8Wl/dNpJUE+IgKOaP8iMYaJQfUnlw2AGHaTpMSjL5FM=",
         "owner": "1mstupid",
         "repo": "quickshell-config",
-        "rev": "2217785f3b80ffd72dca9e5b519433149de98407",
+        "rev": "31e3a242d69de4487616127ff915e69e46191736",
         "type": "github"
       },
       "original": {

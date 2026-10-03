@@ -14,7 +14,6 @@ let
 in
 {
   home.packages = with pkgs; [
-    broot
     yazi
     zsh
     mango
