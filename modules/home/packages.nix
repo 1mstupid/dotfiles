@@ -18,6 +18,7 @@
     yazi
     nheko
     feh
+    cinny
     vis
 
     adwaita-icon-theme
