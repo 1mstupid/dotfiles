@@ -39,6 +39,8 @@ in
   };
 
   qs = inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.qs;
+  mpv = inputs.mpv.packages.${pkgs.stdenv.hostPlatform.system}.default;
+
 
   xdg = import ./xdg.nix {
     inherit pkgs homeDirectory;

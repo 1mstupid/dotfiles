@@ -7,20 +7,18 @@
 }:
 {
   home.packages = with pkgs; [
-    yazi
-
     programs.zsh-wrapper
     programs.mango
     programs.qs
+    programs.mpv
     programs.alacritty
     programs.helix
     programs.tmux
 
+    yazi
+    nheko
     feh
     vis
-    matrix-tuwunel
-
-    inputs.mpv.packages.${pkgs.stdenv.hostPlatform.system}.default
 
     adwaita-icon-theme
 
