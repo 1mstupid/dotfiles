@@ -10,6 +10,11 @@ in
     inherit pkgs;
   };
 
+  ncmpcpp = import ./ncmpcpp.nix {
+    inherit pkgs;
+  };
+
+
   inherit zsh-wrapper;
 
   gh = import ./gh.nix {
