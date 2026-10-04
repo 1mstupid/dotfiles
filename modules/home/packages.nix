@@ -18,6 +18,7 @@
 
     feh
     vis
+    matrix-tuwunel
 
     inputs.mpv.packages.${pkgs.stdenv.hostPlatform.system}.default
 
