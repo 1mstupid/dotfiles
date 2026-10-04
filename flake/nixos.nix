@@ -9,7 +9,7 @@ let
     };
   };
 
-  pkgs = import nixpkgs {
+  pkgs = import inputs.nixpkgs {
     inherit system;
     config.allowUnfree = true;
     overlays = [ overlay-unstable ];
