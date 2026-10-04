@@ -25,11 +25,6 @@
       BrowserSignin = 0;
       PasswordManagerEnabled = false;
       SyncDisabled = true;
-
-      DefaultSearchProviderEnabled = true;
-      DefaultSearchProviderSearchURL =
-        "https://4get.eloy.ar/web?s={searchTerms}";
-
       ExtensionInstallForcelist = [
         "cjpalhdlnbpafiamejdnhcphjbkeiagm"
         "hfjbmagddngcpeloejdejnfgbamkjaeg"
