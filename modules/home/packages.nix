@@ -16,7 +16,6 @@
     programs.tmux
 
     yazi
-    nheko
     feh
     cinny
     vis
