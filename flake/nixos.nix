@@ -1,10 +1,23 @@
-{ inputs, ... }:
+{ inputs, nixpkgs, ... }:
 
 let
   system = "x86_64-linux";
+  overlay-unstable = final: _prev: {
+    unstable = import inputs.nixpkgs-unstable {
+      inherit system;
+      config.allowUnfree = true;
+    };
+  };
 
-  pkgs = import inputs.nixpkgs {
+  pkgs = import nixpkgs {
     inherit system;
+    config.allowUnfree = true;
+    overlays = [ overlay-unstable ];
+  };
+
+  pkgs-unstable = import inputs.nixpkgs-unstable {
+    inherit system;
+    config.allowUnfree = true;
   };
 
   homeDirectory = "/home/waltz";

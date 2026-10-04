@@ -2,9 +2,13 @@
   description = "Dummmy, you're making a massive mistake - Yourself 21/08";
 
   inputs = {
-    flake-parts.url = "github:hercules-ci/flake-parts";
-
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+
+    wrappers.url = "github:BirdeeHub/nix-wrapper-modules";
+
+    flake-parts.url = "github:hercules-ci/flake-parts";
 
     nix-cachyos-kernel = {
       type = "github";
@@ -27,8 +31,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    wrappers.url = "github:BirdeeHub/nix-wrapper-modules";
   };
 
   outputs = inputs:
