@@ -21,7 +21,7 @@ inputs.wrappers.wrappers.zsh.wrap {
   zshAliases = {
     config = "hx ~/dotfiles/hosts/waltz/configuration.nix";
     ns = "nix search nixpkgs";
-    hm = "hx ~/dotfiles/home/home.nix";
+    hm = "hx ~/dotfiles/modules/home/home.nix";
     flake = "hx ~/dotfiles/flake.nix";
     br = "broot";
 

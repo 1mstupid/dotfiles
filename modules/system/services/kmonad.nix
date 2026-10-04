@@ -16,15 +16,15 @@
 
     (defalias
       ;; Homerow mods
-      a_ctl (tap-hold-next-release 150 a lmet)
-      s_alt (tap-hold-next-release 150 s lalt)
-      d_gui (tap-hold-next-release 150 d lctl)
-      f_sft (tap-hold-next-release 150 f lsft)
+      a_ctl (tap-hold-next-release 250 a lmet)
+      s_alt (tap-hold-next-release 250 s lalt)
+      d_gui (tap-hold-next-release 250 d lctl)
+      f_sft (tap-hold-next-release 250 f lsft)
 
-      j_sft (tap-hold-next-release 150 j rsft)
-      k_gui (tap-hold-next-release 150 k rctl)
-      l_alt (tap-hold-next-release 150 l lalt)
-      scl_ctl (tap-hold-next-release 150 ; rmet)
+      j_sft (tap-hold-next-release 250 j rsft)
+      k_gui (tap-hold-next-release 250 k rctl)
+      l_alt (tap-hold-next-release 250 l lalt)
+      scl_ctl (tap-hold-next-release 250 ; rmet)
 
       q_esc (multi-tap 200 q esc)
       sl_bs (multi-tap 200 / del)
@@ -35,7 +35,7 @@
     (deflayer base
       q      w   e   r   t   y   u      i      o      p
       @a_ctl @s_alt @d_gui @f_sft g h @j_sft @k_gui @l_alt @scl_ctl
-      z      x   c   v   b   n   m      ,      .      @sl_bs
+      z      x   c   v   b   n   m      ,      .      /
       @spc_nav
     )
 
