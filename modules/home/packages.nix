@@ -14,6 +14,7 @@
     programs.alacritty
     programs.helix
     programs.tmux
+    programs.ncmpcpp
 
     yazi
     feh
