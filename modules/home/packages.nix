@@ -17,7 +17,6 @@
     programs.tmux
 
     feh
-    programs.ncmpcpp
     vis
 
     inputs.mpv.packages.${pkgs.stdenv.hostPlatform.system}.default
