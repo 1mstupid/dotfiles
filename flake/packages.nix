@@ -16,7 +16,7 @@
         BROWSER = "helium";
       };
 
-      programs = import ../modules/programs/wraps {
+      programs = import ../modules/programs {
         inherit pkgs inputs homeDirectory sessionVariables;
       };
     in
