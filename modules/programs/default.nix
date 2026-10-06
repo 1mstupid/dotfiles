@@ -14,6 +14,9 @@ in
     inherit pkgs;
   };
 
+  anki = import ./anki {
+    inherit pkgs;
+  };
 
   inherit zsh-wrapper;
 
