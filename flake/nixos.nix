@@ -48,6 +48,7 @@ in
       modules = [
         ../hosts/waltz/configuration.nix
 
+        inputs.nerv-boot.nixosModules.default
         inputs.home-manager.nixosModules.home-manager
 
         {

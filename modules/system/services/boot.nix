@@ -71,4 +71,20 @@
         btrfs = true;
       };
   };
+ loader.nerv = {
+    enable = true;
+    # efiEntry.enable = true; # only if not already default
+    plymouth.enable = true;
+    settings = {
+      timeout = 8;
+      bls-limit = 5;
+    };
+    entries = [
+      {
+        title = "SYSTEMD-BOOT";
+        subtitle = "fallback menu";
+        path = ''\EFI\systemd\systemd-bootx64.efi'';
+      }
+    ];
+  };
 }

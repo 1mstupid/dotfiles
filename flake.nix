@@ -6,6 +6,12 @@
 
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
+    nerv-boot = {
+      url = "git+https://codeberg.org/GuillotineMelody/nervboot";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+
     wrappers.url = "github:BirdeeHub/nix-wrapper-modules";
 
     flake-parts.url = "github:hercules-ci/flake-parts";
