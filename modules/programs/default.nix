@@ -11,7 +11,8 @@ in
   };
 
   ghostty = import ./ghostty.nix {
-    inherit pkgs;
+    inherit pkgs homeDirectory;
+    zsh = zsh-wrapper;
   };
 
   ncmpcpp = import ./ncmpcpp.nix {
