@@ -43,6 +43,11 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    
+    extra-substituters = ["https://tg-owt.cachix.org"];
+    extra-trusted-public-keys = [
+      "tg-owt.cachix.org-1:lp0BukIhSK3EIyLcDhDZ5zABgT48nmNp6t4SnZ0wr8w="
+    ];
   };
 
   outputs = inputs:
