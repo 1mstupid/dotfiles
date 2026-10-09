@@ -8,6 +8,7 @@
 {
   home.packages = with pkgs; [
     programs.zsh-wrapper
+    programs.umbriel
     programs.ghostty
     programs.mango
     programs.qs

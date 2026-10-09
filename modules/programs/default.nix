@@ -47,6 +47,7 @@ in
   };
 
   qs = inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.qs;
+  umbriel = inputs.umbriel.packages.${pkgs.stdenv.hostPlatform.system}.default;
   mpv = inputs.mpv.packages.${pkgs.stdenv.hostPlatform.system}.default;
 
 
