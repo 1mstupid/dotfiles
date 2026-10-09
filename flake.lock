@@ -426,11 +426,11 @@
         "umbriel": "umbriel_2"
       },
       "locked": {
-        "lastModified": 1791584119,
-        "narHash": "sha256-m7Hdp8xEapCdcZjy0Tnx8EGC4jlCTrFVKj1NriTXClc=",
+        "lastModified": 1791584501,
+        "narHash": "sha256-tHy+8mi2uSVDbfhe6lFarjBst/bqNJM+suSpDAEP6GE=",
         "owner": "1mstupid",
         "repo": "umbriel-config",
-        "rev": "c2a6ffe877bb9615f59d50b4109529dff4a5d06e",
+        "rev": "8a1d9b1a67053df9f33fc6e7ec0f07f9f872953a",
         "type": "github"
       },
       "original": {
