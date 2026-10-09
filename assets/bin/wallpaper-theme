@@ -77,13 +77,13 @@ white   = "$8"
 
 [colors.bright]
 black   = "$9"
-red     = "\${10}"
-green   = "\${11}"
-yellow  = "\${12}"
-blue    = "\${13}"
-magenta = "\${14}"
-cyan    = "\${15}"
-white   = "\${16}"
+red     = "${10}"
+green   = "${11}"
+yellow  = "${12}"
+blue    = "${13}"
+magenta = "${14}"
+cyan    = "${15}"
+white   = "${16}"
 EOF
 
 # 3. Ghostty — native config format; live config reload.
@@ -110,13 +110,13 @@ palette = 5=$6
 palette = 6=$7
 palette = 7=$8
 palette = 8=$9
-palette = 9=\${10}
-palette = 10=\${11}
-palette = 11=\${12}
-palette = 12=\${13}
-palette = 13=\${14}
-palette = 14=\${15}
-palette = 15=\${16}
+palette = 9=${10}
+palette = 10=${11}
+palette = 11=${12}
+palette = 12=${13}
+palette = 13=${14}
+palette = 14=${15}
+palette = 15=${16}
 EOF
 
 # 4. Wallpaper now — awww animates the change (the daemon is started by

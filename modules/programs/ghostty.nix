@@ -14,6 +14,12 @@ let
     window-padding-y = 65
     window-padding-balance = true
     window-decoration = true
+    background-opacity       = 0.8
+    background-blur          = true
+    background-opacity-cells = true
+
+    window-padding-balance = true
+    window-padding-color   = extend
 
     # Font
     font-family = Maple Mono NL NF
@@ -40,6 +46,8 @@ let
     keybind = shift+page_down=scroll_page_down
 
     keybind = f11=toggle_fullscreen
+
+    app-notifications = no-clipboard-copy, no-config-reload
   '';
 
 in
