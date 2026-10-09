@@ -10,6 +10,10 @@ in
     inherit pkgs;
   };
 
+  ghostty = import ./ghostty.nix {
+    inherit pkgs;
+  };
+
   ncmpcpp = import ./ncmpcpp.nix {
     inherit pkgs;
   };

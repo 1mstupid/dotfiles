@@ -8,6 +8,7 @@
 {
   home.packages = with pkgs; [
     programs.zsh-wrapper
+    programs.ghostty
     programs.mango
     programs.qs
     programs.mpv
