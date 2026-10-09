@@ -1,6 +1,6 @@
 {
   description = "Dummmy, you're making a massive mistake - Yourself 21/08";
-  nix.settings = {
+  settings = {
       substituters = [
         "https://cache.nixos.org"
         "https://ayugram-desktop.cachix.org"
