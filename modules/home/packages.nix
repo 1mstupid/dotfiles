@@ -19,6 +19,7 @@
 
     yazi
     feh
+    tuios
     cinny
     vis
 
