@@ -12,5 +12,5 @@
     DesktopNames=Mango
   '';
 
-  programs.umbriel.enable = false;
+  programs.umbriel.enable = true;
 }
