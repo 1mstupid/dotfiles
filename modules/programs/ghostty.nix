@@ -32,11 +32,12 @@ let
     # Remove defaults so tmux / Neovim can own their key combinations.
     keybind = clear
 
-    keybind = ctrl+shift+page_up=increase_font_size:1
-    keybind = ctrl+shift+page_down=decrease_font_size:1
+    keybind = ctrl+shift+plus=increase_font_size:1
+    keybind = ctrl+shift+minus=decrease_font_size:1
     keybind = ctrl+shift+home=reset_font_size
 
     keybind = ctrl+shift+c=copy_to_clipboard
+    keybind = ctrl+shift+r=reload_config
     keybind = ctrl+shift+v=paste_from_clipboard
 
     keybind = shift+page_up=scroll_page_up
