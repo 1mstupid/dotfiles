@@ -14,9 +14,6 @@ let
     window-padding-y = 65
     window-padding-balance = true
     window-decoration = true
-    background-opacity       = 0.8
-    background-blur          = true
-    background-opacity-cells = true
 
     window-padding-balance = true
     window-padding-color   = extend
