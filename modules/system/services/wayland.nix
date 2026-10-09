@@ -11,6 +11,9 @@
     Type=Application
     DesktopNames=Mango
   '';
+
+  programs.umbriel.enable = true;
+
   environment.etc."xdg/wayland-sessions/umbriel.desktop".text = ''
     [Desktop Entry]
     Name=Umbriel
