@@ -71,6 +71,33 @@ let
     };
 
     editor = {
+      statusline = {
+        left = [
+          "mode"
+          "separator"
+          "file-name"
+          "spacer"
+          "version-control"
+          "spacer"
+          "spinner"
+        ];
+
+        center = [ ];
+
+        right = [
+          "diagnostics"
+          "selections"
+          "position"
+        ];
+
+        separator = "┃";
+
+        mode = {
+          normal = "NORMAL";
+          insert = "INSERT";
+          select = "SELECT";
+        };
+      };
       auto-format = false;
       scroll-lines = 6;
 
