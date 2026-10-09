@@ -4,7 +4,7 @@ let
   tmuxConf = pkgs.writeText "tmux.conf" ''
     set -s default-terminal "tmux-256color"
 
-    set -sa terminal-features ',xterm-kitty:cstyle,xterm-256color:RGB,tmux-256color:RGB'
+    set -as terminal-features ',alacritty:RGB:clipboard,alacritty*:RGB:clipboard,xterm-kitty:RGB:clipboard'
     set -sg terminal-overrides ",*:RGB"
     set -as terminal-overrides ',*:Smulx=\E[4::%p1%d'
 

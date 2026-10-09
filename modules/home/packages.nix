@@ -61,6 +61,7 @@
 
     nvd
     nix-output-monitor
+    inputs.ayugram-desktop.packages.${pkgs.system}.default
 
     (symlinkJoin {
       name = "sioyek";
