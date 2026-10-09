@@ -32,11 +32,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    ayugram-desktop = {
-      url = "github:ndfined-crp/ayugram-desktop";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
+     ayugram-desktop = {
+        type = "git";
+        submodules = true;
+        url = "https://github.com/ndfined-crp/ayugram-desktop/";
+     };
 
     home-manager = {
       url = "github:nix-community/home-manager";
