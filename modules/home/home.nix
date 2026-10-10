@@ -20,6 +20,16 @@
     inherit sessionVariables;
   };
 
+  home.pointerCursor = {
+    enable = true;
+    package = pkgs.bibata-cursors;
+    name = "Bibata-Modern-Classic";
+    size = 24;
+
+    gtk.enable = true;
+    x11.enable = true;
+  };
+
   home.sessionPath = [
     "${config.home.homeDirectory}/.cargo/bin"
     "${config.home.homeDirectory}/.local/bin"

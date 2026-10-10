@@ -7,13 +7,8 @@ in
     vim 
     git
     samaritan-sddm
-    bibata-cursors
     wget
   ];
-  environment.sessionVariables = {
-    XCURSOR_THEME = "Bibata-Modern-Classic";
-    XCURSOR_SIZE = "24";
-  };
 
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
