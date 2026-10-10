@@ -7,6 +7,7 @@ environment.systemPackages = with pkgs; [
     vim 
     git
     samaritan-sddm
+    bibata-cursors
     wget
   ];
 
