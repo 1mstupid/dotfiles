@@ -9,12 +9,9 @@
   home.packages = with pkgs; [
     programs.zsh-wrapper
     programs.ghostty
-    programs.mango
     programs.qs
     programs.mpv
-    programs.alacritty
     programs.helix
-    programs.tmux
     programs.ncmpcpp
     programs.anki
 
