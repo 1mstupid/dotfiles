@@ -37,6 +37,7 @@ inputs.wrappers.wrappers.zsh.wrap {
     setopt autocd
 
     export ZSH="${pkgs.oh-my-zsh}/share/oh-my-zsh"
+    export PATH="${homeDirectory}/.cargo/bin:${homeDirectory}/.local/bin:$PATH"
 
     plugins=(
       git
