@@ -138,3 +138,6 @@ echo "$IMG" > "$HOME/.cache/mango/current_wallpaper"
 sleep 0.5
 notify-send -a "Wallpaper" -t 2500 \
     "Wallpaper theme" "Palette from $(basename "$IMG")"
+
+pkill -USR2 -x ghostty
+

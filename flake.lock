@@ -333,11 +333,11 @@
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1791635117,
-        "narHash": "sha256-U/6IQXLp+ArxReWUhJARSdCGxqXZGNcDxnEHgg/yUyo=",
+        "lastModified": 1791637600,
+        "narHash": "sha256-iaeEN+Vhpi7h277KC1aiHZv+QRWaoRaR/Pi9pmaUOPU=",
         "owner": "1mstupid",
         "repo": "quickshell-config",
-        "rev": "0c75b13516e2e9eb6b2c5f8ab69a7dab682c0d09",
+        "rev": "d71b1349c8fbef3e2771e2afb0deca3e7d6ca708",
         "type": "github"
       },
       "original": {
