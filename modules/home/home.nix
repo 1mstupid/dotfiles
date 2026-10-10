@@ -105,6 +105,14 @@
         '    helper = !gh auth git-credential' \
         > "$HOME/.local/state/git/config"
     '';
+  gtk = {
+    enable = true;
+    cursorTheme = {
+      name = "Bibata-Modern-Classic";
+      package = pkgs.bibata-cursors;
+      size = 24;
+    };
+  };
 
   dconf = {
     enable = false;
