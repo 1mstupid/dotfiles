@@ -7,6 +7,7 @@
 }:
 {
   home.packages = with pkgs; [
+    programs.alacritty
     programs.zsh-wrapper
     programs.ghostty
     programs.qs
