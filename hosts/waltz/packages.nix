@@ -3,13 +3,17 @@ let
   samaritan-sddm = pkgs.callPackage ../../modules/system/extra/samaritan-sddm.nix { };
 in
 {
-environment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     vim 
     git
     samaritan-sddm
     bibata-cursors
     wget
   ];
+  environment.sessionVariables = {
+    XCURSOR_THEME = "Bibata-Modern-Classic";
+    XCURSOR_SIZE = "24";
+  };
 
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
