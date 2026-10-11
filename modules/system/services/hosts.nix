@@ -8,5 +8,5 @@
   # ext.to man, block that shit, along side 1337x
   #  youre weak
 
-  # networking.extraHosts = builtins.readFile ../../../assets/hosts.txt;
+  networking.extraHosts = builtins.readFile ../../../assets/hosts.txt;
 }

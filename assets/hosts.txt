@@ -156979,6 +156979,8 @@ ff02::3 ip6-allhosts
 0.0.0.0 www.25xxx.net
 0.0.0.0 www.3dporntour.com
 0.0.0.0 www.3dsexanime.xyz
+0.0.0.0 www.1337x.to
+0.0.0.0 ext.to
 0.0.0.0 www.3dsexgalleries.com
 0.0.0.0 www.3dsexpictures.net
 0.0.0.0 www.3dsex.pro
