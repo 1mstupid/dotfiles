@@ -1,4 +1,4 @@
-{pkgs}:
+{ pkgs, inputs }:
 {
   programs.gamemode.enable = true;
   programs.steam = {
