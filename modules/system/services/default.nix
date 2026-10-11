@@ -1,6 +1,7 @@
 {
   imports = [
    ./dnsproxy.nix
+   ./steam.nix
    ./zram.nix
    ./graphics.nix
    ./nixpkgs.nix
