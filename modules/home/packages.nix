@@ -7,7 +7,6 @@
 }:
 {
   home.packages = with pkgs; [
-    programs.alacritty
     programs.zsh-wrapper
     programs.ghostty
     programs.qs
@@ -16,6 +15,7 @@
     programs.ncmpcpp
     programs.anki
 
+    qbittorrent-enhanced
     yazi
     feh
     tuios
