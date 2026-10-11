@@ -18,6 +18,7 @@
     qbittorrent-enhanced
     yazi
     feh
+    unclutter
     tuios
     cinny
     vis

@@ -158083,6 +158083,7 @@ ff02::3 ip6-allhosts
 0.0.0.0 www.rookie-av.jp
 0.0.0.0 www.royalart.co.jp
 0.0.0.0 www.ruby-av.com
+0.0.0.0 comick.dev
 0.0.0.0 www.s-cute.com
 0.0.0.0 www.s1s1s1.com
 0.0.0.0 www.sadistic-v.com
