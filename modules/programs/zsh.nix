@@ -34,6 +34,9 @@ inputs.wrappers.wrappers.zsh.wrap {
 
   zshrc.content = ''
     ${sessionVariablesZsh}
+    if [ -z "$WAYLAND_DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
+      exec umbriel
+    fi
 
     setopt autocd
 
