@@ -2,6 +2,7 @@
   imports = [
    ./dnsproxy.nix
    ./steam.nix
+   ./komga.nix
    ./zram.nix
    ./graphics.nix
    ./nixpkgs.nix
