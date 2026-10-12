@@ -3,22 +3,22 @@
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
 
-    loader.nerv = {
-      enable = true;
-      plymouth.enable = true;
-      settings = {
-        timeout = 8;
-        bls-limit = 5;
-      };
+    # loader.nerv = {
+    #   enable = true;
+    #   plymouth.enable = true;
+    #   settings = {
+    #     timeout = 8;
+    #     bls-limit = 5;
+    #   };
 
-      entries = [
-        {
-          title = "SYSTEMD-BOOT";
-          subtitle = "fallback menu";
-          path = ''\EFI\systemd\systemd-bootx64.efi'';
-        }
-      ];
-    };
+    #   entries = [
+    #     {
+    #       title = "SYSTEMD-BOOT";
+    #       subtitle = "fallback menu";
+    #       path = ''\EFI\systemd\systemd-bootx64.efi'';
+    #     }
+    #   ];
+    # };
 
     kernel.sysctl = {
       "fs.inotify.max_user_instances" = 524288;

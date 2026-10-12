@@ -4,10 +4,10 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     umbriel.url = "git+https://github.com/noctalia-dev/umbriel";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nerv-boot = {
-      url = "git+https://codeberg.org/GuillotineMelody/nervboot";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # nerv-boot = {
+    #   url = "git+https://codeberg.org/GuillotineMelody/nervboot";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     nix-cachyos-kernel = {
       type = "github";
       owner = "xddxdd";
