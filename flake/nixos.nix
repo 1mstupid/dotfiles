@@ -48,7 +48,7 @@ in
       modules = [
         ../hosts/waltz/configuration.nix
 
-        inputs.nerv-boot.nixosModules.default
+        # inputs.nerv-boot.nixosModules.default
         inputs.umbriel.nixosModules.default
         inputs.home-manager.nixosModules.home-manager
 
