@@ -21,6 +21,8 @@
     ];
   };
 
+  services.getty.autologinUser = "waltz";
+
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
