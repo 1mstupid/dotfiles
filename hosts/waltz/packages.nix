@@ -36,12 +36,12 @@ in
     };
   };
 
-  # services.displayManager.sddm = {
-  #     enable = true;
-  #     theme = "samaritan";
-  #     wayland.enable = true;
-  #     extraPackages = [
-  #       samaritan-sddm
-  #     ];
-  # };
+  services.displayManager.sddm = {
+      enable = true;
+      theme = "samaritan";
+      wayland.enable = true;
+      extraPackages = [
+        samaritan-sddm
+      ];
+  };
 }
