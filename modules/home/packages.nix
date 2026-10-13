@@ -18,6 +18,7 @@
     qbittorrent-enhanced
     yazi
     feh
+    ov
     xplr
     seahorse
     tuios
