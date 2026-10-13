@@ -325,6 +325,26 @@
         "type": "github"
       }
     },
+    "ranma": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1791904107,
+        "narHash": "sha256-axhpqCBMf0U6aEZKvIrP3xbosI37ANLj0T5YmgPY4Uw=",
+        "owner": "masshirodev",
+        "repo": "ranma",
+        "rev": "5c0a2fea70c510be05ab98b006f647d9e2604bab",
+        "type": "github"
+      },
+      "original": {
+        "owner": "masshirodev",
+        "repo": "ranma",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "ayugram-desktop": "ayugram-desktop",
@@ -336,6 +356,7 @@
         "nixpkgs": "nixpkgs_4",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "quickshell": "quickshell",
+        "ranma": "ranma",
         "umbriel": "umbriel",
         "wrappers": "wrappers",
         "zapfast": "zapfast"

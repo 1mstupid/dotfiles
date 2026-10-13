@@ -3,6 +3,10 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     umbriel.url = "git+https://github.com/noctalia-dev/umbriel";
+    ranma = {
+      url = "github:masshirodev/ranma";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     # nerv-boot = {
     #   url = "git+https://codeberg.org/GuillotineMelody/nervboot";
