@@ -75,7 +75,6 @@ ff02::3 ip6-allhosts
 0.0.0.0 mclean.uk.cloud.360safe.com
 0.0.0.0 mvconf.uk.cloud.360safe.com
 0.0.0.0 3lift.org
-0.0.0.0 www.youtube.com
 0.0.0.0 448ff4fcfcd199a.com
 0.0.0.0 44chan.me
 0.0.0.0 4ourkidsky.com
