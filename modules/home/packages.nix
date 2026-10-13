@@ -18,8 +18,8 @@
     qbittorrent-enhanced
     yazi
     feh
+    xplr
     seahorse
-    unclutter
     tuios
     cinny
     vis

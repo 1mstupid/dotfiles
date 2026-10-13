@@ -13,6 +13,7 @@ in
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
     maple-mono.NL-NF
+    nerd-fonts.monaspace
     noto-fonts-cjk-sans
     noto-fonts-color-emoji
     nerd-fonts.caskaydia-mono
