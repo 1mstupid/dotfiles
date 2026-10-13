@@ -13,14 +13,6 @@
       url = "https://github.com/noctalia-dev/umbriel";
     };
 
-    claude-desktop = {
-      type = "github";
-      owner = "caverav";
-      repo = "claude-desktop-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "flake-utils";
-    };
-
     ranma = {
       type = "github";
       owner = "masshirodev";
