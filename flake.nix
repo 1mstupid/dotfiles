@@ -18,6 +18,7 @@
       owner = "caverav";
       repo = "claude-desktop-flake";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
     };
 
     ranma = {
