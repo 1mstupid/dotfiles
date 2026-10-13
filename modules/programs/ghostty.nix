@@ -19,7 +19,7 @@ let
     window-padding-color   = extend
     
     # Font
-    # 
+
     font-family = Maple Mono NL NF
     font-family-bold = Maple Mono NL NF
     font-family-italic = Maple Mono NL NF
