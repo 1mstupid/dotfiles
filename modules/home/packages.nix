@@ -18,6 +18,7 @@
     qbittorrent-enhanced
     yazi
     feh
+    seahorse
     unclutter
     tuios
     cinny
