@@ -20,10 +20,10 @@ let
     
     # Font
 
-    font-family = IoskeleyMonoTerm Nerd Font Mono
-    font-family-bold = IoskeleyMonoTerm Nerd Font Mono
-    font-family-italic = IoskeleyMonoTerm Nerd Font Mono
-    font-family-bold-italic = IoskeleyMonoTerm Nerd Font Mono
+    font-family = Aporetic Sans Mono
+    font-family-bold = Aporetic Sans Mono
+    font-family-italic = Aporetic Sans Mono
+    font-family-bold-italic = Aporetic Sans Mono
     font-size = 12
 
     # Clipboard
