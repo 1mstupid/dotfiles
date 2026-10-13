@@ -24,7 +24,7 @@ let
     font-family-bold = Aporetic Sans Mono
     font-family-italic = Aporetic Sans Mono
     font-family-bold-italic = Aporetic Sans Mono
-    font-size = 12
+    font-size = 13
 
     # Clipboard
     copy-on-select = clipboard
