@@ -65,6 +65,7 @@
     nvd
     nix-output-monitor
     inputs.ayugram-desktop.packages.${pkgs.stdenv.hostPlatform.system}.default
+    inputs.claude-desktop.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.zapfast.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.ranma.packages.${pkgs.stdenv.hostPlatform.system}.default
 
