@@ -17,12 +17,13 @@ let
 
     window-padding-balance = true
     window-padding-color   = extend
-
+    
     # Font
-    font-family = MonaspiceXe Nerd Font Mono
-    font-family-bold = MonaspiceXe Nerd Font Mono
-    font-family-italic = MonaspiceXe Nerd Font Mono
-    font-family-bold-italic = MonaspiceXe Nerd Font Mono
+    # 
+    font-family = Maple Mono NL NF
+    font-family-bold = Maple Mono NL NF
+    font-family-italic = Maple Mono NL NF
+    font-family-bold-italic = Maple Mono NL NF
     font-size = 12
 
     # Clipboard

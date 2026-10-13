@@ -1,5 +1,4 @@
 { config, lib, pkgs, programs, ... }:
-
 {
   imports = [
     ../../modules/system/default.nix
