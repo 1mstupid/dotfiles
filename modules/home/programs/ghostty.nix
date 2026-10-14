@@ -18,10 +18,10 @@ in
         window-decoration = true
         window-padding-color = extend
 
-        font-family = Iosevka NFM
-        font-family-bold = Iosevka NFM
-        font-family-italic = Iosevka NFM
-        font-family-bold-italic = Iosevka NFM
+        font-family = Sarasa Gothic SC
+        font-family-bold = Sarasa Gothic SC
+        font-family-italic = Sarasa Gothic SC
+        font-family-bold-italic = Sarasa Gothic SC
         font-size = 13
 
         copy-on-select = clipboard
