@@ -33,7 +33,7 @@ let
     BROWSER = "helium";
   };
 
-  programs = import ../modules/programs {
+  programs = import ../modules/home/programs {
     inherit pkgs inputs homeDirectory sessionVariables;
   };
 in
