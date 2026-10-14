@@ -18,11 +18,11 @@ in
         window-decoration = true
         window-padding-color = extend
 
-        font-family = Sarasa Gothic SC
-        font-family-bold = Sarasa Gothic SC
-        font-family-italic = Sarasa Gothic SC
-        font-family-bold-italic = Sarasa Gothic SC
-        font-size = 13
+        font-family = Maple Mono NL NF
+        font-family-bold = Maple Mono NL NF
+        font-family-italic = Maple Mono NL NF
+        font-family-bold-italic = Maple Mono NL NF
+        font-size = 12
 
         copy-on-select = clipboard
 

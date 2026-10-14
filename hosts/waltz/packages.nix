@@ -14,9 +14,6 @@ in
     nerd-fonts.jetbrains-mono
     maple-mono.NL-NF
     nerd-fonts.iosevka
-    aporetic
-    ioskeley-mono.term-nf
-    sarasa-gothic
     noto-fonts-cjk-sans
     noto-fonts-color-emoji
   ];
