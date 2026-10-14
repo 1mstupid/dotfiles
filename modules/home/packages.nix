@@ -18,6 +18,7 @@
     qbittorrent-enhanced
     yazi
     feh
+    firefox
     ov
     xplr
     seahorse
