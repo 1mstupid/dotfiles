@@ -12,16 +12,16 @@ in
 
         command = ${pkgs.zsh}/bin/zsh
 
-        window-padding-x = 65
-        window-padding-y = 65
+        window-padding-x = 15
+        window-padding-y = 10
         window-padding-balance = true
         window-decoration = true
         window-padding-color = extend
 
-        font-family = Maple Mono NL NF
-        font-family-bold = Maple Mono NL NF
-        font-family-italic = Maple Mono NL NF
-        font-family-bold-italic = Maple Mono NL NF
+        font-family = CommitMono Nerd Font Mono
+        font-family-bold = CommitMono Nerd Font Mono
+        font-family-italic = CommitMono Nerd Font Mono
+        font-family-bold-italic = CommitMono Nerd Font Mono
         font-size = 12
 
         copy-on-select = clipboard
