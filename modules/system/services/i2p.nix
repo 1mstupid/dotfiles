@@ -17,7 +17,6 @@
         enable = true;
         settings = {
           socksProxy.enable = true;
-          httpProxy.enable = true;
           sam.enable = true;
         };
       };
