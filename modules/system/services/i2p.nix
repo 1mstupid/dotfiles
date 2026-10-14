@@ -16,7 +16,6 @@
       services.i2pd = {
         enable = true;
         settings = {
-          http.enable = true;
           socksProxy.enable = true;
           httpProxy.enable = true;
           sam.enable = true;
