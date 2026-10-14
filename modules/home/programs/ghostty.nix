@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
 let
   ghosttyPackage = { pkgs, homeDirectory, zsh }:
@@ -15,10 +15,10 @@ let
         window-decoration = true
         window-padding-color = extend
 
-        font-family = Sarasa Fixed Slab K
-        font-family-bold = Sarasa Fixed Slab K
-        font-family-italic = Sarasa Fixed Slab K
-        font-family-bold-italic = Sarasa Fixed Slab K
+        font-family = Iosevka NFM
+        font-family-bold = Iosevka NFM
+        font-family-italic = Iosevka NFM
+        font-family-bold-italic = Iosevka NFM
         font-size = 13
 
         copy-on-select = clipboard
@@ -52,19 +52,15 @@ let
       '';
     };
 
+  host = config.flake.hosts.waltz;
+
+  ghostty = ghosttyPackage {
+    inherit pkgs;
+    homeDirectory = host.homeDirectory;
+    zsh = pkgs.zsh;
+  };
+
 in
 {
-  flake.homeModules.ghostty = { pkgs, ... }:
-    let
-      host = config.flake.hosts.waltz;
-
-      ghostty = ghosttyPackage {
-        inherit pkgs;
-        homeDirectory = host.homeDirectory;
-        zsh = pkgs.zsh;
-      };
-    in
-    {
-      home.packages = [ ghostty ];
-    };
+  home.packages = [ ghostty ];
 }
