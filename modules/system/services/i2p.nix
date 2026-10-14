@@ -16,9 +16,19 @@
       services.i2pd = {
         enable = true;
         settings = {
-          socksProxy.enable = true;
+          http = {
+            enabled = true;
+          };
+          httpproxy = {
+            enabled = true;
+          };
+          socksproxy = {
+            enabled = true;
+          };
+          sam = {
+            enabled = false;
+          };
         };
-        sam.enable = true;
       };
     };
   };
