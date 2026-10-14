@@ -1,3 +1,6 @@
 {
-  flake.homeManagerModules.default = ../modules/home/home.nix;
+  flake.homeModules = {
+    default = ../modules/home/home.nix;
+    ghostty = ../modules/home/programs/ghostty.nix;
+  };
 }

@@ -1,7 +1,8 @@
-{ inputs, ... }:
+{ inputs, config, ... }:
 
 let
   system = "x86_64-linux";
+
   overlay-unstable = final: _prev: {
     unstable = import inputs.nixpkgs-unstable {
       inherit system;
@@ -48,7 +49,6 @@ in
       modules = [
         ../hosts/waltz/configuration.nix
 
-        # inputs.nerv-boot.nixosModules.default
         inputs.umbriel.nixosModules.default
         inputs.home-manager.nixosModules.home-manager
 
@@ -62,7 +62,8 @@ in
 
           home-manager.users.waltz = {
             imports = [
-              ../modules/home/home.nix
+              config.flake.homeModules.default
+              config.flake.homeModules.ghostty
             ];
           };
         }

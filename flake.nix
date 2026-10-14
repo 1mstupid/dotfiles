@@ -100,6 +100,7 @@
       ];
 
       imports = [
+        inputs.home-manager.flakeModules.home-manager
         ./flake/packages.nix
         ./flake/nixos.nix
         ./flake/home-manager.nix
