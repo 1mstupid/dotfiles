@@ -17,8 +17,8 @@
         enable = true;
         settings = {
           socksProxy.enable = true;
-          sam.enable = true;
         };
+        sam.enable = true;
       };
     };
   };
