@@ -15,10 +15,10 @@ let
         window-decoration = true
         window-padding-color = extend
 
-        font-family = Aporetic Sans Mono
-        font-family-bold = Aporetic Sans Mono
-        font-family-italic = Aporetic Sans Mono
-        font-family-bold-italic = Aporetic Sans Mono
+        font-family = Sarasa Fixed Slab K
+        font-family-bold = Sarasa Fixed Slab K
+        font-family-italic = Sarasa Fixed Slab K
+        font-family-bold-italic = Sarasa Fixed Slab K
         font-size = 13
 
         copy-on-select = clipboard
@@ -51,11 +51,13 @@ let
           "$@"
       '';
     };
+
 in
 {
   flake.homeModules.ghostty = { pkgs, ... }:
     let
       host = config.flake.hosts.waltz;
+
       ghostty = ghosttyPackage {
         inherit pkgs;
         homeDirectory = host.homeDirectory;
