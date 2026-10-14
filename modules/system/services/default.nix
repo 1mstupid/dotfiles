@@ -1,6 +1,7 @@
 {
   imports = [
    ./dnsproxy.nix
+   ./i2p.nix
    ./steam.nix
    ./komga.nix
    ./zram.nix

@@ -21,26 +21,6 @@
         "url": "https://github.com/ndfined-crp/ayugram-desktop/"
       }
     },
-    "claude-desktop": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1776790390,
-        "narHash": "sha256-SoRUB/k755l0IT8gaZuEHhjMJyoyTlSki5zpvgE2lb0=",
-        "owner": "caverav",
-        "repo": "claude-desktop-flake",
-        "rev": "f5120d50e5ffee1c103b5055c37a0d3a3ce22586",
-        "type": "github"
-      },
-      "original": {
-        "owner": "caverav",
-        "repo": "claude-desktop-flake",
-        "type": "github"
-      }
-    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -368,7 +348,6 @@
     "root": {
       "inputs": {
         "ayugram-desktop": "ayugram-desktop",
-        "claude-desktop": "claude-desktop",
         "flake-parts": "flake-parts",
         "helium-flake": "helium-flake",
         "home-manager": "home-manager",
