@@ -1,14 +1,13 @@
 { config, ... }:
 
 let
-  host = config.flake.hosts.waltz;
-
+  homeDirectory = "/home/waltz";
 in
 {
   flake.homeModules.ghostty = { pkgs, ... }:
     let
       ghosttyConfig = pkgs.writeText "config.ghostty" ''
-        config-file = ?${host.homeDirectory}/.cache/wallpaper-theme/current-theme.ghostty
+        config-file = ?${homeDirectory}/.cache/wallpaper-theme/current-theme.ghostty
         confirm-close-surface = false
 
         command = ${pkgs.zsh}/bin/zsh
