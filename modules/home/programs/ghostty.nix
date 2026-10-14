@@ -1,13 +1,17 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 
 let
-  ghosttyPackage = { pkgs, homeDirectory, zsh }:
+  host = config.flake.hosts.waltz;
+
+in
+{
+  flake.homeModules.ghostty = { pkgs, ... }:
     let
       ghosttyConfig = pkgs.writeText "config.ghostty" ''
-        config-file = ?${homeDirectory}/.cache/wallpaper-theme/current-theme.ghostty
+        config-file = ?${host.homeDirectory}/.cache/wallpaper-theme/current-theme.ghostty
         confirm-close-surface = false
 
-        command = ${zsh}/bin/zsh
+        command = ${pkgs.zsh}/bin/zsh
 
         window-padding-x = 65
         window-padding-y = 65
@@ -36,31 +40,23 @@ let
 
         app-notifications = no-clipboard-copy, no-config-reload
       '';
+
+      ghostty = pkgs.writeShellApplication {
+        name = "ghostty";
+
+        runtimeInputs = [
+          pkgs.ghostty
+          pkgs.maple-mono.NL-NF
+        ];
+
+        text = ''
+          exec ${pkgs.ghostty}/bin/ghostty \
+            --config-file=${ghosttyConfig} \
+            "$@"
+        '';
+      };
     in
-    pkgs.writeShellApplication {
-      name = "ghostty";
-
-      runtimeInputs = [
-        pkgs.ghostty
-        pkgs.maple-mono.NL-NF
-      ];
-
-      text = ''
-        exec ${pkgs.ghostty}/bin/ghostty \
-          --config-file=${ghosttyConfig} \
-          "$@"
-      '';
+    {
+      home.packages = [ ghostty ];
     };
-
-  host = config.flake.hosts.waltz;
-
-  ghostty = ghosttyPackage {
-    inherit pkgs;
-    homeDirectory = host.homeDirectory;
-    zsh = pkgs.zsh;
-  };
-
-in
-{
-  home.packages = [ ghostty ];
 }
