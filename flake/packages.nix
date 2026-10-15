@@ -1,26 +1,34 @@
+# flake/packages.nix
 { inputs, ... }:
 
 {
   perSystem =
-    { pkgs, ... }:
+    { pkgs, system, ... }:
     let
       homeDirectory = "/home/waltz";
 
       sessionVariables = {
         NH_FLAKE = "${homeDirectory}/dotfiles";
-        XDG_CONFIG_HOME = "${homeDirectory}/.local/xdg/config";
-        GIT_CONFIG_GLOBAL = "${homeDirectory}/.local/state/git/config";
         EDITOR = "hx";
-        QML2_IMPORT_PATH = "${pkgs.qt6.qtmultimedia}/lib/qt-6/qml";
         VISUAL = "hx";
         BROWSER = "helium";
-      };
-
-      programs = import ../modules/home/programs {
-        inherit pkgs inputs homeDirectory sessionVariables;
+        QML2_IMPORT_PATH = "${pkgs.qt6.qtmultimedia}/lib/qt-6/qml";
       };
     in
     {
-      packages = programs;
+      packages = {
+        tmux = import ../modules/home/programs/tmux.nix { inherit pkgs; };
+        ncmpcpp = import ../modules/home/programs/ncmpcpp.nix { inherit pkgs; };
+        anki = import ../modules/home/programs/anki { inherit pkgs; };
+        helix = import ../modules/home/programs/helix.nix { inherit pkgs; };
+        mango = import ../modules/home/programs/mango.nix { inherit pkgs inputs; };
+
+        zsh-wrapper = import ../modules/home/programs/zsh.nix {
+          inherit pkgs inputs homeDirectory sessionVariables;
+        };
+
+        qs = inputs.quickshell.packages.${system}.qs;
+        mpv = inputs.mpv.packages.${system}.default;
+      };
     };
 }
