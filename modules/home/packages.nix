@@ -1,19 +1,16 @@
-{
-  config,
-  self,
-  pkgs,
-  inputs,
-  programs,
-  ...
-}:
+{ pkgs, inputs, ... }:
+let
+  system = pkgs.stdenv.hostPlatform.system;
+  p = inputs.self.packages.${system};
+in
 {
   home.packages = with pkgs; [
-    programs.zsh-wrapper
-    programs.qs
-    programs.mpv
-    programs.helix
-    programs.ncmpcpp
-    programs.anki
+    p.zsh-wrapper
+    p.qs
+    p.mpv
+    p.helix
+    p.ncmpcpp
+    p.anki
 
     qbittorrent-enhanced
     yazi
