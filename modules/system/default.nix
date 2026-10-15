@@ -1,3 +1,3 @@
 {
-  imports = [ ./services ./apps ];
+  imports = [ ./desktop ./services ./ports ];
 }
