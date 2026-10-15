@@ -85,9 +85,11 @@
 
   programs.git = {
     enable = true;
-    userName = "Ítalo Barros";
-    userEmail = "italoHSB@tutamail.com";
-    extraConfig = {
+    user ={
+      name = "Ítalo Barros";
+      email = "italoHSB@tutamail.com";
+    };
+    settings = {
       init.defaultBranch = "main";
       core.editor = "hx";
       credential."https://github.com".helper = [ "" "!gh auth git-credential" ];
