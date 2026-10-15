@@ -104,10 +104,6 @@
           "/home/waltz/dotfiles/assets/bin";
     };
 
-    home.packages = [
-      programs.zsh-wrapper
-    ];
-
     services.mpd = {
       enable = true;
       musicDirectory = "/home/waltz/Music";

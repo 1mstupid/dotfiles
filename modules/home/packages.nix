@@ -1,5 +1,6 @@
 {
   config,
+  self,
   pkgs,
   inputs,
   programs,
@@ -67,6 +68,8 @@
     inputs.ayugram-desktop.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.zapfast.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.ranma.packages.${pkgs.stdenv.hostPlatform.system}.default
+    self.packages.${pkgs.stdenv.hostPlatform.system}.zsh-wrapper
+
 
 
     (symlinkJoin {
