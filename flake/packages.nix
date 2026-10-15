@@ -2,7 +2,7 @@
 
 {
   perSystem =
-    { pkgs, ... }:
+    { config, pkgs, ... }:
     let
       homeDirectory = "/home/waltz";
 
