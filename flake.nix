@@ -109,7 +109,6 @@
         ./flake/packages.nix
         ./flake/nixos.nix
         ./modules/home/home.nix
-        ./modules/home/programs/xdg.nix
         ./modules/home/programs/alacritty.nix
       ];
     };
