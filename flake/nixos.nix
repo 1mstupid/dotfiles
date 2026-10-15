@@ -63,7 +63,7 @@ in
           home-manager.users.waltz = {
             imports = [
               config.flake.homeModules.default
-              config.flake.homeModules.ghostty
+              config.flake.homeModules.alacritty
             ];
           };
         }

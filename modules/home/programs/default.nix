@@ -28,11 +28,6 @@ in
     inherit pkgs homeDirectory;
   };
 
-  alacritty = import ./alacritty.nix {
-    inherit pkgs homeDirectory;
-    zsh = zsh-wrapper;
-  };
-
   helix = import ./helix.nix {
     inherit pkgs;
   };
