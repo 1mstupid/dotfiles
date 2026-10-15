@@ -18,7 +18,6 @@
 
     xdg = {
       enable = true;
-      configHome = "${config.home.homeDirectory}/.local/xdg/config";
       dataHome = "${config.home.homeDirectory}/.local/xdg/data";
       stateHome = "${config.home.homeDirectory}/.local/xdg/state";
       cacheHome = "${config.home.homeDirectory}/.cache/xdg";
