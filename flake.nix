@@ -104,7 +104,7 @@
         ./flake/packages.nix
         ./flake/nixos.nix
         ./flake/home-manager.nix
-        ./modules/home/programs/ghostty.nix
+        ./modules/home/programs/alacritty.nix.nix
       ];
     };
 }
