@@ -59,9 +59,7 @@
   };
 
   home.packages = [
-    programs.git
     programs.zsh-wrapper
-    programs.gh
   ];
 
   
