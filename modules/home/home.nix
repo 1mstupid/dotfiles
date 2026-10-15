@@ -117,10 +117,6 @@
 
     services.mpdris2.enable = true;
 
-    systemd.user.services.mpdris2.Service.Environment = [
-      "XDG_CONFIG_HOME=%t/mpdris2"
-    ];
-
     programs.git = {
       enable = true;
       settings = {
