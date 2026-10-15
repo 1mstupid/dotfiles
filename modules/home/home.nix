@@ -14,7 +14,6 @@
       username = "waltz";
       homeDirectory = "/home/waltz";
       stateVersion = "26.05";
-      inherit sessionVariables;
     };
 
     xdg = {
