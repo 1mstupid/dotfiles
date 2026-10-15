@@ -85,15 +85,15 @@
 
   programs.git = {
     enable = true;
-    user ={
-      name = "Ítalo Barros";
-      email = "italoHSB@tutamail.com";
-    };
     settings = {
       init.defaultBranch = "main";
       core.editor = "hx";
       credential."https://github.com".helper = [ "" "!gh auth git-credential" ];
       credential."https://gist.github.com".helper = [ "" "!gh auth git-credential" ];
+      user ={
+        name = "Ítalo Barros";
+        email = "italoHSB@tutamail.com";
+      };
     };
   };
 
