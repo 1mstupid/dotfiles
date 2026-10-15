@@ -20,14 +20,6 @@ in
 
   inherit zsh-wrapper;
 
-  gh = import ./gh.nix {
-    inherit pkgs homeDirectory;
-  };
-
-  git = import ./git.nix {
-    inherit pkgs homeDirectory;
-  };
-
   helix = import ./helix.nix {
     inherit pkgs;
   };

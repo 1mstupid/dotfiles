@@ -85,26 +85,19 @@
 
 
 
-  home.activation.gitConfig =
-    lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-      mkdir -p "$HOME/.local/state/git"
+  programs.git = {
+    enable = true;
+    userName = "Ítalo Barros";
+    userEmail = "italoHSB@tutamail.com";
+    extraConfig = {
+      init.defaultBranch = "main";
+      core.editor = "hx";
+      credential."https://github.com".helper = [ "" "!gh auth git-credential" ];
+      credential."https://gist.github.com".helper = [ "" "!gh auth git-credential" ];
+    };
+  };
 
-      printf '%s\n' \
-        '[user]' \
-        '    name = "Ítalo Barros"' \
-        '    email = "italoHSB@tutamail.com"' \
-        '[init]' \
-        '    defaultBranch = main' \
-        '[core]' \
-        '    editor = hx' \
-        '[credential "https://github.com"]' \
-        '    helper =' \
-        '    helper = !gh auth git-credential' \
-        '[credential "https://gist.github.com"]' \
-        '    helper =' \
-        '    helper = !gh auth git-credential' \
-        > "$HOME/.local/state/git/config"
-    '';
+  programs.gh.enable = true;
   dconf = {
     enable = false;
 
