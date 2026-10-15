@@ -7,6 +7,11 @@
       repo = "nixpkgs";
       ref = "nixos-unstable";
     };
+    nhx = {
+      type = "git";
+      url = "https://github.com/Ra77a3l3-jar/nhx";
+    };
+
 
     umbriel = {
       type = "git";
