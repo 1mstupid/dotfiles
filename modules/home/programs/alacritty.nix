@@ -16,6 +16,11 @@
 
         terminal.shell = {
           program = "${pkgs.zsh}/bin/zsh";
+          args = [
+            "-l"
+            "-c"
+            "exec ranma"
+          ];
         };
 
         window = {
