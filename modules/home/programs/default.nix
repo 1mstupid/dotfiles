@@ -33,6 +33,6 @@ in
 
 
   xdg = import ./xdg.nix {
-    inherit pkgs homeDirectory;
+    inherit config;
   };
 }
