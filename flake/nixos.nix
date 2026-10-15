@@ -25,7 +25,6 @@ let
 
   sessionVariables = {
     NH_FLAKE = "${homeDirectory}/dotfiles";
-    XDG_CONFIG_HOME = "${homeDirectory}/.local/xdg/config";
     GIT_CONFIG_GLOBAL = "${homeDirectory}/.local/state/git/config";
     GH_CONFIG_DIR = "${homeDirectory}/.local/state/gh";
     EDITOR = "hx";

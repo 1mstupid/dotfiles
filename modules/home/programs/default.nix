@@ -1,38 +1,24 @@
-{ pkgs, inputs, config, homeDirectory, sessionVariables }:
-
-let
-  zsh-wrapper = import ./zsh.nix {
-    inherit pkgs inputs homeDirectory sessionVariables;
-  };
-in
+{ config, inputs, ... }:
 {
-  tmux = import ./tmux.nix {
-    inherit pkgs;
-  };
+  perSystem = { pkgs, system, ... }:
+    let
+      sessionVariables = config.flake.session;
+    in
+    {
+      packages = {
+        # tmux = import ./home/programs/tmux.nix { inherit pkgs; };
+        ncmpcpp = import ./home/programs/ncmpcpp.nix { inherit pkgs; };
+        anki = import ./home/programs/anki { inherit pkgs; };
+        helix = import ./home/programs/helix.nix { inherit pkgs; };
+        mango = import ./home/programs/mango.nix { inherit pkgs inputs; };
 
-  ncmpcpp = import ./ncmpcpp.nix {
-    inherit pkgs;
-  };
+        zsh-wrapper = import ./home/programs/zsh.nix {
+          inherit pkgs inputs sessionVariables;
+          homeDirectory = config.flake.session.NH_FLAKE; # or set homeDirectory directly
+        };
 
-  anki = import ./anki {
-    inherit pkgs;
-  };
-
-  inherit zsh-wrapper;
-
-  helix = import ./helix.nix {
-    inherit pkgs;
-  };
-
-  mango = import ./mango.nix {
-    inherit pkgs inputs;
-  };
-
-  qs = inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.qs;
-  mpv = inputs.mpv.packages.${pkgs.stdenv.hostPlatform.system}.default;
-
-
-  xdg = import ./xdg.nix {
-    inherit config;
-  };
+        qs = inputs.quickshell.packages.${system}.qs;
+        mpv = inputs.mpv.packages.${system}.default;
+      };
+    };
 }

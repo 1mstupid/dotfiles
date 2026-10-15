@@ -108,7 +108,8 @@
         inputs.home-manager.flakeModules.home-manager
         ./flake/packages.nix
         ./flake/nixos.nix
-        ./flake/home-manager.nix
+        ./modules/home/home.nix
+        ./modules/home/programs/xdg.nix
         ./modules/home/programs/alacritty.nix
       ];
     };

@@ -2,7 +2,7 @@
 
 {
   perSystem =
-    { config, pkgs, ... }:
+    { pkgs, ... }:
     let
       homeDirectory = "/home/waltz";
 
@@ -17,7 +17,7 @@
       };
 
       programs = import ../modules/home/programs {
-        inherit config pkgs inputs homeDirectory sessionVariables;
+        inherit pkgs inputs homeDirectory sessionVariables;
       };
     in
     {
