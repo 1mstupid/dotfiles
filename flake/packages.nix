@@ -17,7 +17,7 @@
       };
 
       programs = import ../modules/home/programs {
-        inherit pkgs inputs homeDirectory sessionVariables;
+        inherit config pkgs inputs homeDirectory sessionVariables;
       };
     in
     {
