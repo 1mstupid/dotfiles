@@ -1,4 +1,4 @@
-{ pkgs, inputs, homeDirectory, sessionVariables }:
+{ pkgs, inputs, config, homeDirectory, sessionVariables }:
 
 let
   zsh-wrapper = import ./zsh.nix {
