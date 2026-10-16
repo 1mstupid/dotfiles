@@ -22,7 +22,6 @@ in
       tree
     ];
   };
-  environment.shells = [zsh-wrapper ];
 
   nix.settings.experimental-features = [
     "nix-command"
