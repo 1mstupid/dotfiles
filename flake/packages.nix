@@ -23,7 +23,7 @@
         helix = import ../modules/home/programs/helix.nix { inherit pkgs; };
         mango = import ../modules/home/programs/mango.nix { inherit pkgs inputs; };
 
-        zsh-wrapper = import ../modules/home/programs/zsh.nix {
+        zsh = import ../modules/home/programs/zsh.nix {
           inherit pkgs inputs homeDirectory sessionVariables;
         };
 
