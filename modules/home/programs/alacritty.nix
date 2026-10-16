@@ -3,6 +3,8 @@
   flake.homeModules.alacritty =
     { config, pkgs, inputs, ... }:
     let
+      system = pkgs.stdenv.hostPlatform.system;
+
       configToml = pkgs.formats.toml { };
 
       alacrittyConfig = configToml.generate "alacritty.toml" {
