@@ -12,7 +12,7 @@
         helix = import ./home/programs/helix.nix { inherit pkgs; };
         mango = import ./home/programs/mango.nix { inherit pkgs inputs; };
 
-        zsh-wrapper = import ./home/programs/zsh.nix {
+        zsh = import ./home/programs/zsh.nix {
           inherit pkgs inputs sessionVariables;
           homeDirectory = config.flake.session.NH_FLAKE; # or set homeDirectory directly
         };
