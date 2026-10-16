@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.scripts =
+  flake.homeManager.scripts =
     { lib, pkgs, ... }:
     let
       scriptNames = [
