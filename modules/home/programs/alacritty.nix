@@ -22,7 +22,7 @@
             "-l"
             "-i"
             "-c"
-            "exec ranma"
+            "exec ${pkgs.tmux}/bin/tmux new-session -A -s main"
           ];
         };
         window = {
