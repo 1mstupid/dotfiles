@@ -96,6 +96,7 @@
       owner = "hercules-ci";
       repo = "flake-parts";
     };
+    import-tree.url = "github:denful/import-tree";
   };
 
   outputs = inputs:
