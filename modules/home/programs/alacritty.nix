@@ -17,7 +17,7 @@
         };
 
         terminal.shell = {
-          program = "${inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.zsh}";
+          program = "${pkgs.zsh}/bin/zsh";
           args = [
             "-l"
             "-i"
