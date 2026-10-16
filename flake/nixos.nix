@@ -42,6 +42,7 @@ in
           home-manager.users.waltz = {
             imports = [
               config.flake.homeModules.default
+              config.flake.homeModules.scripts
               config.flake.homeModules.alacritty
               # config.flake.homeModules.ghostty  # add back if you use it
             ];

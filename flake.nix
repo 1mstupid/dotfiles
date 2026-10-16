@@ -111,6 +111,7 @@
         ./flake/nixos.nix
         ./modules/home/home.nix
         ./modules/home/programs/alacritty.nix
+        ./modules/home/programs/scripts
       ];
     };
 }
