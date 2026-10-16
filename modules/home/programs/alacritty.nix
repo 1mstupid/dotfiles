@@ -1,7 +1,7 @@
 { ... }:
 {
   flake.homeModules.alacritty =
-    { config, pkgs, ... }:
+    { config, pkgs, inputs, ... }:
     let
       configToml = pkgs.formats.toml { };
 
