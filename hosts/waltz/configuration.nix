@@ -1,6 +1,6 @@
 { config, lib, pkgs, inputs, ... }:
 let
-  zshWrapper = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.zsh-wrapper;
+  zsh-wrapper = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.zsh;
 in
 {
   imports = [
@@ -16,13 +16,13 @@ in
       "sudo"
     ];
 
-    shell = zshWrapper;
+    shell = zsh-wrapper;
 
     packages = with pkgs; [
       tree
     ];
   };
-  environment.shells = [ zshWrapper ];
+  environment.shells = [zsh-wrapper ];
 
   nix.settings.experimental-features = [
     "nix-command"
