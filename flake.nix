@@ -112,6 +112,7 @@
         ./modules/home/home.nix
         ./modules/home/programs/alacritty.nix
         ./modules/home/programs/ghostty.nix
+        ./modules/home/programs/tmux.nix
         ./modules/home/programs/scripts
       ];
     };

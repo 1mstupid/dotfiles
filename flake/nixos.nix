@@ -45,6 +45,7 @@ in
               config.flake.homeModules.scripts
               config.flake.homeModules.alacritty
               config.flake.homeModules.ghostty
+              config.flake.homeModules.tmux
             ];
           };
         }
