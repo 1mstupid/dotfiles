@@ -17,14 +17,14 @@
         };
 
         terminal.shell = {
-          program = "${zsh}/bin/zsh";
+          program = "${self.packages.${system}.zsh}/bin/zsh";
           args = [
             "-l"
+            "-i"
             "-c"
             "exec ranma"
           ];
         };
-
         window = {
           padding = {
             x = 20;

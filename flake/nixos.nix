@@ -1,4 +1,4 @@
-{ inputs, config, ... }:
+{ inputs, config, self, ... }:
 
 let
   system = "x86_64-linux";

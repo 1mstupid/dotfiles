@@ -1,4 +1,3 @@
-# flake/packages.nix
 { inputs, ... }:
 
 {
