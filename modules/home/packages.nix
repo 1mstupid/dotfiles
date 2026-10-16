@@ -15,7 +15,7 @@ in
     qbittorrent-enhanced
     yazi
     feh
-    firefox
+    librewolf-bin
     ov
     xplr
     seahorse
