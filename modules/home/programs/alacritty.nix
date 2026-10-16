@@ -17,7 +17,7 @@
         };
 
         terminal.shell = {
-          program = "${self.packages.${system}.zsh}/bin/zsh";
+          program = "${config.flake.packages.${system}.zsh}/bin/zsh";
           args = [
             "-l"
             "-i"
