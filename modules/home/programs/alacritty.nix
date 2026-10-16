@@ -17,7 +17,7 @@
         };
 
         terminal.shell = {
-          program = "${inputs.self.packages.${system}.zsh}/bin/zsh";
+          program = "${zsh}/bin/zsh";
           args = [
             "-l"
             "-c"
