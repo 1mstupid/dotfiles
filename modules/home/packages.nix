@@ -5,7 +5,6 @@ let
 in
 {
   home.packages = with pkgs; [
-    p.zsh-wrapper
     p.qs
     p.mpv
     p.helix
