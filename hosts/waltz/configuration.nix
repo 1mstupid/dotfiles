@@ -22,7 +22,9 @@ in
       tree
     ];
   };
-
+  environment.systemPackages = [
+    zsh-wrapper
+  ];
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
