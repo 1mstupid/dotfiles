@@ -620,7 +620,7 @@
   # read this, it will bring you back to lucidity, also writing is cool man, you should try to write more,
   # see you're already having thoughts that aren't terrible, there you go! Good Boy~
   # Shit. 
-    networking.extraHosts = builtins.readFile ../../../assets/hosts.txt;
+    # networking.extraHosts = builtins.readFile ../../../assets/hosts.txt;
 
   # So, hows life treating you bud, pretty hard I assume, things tend to just get worse.
   # ext.to man, block that shit, along side 1337x
