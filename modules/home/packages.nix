@@ -2,7 +2,7 @@
 let
   system = pkgs.stdenv.hostPlatform.system;
   p = inputs.self.packages.${system};
-  drift = callPackage ../system/extra/drift.nix {};
+  drift = pkgs.callPackage ../system/extra/drift.nix {};
 in
 {
   home.packages = with pkgs; [
