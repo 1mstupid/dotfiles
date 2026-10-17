@@ -14,7 +14,7 @@ rustPlatform.buildRustPackage {
     hash = "sha256-X6OGpebIaqY8KVRWUsOlZjwrBrAkRc80W2ZKPrvCjfk=";
   };
 
-  cargoHash = lib.fakeHash;
+  cargoHash = "sha256-HEVIAQC5lkvOqO6bqRoGi72Ihn1zRPv6PxCdz5vuKCE=";
 
   meta = with lib; {
     description = "Drift";
