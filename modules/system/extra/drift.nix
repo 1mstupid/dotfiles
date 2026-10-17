@@ -11,7 +11,7 @@ rustPlatform.buildRustPackage {
     owner = "socatlolmeow";
     repo = "drift";
     rev = "main";
-    hash = lib.fakeHash;
+    hash = "sha256-X6OGpebIaqY8KVRWUsOlZjwrBrAkRc80W2ZKPrvCjfk=";
   };
 
   cargoHash = lib.fakeHash;
