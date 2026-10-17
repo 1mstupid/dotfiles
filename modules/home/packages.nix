@@ -2,6 +2,7 @@
 let
   system = pkgs.stdenv.hostPlatform.system;
   p = inputs.self.packages.${system};
+  drift = callPackage ../system/extra/drift.nix {};
 in
 {
   home.packages = with pkgs; [
@@ -65,6 +66,7 @@ in
     inputs.ayugram-desktop.packages.${system}.default
     inputs.zapfast.packages.${system}.default
     inputs.ranma.packages.${system}.default
+    drift
 
 
 
