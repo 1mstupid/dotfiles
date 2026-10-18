@@ -361,36 +361,16 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1792289945,
-        "narHash": "sha256-cUAv99OQe7a7MfKGvq0XbJHQmE9/ZgmfssxLbfqtkuY=",
+        "lastModified": 1792294361,
+        "narHash": "sha256-AmR0YZxfueO+ZPz7508iBg+cTUQTOVEfwEpzCRROAzs=",
         "owner": "1mstupid",
         "repo": "quickshell-config",
-        "rev": "2f7e8d1e269eec9f63eb33190c2c3a4e0f435e63",
+        "rev": "ff3d24306b04d59abe848cb52dbabb92ce12415b",
         "type": "github"
       },
       "original": {
         "owner": "1mstupid",
         "repo": "quickshell-config",
-        "type": "github"
-      }
-    },
-    "ranma": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1791904107,
-        "narHash": "sha256-axhpqCBMf0U6aEZKvIrP3xbosI37ANLj0T5YmgPY4Uw=",
-        "owner": "masshirodev",
-        "repo": "ranma",
-        "rev": "5c0a2fea70c510be05ab98b006f647d9e2604bab",
-        "type": "github"
-      },
-      "original": {
-        "owner": "masshirodev",
-        "repo": "ranma",
         "type": "github"
       }
     },
@@ -407,7 +387,6 @@
         "nixpkgs": "nixpkgs_5",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "quickshell": "quickshell",
-        "ranma": "ranma",
         "umbriel": "umbriel",
         "wrappers": "wrappers",
         "zapfast": "zapfast"
