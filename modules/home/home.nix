@@ -1,146 +1,160 @@
-{ config, self, ... }:
+
+{ self, ... }:
 {
-  flake.homeModules.default = { config, pkgs, lib, ... }:
+  flake.homeModules.default =
+    { config, pkgs, ... }:
     let
       home = config.home.homeDirectory;
       system = pkgs.stdenv.hostPlatform.system;
     in
     {
-    imports = [
-      ./packages.nix
-    ];
+      imports = [
+        self.homeModules.packages
+        self.homeModules.scripts
+        self.homeModules.alacritty
+        self.homeModules.ghostty
+        self.homeModules.zsh
+        self.homeModules.anki
+        self.homeModules.ncmpcpp
+        self.homeModules.hx
+        self.homeModules.tmux
+      ];
 
-    home = {
-      username = "waltz";
-      homeDirectory = "/home/waltz";
-      stateVersion = "26.05";
-    };
+      home = {
+        username = "waltz";
+        homeDirectory = "/home/waltz";
+        stateVersion = "26.05";
+      };
 
-    xdg = {
-      enable = true;
-      dataHome = "${config.home.homeDirectory}/.local/xdg/data";
-      stateHome = "${config.home.homeDirectory}/.local/xdg/state";
-      cacheHome = "${config.home.homeDirectory}/.cache/xdg";
-
-      mimeApps = {
+      xdg = {
         enable = true;
-        defaultApplications = {
-          "text/html" = "helium.desktop";
-          "x-scheme-handler/http" = "helium.desktop";
-          "x-scheme-handler/https" = "helium.desktop";
+        dataHome = "${home}/.local/xdg/data";
+        stateHome = "${home}/.local/xdg/state";
+        cacheHome = "${home}/.cache/xdg";
 
-          "application/x-bittorrent" = "org.qbittorrent.qBittorrent.desktop";
-          "x-scheme-handler/magnet" = "org.qbittorrent.qBittorrent.desktop";
+        mimeApps = {
+          enable = true;
+          defaultApplications = {
+            "text/html" = "helium.desktop";
+            "x-scheme-handler/http" = "helium.desktop";
+            "x-scheme-handler/https" = "helium.desktop";
 
-          "text/plain" = "Helix.desktop";
-          "text/markdown" = "Helix.desktop";
-          "text/x-c" = "Helix.desktop";
-          "text/x-c++" = "Helix.desktop";
-          "text/x-python" = "Helix.desktop";
-          "text/x-rust" = "Helix.desktop";
-          "text/x-shellscript" = "Helix.desktop";
+            "application/x-bittorrent" = "org.qbittorrent.qBittorrent.desktop";
+            "x-scheme-handler/magnet" = "org.qbittorrent.qBittorrent.desktop";
 
-          "application/pdf" = "sioyek.desktop";
+            "text/plain" = "Helix.desktop";
+            "text/markdown" = "Helix.desktop";
+            "text/x-c" = "Helix.desktop";
+            "text/x-c++" = "Helix.desktop";
+            "text/x-python" = "Helix.desktop";
+            "text/x-rust" = "Helix.desktop";
+            "text/x-shellscript" = "Helix.desktop";
 
-          "image/jpeg" = "imv.desktop";
-          "image/png" = "imv.desktop";
-          "image/gif" = "imv.desktop";
-          "image/webp" = "imv.desktop";
-          "image/svg+xml" = "librewolf.desktop";
+            "application/pdf" = "sioyek.desktop";
 
-          "video/mp4" = "mpv.desktop";
-          "video/webm" = "mpv.desktop";
-          "video/x-matroska" = "mpv.desktop";
-          "video/quicktime" = "mpv.desktop";
+            "image/jpeg" = "imv.desktop";
+            "image/png" = "imv.desktop";
+            "image/gif" = "imv.desktop";
+            "image/webp" = "imv.desktop";
+            "image/svg+xml" = "librewolf.desktop";
 
-          "audio/mpeg" = "mpv.desktop";
-          "audio/ogg" = "mpv.desktop";
-          "audio/flac" = "mpv.desktop";
-          "audio/wav" = "mpv.desktop";
+            "video/mp4" = "mpv.desktop";
+            "video/webm" = "mpv.desktop";
+            "video/x-matroska" = "mpv.desktop";
+            "video/quicktime" = "mpv.desktop";
+
+            "audio/mpeg" = "mpv.desktop";
+            "audio/ogg" = "mpv.desktop";
+            "audio/flac" = "mpv.desktop";
+            "audio/wav" = "mpv.desktop";
+          };
+        };
+
+        userDirs = {
+          enable = true;
+          createDirectories = true;
+          desktop = home;
+          download = "${home}/Downloads";
+          documents = "${home}/Documents";
+          music = "${home}/Music";
+          pictures = "${home}/Pictures";
+          videos = "${home}/Videos";
+          publicShare = "${home}/Public";
         };
       };
 
-      userDirs = {
+      home.pointerCursor = {
         enable = true;
-        createDirectories = true;
-        desktop = config.home.homeDirectory;
-        download = "${config.home.homeDirectory}/Downloads";
-        documents = "${config.home.homeDirectory}/Documents";
-        music = "${config.home.homeDirectory}/Music";
-        pictures = "${config.home.homeDirectory}/Pictures";
-        videos = "${config.home.homeDirectory}/Videos";
-        publicShare = "${config.home.homeDirectory}/Public";
+        package = pkgs.bibata-cursors;
+        name = "Bibata-Modern-Classic";
+        size = 24;
+        gtk.enable = true;
+        x11.enable = true;
       };
-    };
 
-    home.pointerCursor = {
-      enable = true;
-      package = pkgs.bibata-cursors;
-      name = "Bibata-Modern-Classic";
-      size = 24;
+      home.sessionPath = [
+        "${home}/.cargo/bin"
+        "${home}/.local/bin"
+      ];
 
-      gtk.enable = true;
-      x11.enable = true;
-    };
+      programs.home-manager.enable = true;
+      programs.bash.enable = true;
 
-    home.sessionPath = [
-      "${config.home.homeDirectory}/.cargo/bin"
-      "${config.home.homeDirectory}/.local/bin"
-    ];
+      home.file = {
+        ".local/share/wallpapers".source =
+          config.lib.file.mkOutOfStoreSymlink
+            "/home/waltz/dotfiles/assets/wallpaper";
 
-    programs.home-manager.enable = true;
+        ".local/bin".source =
+          config.lib.file.mkOutOfStoreSymlink
+            "/home/waltz/dotfiles/assets/bin";
+      };
 
-    programs.bash.enable = true;
+      services.mpd = {
+        enable = true;
+        musicDirectory = "${home}/Music";
 
-    home.file = {
-      ".local/share/wallpapers".source =
-        config.lib.file.mkOutOfStoreSymlink
-          "/home/waltz/dotfiles/assets/wallpaper";
+        extraConfig = ''
+          audio_output {
+            type "pipewire"
+            name "PipeWire"
+          }
+        '';
+      };
 
-      ".local/bin".source =
-        config.lib.file.mkOutOfStoreSymlink
-          "/home/waltz/dotfiles/assets/bin";
-    };
+      services.mpdris2.enable = true;
 
-    services.mpd = {
-      enable = true;
-      musicDirectory = "/home/waltz/Music";
+      programs.git = {
+        enable = true;
+        settings = {
+          init.defaultBranch = "main";
+          core.editor = "hx";
+          credential."https://github.com".helper = [
+            ""
+            "!gh auth git-credential"
+          ];
+          credential."https://gist.github.com".helper = [
+            ""
+            "!gh auth git-credential"
+          ];
+          user = {
+            name = "Ítalo Barros";
+            email = "italoHSB@tutamail.com";
+          };
+        };
+      };
 
-      extraConfig = ''
-        audio_output {
-          type "pipewire"
-          name "PipeWire"
-        }
-      '';
-    };
+      programs.gh.enable = true;
 
-    services.mpdris2.enable = true;
+      dconf = {
+        enable = false;
 
-    programs.git = {
-      enable = true;
-      settings = {
-        init.defaultBranch = "main";
-        core.editor = "hx";
-        credential."https://github.com".helper = [ "" "!gh auth git-credential" ];
-        credential."https://gist.github.com".helper = [ "" "!gh auth git-credential" ];
-        user = {
-          name = "Ítalo Barros";
-          email = "italoHSB@tutamail.com";
+        settings = {
+          "org/gnome/desktop/interface" = {
+            color-scheme = "prefer-dark";
+            gtk-theme = "Adwaita-dark";
+          };
         };
       };
     };
-
-    programs.gh.enable = true;
-
-    dconf = {
-      enable = false;
-
-      settings = {
-        "org/gnome/desktop/interface" = {
-          color-scheme = "prefer-dark";
-          gtk-theme = "Adwaita-dark";
-        };
-      };
-    };
-  };
 }

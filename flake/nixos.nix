@@ -1,4 +1,5 @@
-{ inputs, config, ... }:
+
+{ inputs, ... }:
 
 let
   system = "x86_64-linux";
@@ -8,12 +9,6 @@ let
       inherit system;
       config.allowUnfree = true;
     };
-  };
-
-  pkgs = import inputs.nixpkgs {
-    inherit system;
-    config.allowUnfree = true;
-    overlays = [ overlay-unstable ];
   };
 in
 {
@@ -32,25 +27,21 @@ in
         inputs.home-manager.nixosModules.home-manager
 
         {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-
-          home-manager.extraSpecialArgs = {
-            inherit inputs;
+          nixpkgs = {
+            config.allowUnfree = true;
+            overlays = [ overlay-unstable ];
           };
 
-          home-manager.users.waltz = {
-            imports = [
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+
+            extraSpecialArgs = {
+              inherit inputs;
+            };
+
+            users.waltz.imports = [
               config.flake.homeModules.default
-              config.flake.homeModules.scripts
-              config.flake.homeModules.packages
-              config.flake.homeModules.alacritty
-              config.flake.homeModules.ghostty
-              config.flake.homeModules.zsh
-              config.flake.homeModules.anki
-              config.flake.homeModules.ncmpcpp
-              config.flake.homeModules.hx
-              config.flake.homeModules.tmux
             ];
           };
         }

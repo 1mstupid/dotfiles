@@ -1,4 +1,3 @@
-
 { ... }:
 {
   flake.homeModules.packages =
@@ -20,7 +19,6 @@
         vis
 
         adwaita-icon-theme
-
         ffmpeg
         imagemagick
         playerctl
@@ -33,7 +31,6 @@
 
         bluez
         pamixer
-
         wl-clipboard
         wlsunset
         libnotify
@@ -45,7 +42,6 @@
 
         adwaita-fonts
         ddcutil
-
         fd
         fzf
         jq
@@ -53,23 +49,19 @@
         binutils
         python3
         nodejs
-
         yt-dlp
 
         nvd
         nix-output-monitor
-
         inputs.qs.packages.${system}.default
         inputs.mpv.packages.${system}.default
         inputs.ayugram-desktop.packages.${system}.default
         inputs.zapfast.packages.${system}.default
-
         drift
 
         (symlinkJoin {
           name = "sioyek";
           paths = [ sioyek ];
-
           nativeBuildInputs = [ makeWrapper ];
 
           postBuild = ''
