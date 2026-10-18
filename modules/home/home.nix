@@ -9,15 +9,15 @@
     in
     {
       imports = [
-        config.homeModules.packages
-        config.homeModules.scripts
-        config.homeModules.alacritty
-        config.homeModules.ghostty
-        config.homeModules.zsh
-        config.homeModules.anki
-        config.homeModules.ncmpcpp
-        config.homeModules.hx
-        config.homeModules.tmux
+        config.flake.homeModules.packages
+        config.flake.homeModules.scripts
+        config.flake.homeModules.alacritty
+        config.flake.homeModules.ghostty
+        config.flake.homeModules.zsh
+        config.flake.homeModules.anki
+        config.flake.homeModules.ncmpcpp
+        config.flake.homeModules.hx
+        config.flake.homeModules.tmux
       ];
 
       home = {
