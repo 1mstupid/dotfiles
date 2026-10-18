@@ -1,13 +1,9 @@
 { pkgs, inputs, ... }:
 let
   system = pkgs.stdenv.hostPlatform.system;
-  p = inputs.self.packages.${system};
-  drift = pkgs.callPackage ../system/extra/drift.nix {};
 in
 {
   home.packages = with pkgs; [
-    p.qs
-    p.mpv
 
     qbittorrent-enhanced
     yazi
@@ -59,6 +55,8 @@ in
 
     nvd
     nix-output-monitor
+    inputs.qs.packages.${system}.default
+    inputs.mpv.packages.${system}.default
     inputs.ayugram-desktop.packages.${system}.default
     inputs.zapfast.packages.${system}.default
     drift
