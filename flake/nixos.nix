@@ -43,6 +43,7 @@ in
             imports = [
               config.flake.homeModules.default
               config.flake.homeModules.scripts
+              config.flake.homeModules.packages
               config.flake.homeModules.alacritty
               config.flake.homeModules.ghostty
               config.flake.homeModules.zsh
