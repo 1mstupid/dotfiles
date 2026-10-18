@@ -101,11 +101,8 @@
 
   outputs = inputs:
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
-      systems = [
-        "x86_64-linux"
-      ];
-
       imports = [
+        ./modules/parts.nix
         inputs.home-manager.flakeModules.home-manager
         (inputs.import-tree [
           ./flake

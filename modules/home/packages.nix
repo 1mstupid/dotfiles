@@ -57,7 +57,6 @@
         inputs.mpv.packages.${system}.default
         inputs.ayugram-desktop.packages.${system}.default
         inputs.zapfast.packages.${system}.default
-        drift
 
         (symlinkJoin {
           name = "sioyek";
