@@ -23,15 +23,14 @@
       set -g mouse off
 
 
-      # keymap general
+      # Prefix
       set -g prefix C-Space
       unbind C-b
-      bind C-Space send-prefix
-
-      # sticky mode
       bind C-Space switch-client -T sticky
+
+      # Sticky mode exit
       bind -T sticky Escape switch-client -T root
-      bind -T sticky c new-window -c "#{pane_current_path}" \; switch-client -T sticky
+
 
       # appearance
       set -g status-position top
@@ -50,11 +49,14 @@
       set -g pane-border-style fg=colour241
       set -g pane-active-border-style fg=colour39
 
-      # Navigate panes (useful when you do split)
+      # Sticky actions: re-arm after every command
       bind -T sticky h select-pane -L \; switch-client -T sticky
       bind -T sticky j select-pane -D \; switch-client -T sticky
       bind -T sticky k select-pane -U \; switch-client -T sticky
       bind -T sticky l select-pane -R \; switch-client -T sticky
+      bind -T sticky c new-window \; switch-client -T sticky
+      bind -T sticky n next-window \; switch-client -T sticky
+      bind -T sticky p previous-window \; switch-client -T sticky
 
       # Workspaces = windows
       bind -T sticky c new-window \; switch-client -T sticky
