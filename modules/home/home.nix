@@ -1,23 +1,23 @@
 
-{ self, ... }:
+{ config , ... }:
 {
   flake.homeModules.default =
-    { config, pkgs, ... }:
+    { ... }:
     let
       home = config.home.homeDirectory;
       system = pkgs.stdenv.hostPlatform.system;
     in
     {
       imports = [
-        self.homeModules.packages
-        self.homeModules.scripts
-        self.homeModules.alacritty
-        self.homeModules.ghostty
-        self.homeModules.zsh
-        self.homeModules.anki
-        self.homeModules.ncmpcpp
-        self.homeModules.hx
-        self.homeModules.tmux
+        config.homeModules.packages
+        config.homeModules.scripts
+        config.homeModules.alacritty
+        config.homeModules.ghostty
+        config.homeModules.zsh
+        config.homeModules.anki
+        config.homeModules.ncmpcpp
+        config.homeModules.hx
+        config.homeModules.tmux
       ];
 
       home = {

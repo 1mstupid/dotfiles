@@ -1,6 +1,7 @@
 { ... }:
 {
-  flake.homeModules.packages = { inputs, pkgs, ... }:
+  flake.homeModules.packages =
+    { inputs, pkgs, ... }:
     let
       system = pkgs.stdenv.hostPlatform.system;
     in
