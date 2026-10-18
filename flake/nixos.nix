@@ -46,6 +46,7 @@ in
               config.flake.homeModules.alacritty
               config.flake.homeModules.ghostty
               config.flake.homeModules.zsh
+              config.flake.homeModules.hx
               config.flake.homeModules.tmux
             ];
           };

@@ -19,7 +19,6 @@
         tmux = import ../modules/home/programs/tmux.nix { inherit pkgs; };
         ncmpcpp = import ../modules/home/programs/ncmpcpp.nix { inherit pkgs; };
         anki = import ../modules/home/programs/anki { inherit pkgs; };
-        helix = import ../modules/home/programs/helix.nix { inherit pkgs; };
 
         qs = inputs.quickshell.packages.${system}.qs;
         mpv = inputs.mpv.packages.${system}.default;

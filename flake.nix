@@ -113,6 +113,7 @@
         ./modules/home/programs/alacritty.nix
         ./modules/home/programs/ghostty.nix
         ./modules/home/programs/tmux.nix
+        ./modules/home/programs/helix.nix
         ./modules/home/programs/zsh.nix
         ./modules/home/programs/scripts
         ./modules/home/programs/session.nix
