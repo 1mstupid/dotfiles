@@ -34,29 +34,29 @@
       bind-key -T sticky Escape switch-client -T root
       bind-key -T sticky C-b switch-client -T sticky
 
+
       # Pane navigation
       bind-key -T sticky h select-pane -L \; switch-client -T sticky
       bind-key -T sticky j select-pane -D \; switch-client -T sticky
       bind-key -T sticky k select-pane -U \; switch-client -T sticky
       bind-key -T sticky l select-pane -R \; switch-client -T sticky
 
-      # Windows / workspaces
-      bind-key -T sticky c new-window \; switch-client -T sticky
-      bind-key -T sticky n next-window \; switch-client -T sticky
-      bind-key -T sticky p previous-window \; switch-client -T sticky
-      bind-key -T sticky 0 select-window -t 0 \; switch-client -T sticky
-      bind-key -T sticky 1 select-window -t 1 \; switch-client -T sticky
-      bind-key -T sticky 2 select-window -t 2 \; switch-client -T sticky
-      bind-key -T sticky 3 select-window -t 3 \; switch-client -T sticky
-      bind-key -T sticky 4 select-window -t 4 \; switch-client -T sticky
-      bind-key -T sticky 5 select-window -t 5 \; switch-client -T sticky
+      # Pane splits
+      bind-key -T sticky '|' split-window -h \; switch-client -T sticky
+      bind-key -T sticky - split-window -v \; switch-client -T sticky
 
-      # Rename current window
-      bind-key -T sticky , command-prompt -I "#{window_name}" \
-        "rename-window '%%'"
+      # Kill current pane
+      bind-key -T sticky x kill-pane
 
       # Close current window
-      bind-key -T sticky x kill-window
+      bind-key -T sticky X kill-window
+
+      # Zoom / unzoom current pane
+      bind-key -T sticky z resize-pane -Z \; switch-client -T sticky
+
+      # Swap panes
+      bind-key -T sticky H swap-pane -U \; switch-client -T sticky
+      bind-key -T sticky L swap-pane -D \; switch-client -T sticky
 
       # appearance
       set -g status-position top
