@@ -109,7 +109,7 @@
         inputs.home-manager.flakeModules.home-manager
         (inputs.import-tree [
           ./flake
-          ./modules
+          ./modules/home
         ])
       ];
     };
