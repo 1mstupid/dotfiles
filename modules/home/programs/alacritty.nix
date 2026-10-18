@@ -18,12 +18,12 @@
 
         terminal.shell = {
           program = "${pkgs.zsh}/bin/zsh";
-          args = [
-            "-l"
-            "-i"
-            "-c"
-            "exec tuios attach"
-          ];
+          # args = [
+          #   "-l"
+          #   "-i"
+          #   "-c"
+          #   "exec tuios attach"
+          # ];
         };
         window = {
           padding = {

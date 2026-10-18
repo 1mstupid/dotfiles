@@ -18,8 +18,8 @@ in
     yazi
     feh
     librewolf-bin
-    tuios
     ov
+    herdr
     xplr
     seahorse
     tuios
