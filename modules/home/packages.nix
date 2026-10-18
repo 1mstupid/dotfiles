@@ -53,7 +53,7 @@
 
         nvd
         nix-output-monitor
-        inputs.qs.packages.${system}.default
+        inputs.quickshell.packages.${system}.default
         inputs.mpv.packages.${system}.default
         inputs.ayugram-desktop.packages.${system}.default
         inputs.zapfast.packages.${system}.default
