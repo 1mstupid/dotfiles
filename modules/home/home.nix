@@ -1,25 +1,27 @@
 
-{ config , ... }:
+{ config, ... }:
+
+let
+  homeModules = config.flake.homeModules;
+in
 {
   flake.homeModules.default =
     { config, pkgs, ... }:
     let
       home = config.home.homeDirectory;
-      system = pkgs.stdenv.hostPlatform.system;
     in
     {
       imports = [
-        config.flake.homeModules.packages
-        config.flake.homeModules.scripts
-        config.flake.homeModules.alacritty
-        config.flake.homeModules.ghostty
-        config.flake.homeModules.zsh
-        config.flake.homeModules.anki
-        config.flake.homeModules.ncmpcpp
-        config.flake.homeModules.hx
-        config.flake.homeModules.tmux
+        homeModules.packages
+        homeModules.scripts
+        homeModules.alacritty
+        homeModules.ghostty
+        homeModules.zsh
+        homeModules.anki
+        homeModules.ncmpcpp
+        homeModules.hx
+        homeModules.tmux
       ];
-
       home = {
         username = "waltz";
         homeDirectory = "/home/waltz";
