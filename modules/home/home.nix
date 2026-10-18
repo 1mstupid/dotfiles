@@ -2,7 +2,7 @@
 { config , ... }:
 {
   flake.homeModules.default =
-    { ... }:
+    { pkgs, ... }:
     let
       home = config.home.homeDirectory;
       system = pkgs.stdenv.hostPlatform.system;
