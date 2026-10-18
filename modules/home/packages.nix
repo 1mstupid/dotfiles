@@ -14,9 +14,11 @@ in
     p.anki
 
     qbittorrent-enhanced
+    tuios
     yazi
     feh
     librewolf-bin
+    tuios
     ov
     xplr
     seahorse
@@ -65,7 +67,6 @@ in
     nix-output-monitor
     inputs.ayugram-desktop.packages.${system}.default
     inputs.zapfast.packages.${system}.default
-    inputs.ranma.packages.${system}.default
     drift
 
 

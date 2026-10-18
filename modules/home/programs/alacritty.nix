@@ -22,7 +22,7 @@
             "-l"
             "-i"
             "-c"
-            "exec ranma"
+            "exec tuios attach"
           ];
         };
         window = {

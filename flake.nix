@@ -18,12 +18,12 @@
       url = "https://github.com/noctalia-dev/umbriel";
     };
 
-    ranma = {
-      type = "github";
-      owner = "masshirodev";
-      repo = "ranma";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # ranma = {
+    #   type = "github";
+    #   owner = "masshirodev";
+    #   repo = "ranma";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     nixpkgs-unstable = {
       type = "github";
