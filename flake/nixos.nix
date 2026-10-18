@@ -47,6 +47,7 @@ in
               config.flake.homeModules.ghostty
               config.flake.homeModules.zsh
               config.flake.homeModules.anki
+              config.flake.homeModules.ncmpcpp
               config.flake.homeModules.hx
               config.flake.homeModules.tmux
             ];

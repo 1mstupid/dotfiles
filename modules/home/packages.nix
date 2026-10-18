@@ -8,8 +8,6 @@ in
   home.packages = with pkgs; [
     p.qs
     p.mpv
-    p.ncmpcpp
-    p.anki
 
     qbittorrent-enhanced
     yazi
