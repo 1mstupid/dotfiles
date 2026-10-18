@@ -20,6 +20,8 @@
       set -g renumber-windows on
       set -g allow-rename on
       set -g set-clipboard on
+      set -g mouse off
+
 
       # keymap general
       set -g prefix C-Space
