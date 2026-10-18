@@ -14,7 +14,6 @@ in
     p.anki
 
     qbittorrent-enhanced
-    tuios
     yazi
     feh
     librewolf-bin
@@ -22,7 +21,6 @@ in
     herdr
     xplr
     seahorse
-    tuios
     cinny
     vis
 
