@@ -1,29 +1,33 @@
 
 { config, inputs, ... }:
 
-let
-  sessionVariables = config.flake.session;
-in
 {
-  flake.homeModules.zsh = { config, pkgs, ... }: {
-    home.packages = [
-      inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.zsh
-    ];
-  };
+  flake.homeModules.zsh = { config, pkgs, inputs, ... }:
+    let
+      system = pkgs.stdenv.hostPlatform.system;
+    in
+    {
+      home.packages = [
+        inputs.self.packages.${system}.zsh
+      ];
+    };
 
-  perSystem = { pkgs, lib, ... }: {
-    packages.zsh =
-      let
-        homeDirectory = "/home/waltz";
+  perSystem = { pkgs, ... }:
+    let
+      inherit (pkgs) lib;
 
-        sessionVariablesZsh =
-          lib.concatStringsSep "\n"
-            (lib.mapAttrsToList
-              (name: value:
-                "export ${name}=${lib.escapeShellArg value}")
-              sessionVariables);
-      in
-      inputs.wrappers.wrappers.zsh.wrap {
+      homeDirectory = "/home/waltz";
+      sessionVariables = config.flake.session;
+
+      sessionVariablesZsh =
+        lib.concatStringsSep "\n"
+          (lib.mapAttrsToList
+            (name: value:
+              "export ${name}=${lib.escapeShellArg value}")
+            sessionVariables);
+    in
+    {
+      packages.zsh = inputs.wrappers.wrappers.zsh.wrap {
         inherit pkgs;
 
         runtimePkgs = with pkgs; [
@@ -73,5 +77,5 @@ in
           source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
         '';
       };
-  };
+    };
 }

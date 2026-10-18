@@ -42,9 +42,11 @@ in
           home-manager.users.waltz = {
             imports = [
               config.flake.homeModules.default
+              config.flake.homeModules.session
               config.flake.homeModules.scripts
               config.flake.homeModules.alacritty
               config.flake.homeModules.ghostty
+              config.flake.homeModules.zsh
               config.flake.homeModules.tmux
             ];
           };

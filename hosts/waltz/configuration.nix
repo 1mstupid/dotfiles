@@ -1,6 +1,8 @@
 { config, lib, pkgs, inputs, ... }:
+
 let
-  zsh-wrapper = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.zsh;
+  zsh-wrapper =
+    inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.zsh;
 in
 {
   imports = [
@@ -11,6 +13,7 @@ in
 
   users.users.waltz = {
     isNormalUser = true;
+
     extraGroups = [
       "wheel"
       "sudo"
@@ -22,9 +25,11 @@ in
       tree
     ];
   };
+
   environment.systemPackages = [
     zsh-wrapper
   ];
+
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
