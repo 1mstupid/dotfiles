@@ -107,16 +107,10 @@
 
       imports = [
         inputs.home-manager.flakeModules.home-manager
-        ./flake/packages.nix
-        ./flake/nixos.nix
-        ./modules/home/home.nix
-        ./modules/home/programs/alacritty.nix
-        ./modules/home/programs/ghostty.nix
-        ./modules/home/programs/tmux.nix
-        ./modules/home/programs/helix.nix
-        ./modules/home/programs/zsh.nix
-        ./modules/home/programs/scripts
-        ./modules/home/programs/session.nix
+        (inputs.import-tree [
+          ./flake
+          ./modules
+        ])
       ];
     };
 }
