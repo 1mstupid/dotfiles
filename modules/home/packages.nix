@@ -7,9 +7,7 @@ in
 {
   home.packages = with pkgs; [
     p.qs
-    p.zsh
     p.mpv
-    p.helix
     p.ncmpcpp
     p.anki
 
