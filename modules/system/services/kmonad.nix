@@ -1,63 +1,67 @@
-{ pkgs, ... }:
+{...}:
 {
-  environment.etc."kmonad/config.kbd".text = ''
-    (defcfg
-      input  (device-file "/dev/input/by-id/usb-SEMICO_USB_Gaming_Keyboard-event-kbd")
-      output (uinput-sink "kmonad output")
-      fallthrough true
-    )
+  flake.nixosModules.kmonad = { pkgs, ... }:
+  {
+    environment.etc."kmonad/config.kbd".text = ''
+      (defcfg
+        input  (device-file "/dev/input/by-id/usb-SEMICO_USB_Gaming_Keyboard-event-kbd")
+        output (uinput-sink "kmonad output")
+        fallthrough true
+      )
 
-    (defsrc
-      q w e r t y u i o p
-      a s d f g h j k l ;
-      z x c v b n m , . /
-      spc
-    )
+      (defsrc
+        q w e r t y u i o p
+        a s d f g h j k l ;
+        z x c v b n m , . /
+        spc
+      )
 
-    (defalias
-      ;; Homerow mods
-      a_ctl (tap-hold-next-release 250 a lmet)
-      s_alt (tap-hold-next-release 250 s lalt)
-      d_gui (tap-hold-next-release 250 d lctl)
-      f_sft (tap-hold-next-release 250 f lsft)
+      (defalias
+        ;; Homerow mods
+        a_ctl (tap-hold-next-release 250 a lmet)
+        s_alt (tap-hold-next-release 250 s lalt)
+        d_gui (tap-hold-next-release 250 d lctl)
+        f_sft (tap-hold-next-release 250 f lsft)
 
-      j_sft (tap-hold-next-release 250 j rsft)
-      k_gui (tap-hold-next-release 250 k rctl)
-      l_alt (tap-hold-next-release 250 l lalt)
-      scl_ctl (tap-hold-next-release 250 ; rmet)
+        j_sft (tap-hold-next-release 250 j rsft)
+        k_gui (tap-hold-next-release 250 k rctl)
+        l_alt (tap-hold-next-release 250 l lalt)
+        scl_ctl (tap-hold-next-release 250 ; rmet)
 
-      q_esc (multi-tap 200 q esc)
-      sl_bs (multi-tap 200 / del)
+        q_esc (multi-tap 200 q esc)
+        sl_bs (multi-tap 200 / del)
 
-      spc_nav (tap-hold-next-release 200 spc (layer-toggle nav))
-    )
+        spc_nav (tap-hold-next-release 200 spc (layer-toggle nav))
+      )
 
-    (deflayer base
-      q      w   e   r   t   y   u      i      o      p
-      @a_ctl @s_alt @d_gui @f_sft g h @j_sft @k_gui @l_alt @scl_ctl
-      z      x   c   v   b   n   m      ,      .      /
-      @spc_nav
-    )
+      (deflayer base
+        q      w   e   r   t   y   u      i      o      p
+        @a_ctl @s_alt @d_gui @f_sft g h @j_sft @k_gui @l_alt @scl_ctl
+        z      x   c   v   b   n   m      ,      .      /
+        @spc_nav
+      )
 
-    (deflayer nav
-      _    _    _    _    _    _    _    bspc home end
-      _    _    _    _    _    left down up   rght bspc
-      _    _    _    _    _    _    _    caps pgdn pgup
-      _
-    )
-  '';
+      (deflayer nav
+        _    _    _    _    _    _    _    bspc home end
+        _    _    _    _    _    left down up   rght bspc
+        _    _    _    _    _    _    _    caps pgdn pgup
+        _
+      )
+    '';
 
-  systemd.services.kmonad = {
-    description = "KMonad keyboard remapping";
-    wantedBy = [ "multi-user.target" ];
-    after = [ "systemd-udev-settle.service" ];
-    wants = [ "systemd-udev-settle.service" ];
+    systemd.services.kmonad = {
+      description = "KMonad keyboard remapping";
+      wantedBy = [ "multi-user.target" ];
+      after = [ "systemd-udev-settle.service" ];
+      wants = [ "systemd-udev-settle.service" ];
 
-    serviceConfig = {
-      ExecStart = "${pkgs.kmonad}/bin/kmonad /etc/kmonad/config.kbd";
-      Restart = "on-failure";
-      RestartSec = 2;
-      User = "root";
+      serviceConfig = {
+        ExecStart = "${pkgs.kmonad}/bin/kmonad /etc/kmonad/config.kbd";
+        Restart = "on-failure";
+        RestartSec = 2;
+        User = "root";
+      };
     };
-  };
+  }; 
 }
+
